@@ -1,7 +1,8 @@
 
+
 "use client";
 
-import { useState, useTransition, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { notFound, useRouter } from 'next/navigation';
 import { recipes } from '@/lib/recipes';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -297,7 +298,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
           
           <div className="md:col-span-2 space-y-6">
             <Tabs defaultValue="recipe" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
+              <TabsList className="flex flex-wrap h-auto justify-start">
                 <TabsTrigger value="recipe">Recipe</TabsTrigger>
                 <TabsTrigger value="swap">Swaps</TabsTrigger>
                 <TabsTrigger value="mocktail">Mocktail</TabsTrigger>
@@ -411,5 +412,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
       </main>
     </div>
   );
+
+    
 
     
