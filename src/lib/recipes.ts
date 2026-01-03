@@ -16,10 +16,10 @@ export const recipes: Recipe[] = [
       ],
       instructions: [
         'Add Demerara syrup and bitters to a mixing glass.',
-        'Add whiskey and fill with ice.',
-        'Stir for 30-45 seconds until well-chilled.',
+        'Add whiskey and fill the glass with ice.',
+        'Stir with a bar spoon for 30-45 seconds until well-chilled. The goal is to chill and dilute, not aerate.',
         'Strain into a rocks glass over a large ice cube.',
-        'Express the oils from the orange peel over the drink, then drop it in.',
+        'Express the oils from an orange peel over the drink, then drop it in as garnish.',
       ],
     },
     swap: 'Aged Rum or Añejo Tequila.',
@@ -45,8 +45,8 @@ export const recipes: Recipe[] = [
         { item: 'Luxardo Cherry', amount: '1 for garnish' },
       ],
       instructions: [
-        'Combine Rye, sweet vermouth, and bitters in a mixing glass with ice.',
-        'Stir until well-chilled.',
+        'Combine Rye, sweet vermouth, and bitters in a mixing glass filled with ice.',
+        'Stir with a bar spoon for about 30 seconds until perfectly chilled.',
         'Strain into a chilled coupe glass.',
         'Garnish with a Luxardo cherry.',
       ],
@@ -74,7 +74,8 @@ export const recipes: Recipe[] = [
         { item: 'Orange Peel', amount: '1 for garnish' },
       ],
       instructions: [
-        'Add all ingredients into a mixing glass with ice and stir until well-chilled.',
+        'Add all ingredients into a mixing glass with ice.',
+        'Stir until well-chilled, about 30 seconds.',
         'Strain into a rocks glass over a large ice cube.',
         'Garnish with an orange peel.',
       ],
@@ -101,7 +102,8 @@ export const recipes: Recipe[] = [
         { item: 'Lemon Twist or Olive', amount: '1 for garnish' },
       ],
       instructions: [
-        'Stir ingredients in a mixing glass with ice.',
+        'Combine gin and vermouth in a mixing glass filled with ice.',
+        'Stir gracefully until the outside of the glass is frosty.',
         'Strain into a chilled martini glass.',
         'Garnish with a lemon twist or an olive.',
       ],
@@ -129,9 +131,10 @@ export const recipes: Recipe[] = [
         { item: 'Egg White', amount: '1 (Optional)' },
       ],
       instructions: [
-        'If using egg white, combine all ingredients in a shaker and "dry shake" (without ice) for 15 seconds.',
-        'Add ice and shake again until well-chilled.',
-        'Strain into a coupe or rocks glass.',
+        'Combine whiskey, lemon juice, simple syrup, and egg white in a shaker.',
+        'Perform a "Dry Shake" (without ice) for 15 seconds to create a beautiful foam.',
+        'Add ice and shake again for 10-12 seconds until well-chilled.',
+        'Strain into a coupe or rocks glass with fresh ice.',
         'Garnish with a cherry or orange slice.',
       ],
     },
@@ -159,9 +162,10 @@ export const recipes: Recipe[] = [
         { item: 'Salt for rim', amount: 'Optional' },
       ],
       instructions: [
-        'Rim a rocks glass with salt if desired.',
+        'If desired, rim a rocks glass with salt.',
         'Add all ingredients to a shaker with ice.',
-        'Shake well and strain into the prepared glass over fresh ice.',
+        'Give it a hard shake for 10-12 seconds to wake it up.',
+        'Strain into the prepared glass over fresh ice.',
         'Garnish with a lime wedge.',
       ],
     },
@@ -188,8 +192,8 @@ export const recipes: Recipe[] = [
       ],
       instructions: [
         'Add all ingredients to a shaker with ice.',
-        'Shake until well-chilled.',
-        'Strain into a chilled coupe glass.',
+        'Shake vigorously for 10-12 seconds until well-chilled.',
+        'Double-strain (using the shaker\'s strainer and a fine-mesh strainer) into a chilled coupe glass.',
       ],
     },
     swap: 'Gin (Gimlet).',
@@ -215,8 +219,8 @@ export const recipes: Recipe[] = [
       ],
       instructions: [
         'Squeeze lime juice into a copper mug.',
-        'Add two or three ice cubes, then pour in the vodka.',
-        'Fill with cold ginger beer.',
+        'Add vodka and fill the mug with ice.',
+        'Top with cold ginger beer and give a gentle stir.',
         'Garnish with a lime wedge.',
       ],
     },
@@ -243,7 +247,8 @@ export const recipes: Recipe[] = [
       ],
       instructions: [
         'Add all ingredients to a shaker with ice.',
-        'Shake well and strain into a chilled coupe glass.',
+        'Shake well for 10-12 seconds until chilled.',
+        'Strain into a chilled coupe glass.',
         'Garnish with a lime wheel.',
       ],
     },
@@ -270,8 +275,8 @@ export const recipes: Recipe[] = [
         { item: 'Club Soda', amount: 'Top with' },
       ],
       instructions: [
-        'Add gin, lemon juice and syrup to a Collins glass.',
-        'Fill with ice, top with club soda, and stir.',
+        'Build the drink: Add gin, lemon juice and syrup to a Collins glass.',
+        'Fill with ice, top with club soda, and give it a quick stir.',
         'Garnish with a lemon wheel and a cherry.',
       ],
     },
@@ -299,8 +304,8 @@ export const recipes: Recipe[] = [
       ],
       instructions: [
         'Add all ingredients to a shaker with crushed ice.',
-        'Shake briefly and pour unstrained into a rocks glass.',
-        'Garnish with a mint sprig and a lime wheel.',
+        'Shake briefly (a "whip shake") and pour unstrained into a rocks glass.',
+        'Garnish with a mint sprig (slap it first!) and a lime wheel.',
       ],
     },
     swap: 'Mix of light and dark rum.',
@@ -325,8 +330,8 @@ export const recipes: Recipe[] = [
         { item: 'Sweet Vermouth', amount: '1 oz' },
       ],
       instructions: [
-        'Stir all ingredients with ice in a mixing glass.',
-        'Strain into a chilled coupe or rocks glass with a large ice cube.',
+        'Stir all ingredients with ice in a mixing glass until well-chilled.',
+        'Strain into a chilled coupe or a rocks glass with a large ice cube.',
         'Garnish with an orange peel.',
       ],
     },
@@ -353,10 +358,10 @@ export const recipes: Recipe[] = [
         { item: 'Absinthe', amount: 'Rinse' },
       ],
       instructions: [
-        'Rinse a chilled rocks glass with absinthe and discard the excess.',
-        'Stir the other ingredients with ice in a mixing glass.',
-        'Strain into the prepared glass without ice.',
-        'Garnish with a lemon peel.',
+        'Rinse a chilled rocks glass with absinthe, coating the inside, and discard the excess.',
+        'Stir the rye, simple syrup, and bitters with ice in a mixing glass.',
+        'Strain into the prepared glass (no ice).',
+        'Express a lemon peel over the drink and discard (or use as garnish).',
       ],
     },
     swap: 'Cognac.',
@@ -409,8 +414,8 @@ export const recipes: Recipe[] = [
         { item: 'Club Soda', amount: '1 part' },
       ],
       instructions: [
-        'Fill a wine glass with ice.',
-        'Add Aperol, Prosecco, and a splash of soda.',
+        'Build the drink in a wine glass filled with ice.',
+        'Add Aperol, then Prosecco, and a splash of soda.',
         'Garnish with an orange slice.',
       ],
     },
@@ -464,7 +469,7 @@ export const recipes: Recipe[] = [
         { item: 'Cranberry Juice', amount: '0.25 oz' },
       ],
       instructions: [
-        'Shake all ingredients with ice.',
+        'Shake all ingredients vigorously with ice.',
         'Strain into a chilled martini glass.',
         'Garnish with a lime wheel or orange peel.',
       ],
@@ -491,8 +496,8 @@ export const recipes: Recipe[] = [
       ],
       instructions: [
         'Fill a highball glass with ice.',
-        'Pour ginger beer over ice.',
-        'Float the dark rum on top.',
+        'Pour ginger beer over ice, leaving room at the top.',
+        'Float the dark rum on top to create the "stormy" layer.',
         'Garnish with a lime wedge.',
       ],
     },
@@ -518,8 +523,8 @@ export const recipes: Recipe[] = [
         { item: 'Grapefruit Soda', amount: 'Top with' },
       ],
       instructions: [
-        'Add tequila and lime juice to a salt-rimmed highball glass filled with ice.',
-        'Top with grapefruit soda and stir.',
+        'Build in a salt-rimmed highball glass filled with ice: add tequila and lime juice.',
+        'Top with grapefruit soda and stir gently.',
         'Garnish with a lime wedge.',
       ],
     },
@@ -573,10 +578,10 @@ export const recipes: Recipe[] = [
         { item: 'Mint Leaves', amount: '8' },
       ],
       instructions: [
-        'In a Julep cup, muddle the mint leaves with the simple syrup.',
-        'Add the bourbon and fill with crushed ice.',
-        'Stir until the cup is frosty.',
-        'Garnish with a large mint sprig.',
+        'In a Julep cup, gently muddle the mint leaves with the simple syrup to release their oils.',
+        'Add the bourbon and fill the cup with crushed ice.',
+        'Stir until the cup becomes frosty on the outside.',
+        'Garnish with a large mint sprig, after slapping it to release the aroma.',
       ],
     },
     swap: 'Rye whiskey for a spicier version.',
@@ -603,9 +608,9 @@ export const recipes: Recipe[] = [
         { item: 'Club Soda', amount: 'Top with' },
       ],
       instructions: [
-        'Dry shake all ingredients except club soda to emulsify the egg white.',
-        'Add ice and shake again until cold.',
-        'Strain into a highball glass and top with club soda.',
+        'Perform a "Dry Shake": combine gin, lemon, syrup, and egg white in a shaker without ice and shake to emulsify.',
+        'Add ice and perform a "Wet Shake" until cold.',
+        'Strain into a highball glass without ice and top with club soda.',
       ],
     },
     swap: 'Vodka.',
@@ -630,7 +635,7 @@ export const recipes: Recipe[] = [
         { item: 'Lillet Blanc', amount: '0.5 oz' },
       ],
       instructions: [
-        'Shake all ingredients with ice until well-chilled.',
+        'Shake all ingredients with ice until very well-chilled.',
         'Strain into a chilled martini glass.',
         'Garnish with a large, thin slice of lemon peel.',
       ],
@@ -657,9 +662,9 @@ export const recipes: Recipe[] = [
         { item: 'Sugar', amount: '2 tsp' },
       ],
       instructions: [
-        'In a rocks glass, muddle the lime wedges with the sugar.',
+        'In a rocks glass, muddle the lime wedges firmly with the sugar to extract the juice.',
         'Fill the glass with ice.',
-        'Add the cachaça and stir.',
+        'Add the cachaça and stir to combine.',
       ],
     },
     swap: 'Vodka (Caipiroska) or Rum.',
@@ -685,7 +690,7 @@ export const recipes: Recipe[] = [
         { item: 'Egg White', amount: '1' },
       ],
       instructions: [
-        'Dry shake all ingredients to emulsify egg white.',
+        'Dry shake all ingredients to emulsify the egg white.',
         'Add ice and shake again until cold.',
         'Strain into a chilled coupe glass.',
         'Garnish with a fresh raspberry.',
@@ -770,7 +775,7 @@ export const recipes: Recipe[] = [
         { item: 'Islay Scotch', amount: '0.25 oz float' },
       ],
       instructions: [
-        'Shake blended scotch, lemon juice, and syrup with ice.',
+        'Shake blended scotch, lemon juice, and honey-ginger syrup with ice.',
         'Strain into a rocks glass with a large ice cube.',
         'Float the Islay scotch on top.',
         'Garnish with candied ginger.',
@@ -829,10 +834,11 @@ export const recipes: Recipe[] = [
         { item: 'Pomegranate Seeds', amount: '1/2 cup' },
       ],
       instructions: [
-        'Add the mint and pomegranate seeds to a large pitcher and gently muddle to release their aroma.',
-        'Fill the pitcher with ice cubes. Pour in the prosecco, pomegranate liqueur and elderflower liqueur.',
+        'Gently muddle mint and pomegranate seeds in a large pitcher to release their aromas.',
+        'Fill the pitcher with ice.',
+        'Build the drink: Pour in Prosecco, Pomegranate Liqueur, and Elderflower Liqueur.',
         'Top with a splash of club soda and stir gently to combine.',
-        'Pour into wine glasses and garnish with more mint and pomegranate seeds.'
+        'Serve in wine glasses and garnish with more mint and pomegranate seeds.'
       ],
     },
     swap: "Use Pomegranate juice if you don't have the liqueur.",
@@ -876,5 +882,3 @@ export const recipes: Recipe[] = [
     }
   }
 ];
-
-    
