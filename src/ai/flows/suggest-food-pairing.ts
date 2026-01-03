@@ -20,6 +20,7 @@ export type SuggestFoodPairingInput = z.infer<typeof SuggestFoodPairingInputSche
 
 const SuggestFoodPairingOutputSchema = z.object({
   foodPairingSuggestion: z.string().describe('A suggestion for food pairings that complement the cocktail.'),
+  notes: z.string().optional().describe("Additional dynamic adjustments or warnings, such as avoiding certain woods with spicy foods."),
 });
 export type SuggestFoodPairingOutput = z.infer<typeof SuggestFoodPairingOutputSchema>;
 
@@ -58,6 +59,7 @@ const prompt = ai.definePrompt({
   1.  Use the 'getRecipeDetailsTool' to get the cocktail's category and ingredients.
   2.  Apply the "Gastro-Pairing Logic" below to determine the best food pairing.
   3.  Provide a concise and appealing suggestion in the 'foodPairingSuggestion' field. Explain the "Why" behind your pairing. The food items listed in the logic are EXAMPLES; use the underlying principle to suggest other suitable dishes.
+  4.  Provide dynamic pairing adjustments in the 'notes' field, such as advising against strong woods with spicy food.
 
   **Gastro-Pairing Logic:**
 
@@ -77,7 +79,7 @@ const prompt = ai.definePrompt({
       -   Examples: Tacos, fried chicken, pizza, calamari, rich pasta dishes.
   -   **B. The "Complement" (Sweet vs. Heat/Salt):**
       -   **If the cocktail is Sweet/Tropical** (e.g., Mai Tai, Bee's Knees), recommend it for **spicy food.**
-      -   *Why:* Sugar soothes the "burn" of chili heat.
+      -   *Why:* Sugar soothes the "burn" of chili heat. Avoid strong woods like Hickory here as they can compete with the spices.
       -   Examples: Thai green curry, spicy noodles, hot wings, jerk chicken.
   -   **C. The "Finish" (Spirit vs. Sugar):**
       -   **If the cocktail is Spirit-Forward** (e.g., Old Fashioned, Manhattan, Espresso Martini), recommend it for **dessert.**
@@ -97,6 +99,9 @@ const suggestFoodPairingFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return output!;
+    if (!output) {
+      return { foodPairingSuggestion: 'Could not determine a pairing at this time.' };
+    }
+    return output;
   }
 );

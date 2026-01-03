@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useSettings } from '@/contexts/settings-context';
 import { useToast } from '@/hooks/use-toast';
-import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight, Beaker, TestTube, FlaskConical } from 'lucide-react';
+import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight } from 'lucide-react';
 import { suggestFoodPairing } from '@/ai/flows/suggest-food-pairing';
 import { suggestWoodPairing } from '@/ai/flows/suggest-wood-pairing';
 import { suggestCocktailSubstitutions, SuggestCocktailSubstitutionsOutput } from '@/ai/flows/suggest-cocktail-substitutions';
@@ -26,6 +26,7 @@ type AIResult = {
   title: string;
   content: string;
   rationale?: string;
+  notes?: string;
   substitutions?: SuggestCocktailSubstitutionsOutput['substitutions'];
 };
 
@@ -54,7 +55,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
       setAiResult(null);
       const result = await suggestFoodPairing({ cocktailName: recipe.name });
       if (result?.foodPairingSuggestion) {
-        setAiResult({ title: 'Food Pairing Suggestion', content: result.foodPairingSuggestion });
+        setAiResult({ title: 'Food Pairing Suggestion', content: result.foodPairingSuggestion, notes: result.notes });
       } else {
         toast({ variant: 'destructive', title: 'Could not get suggestion.' });
       }
@@ -94,22 +95,6 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
 
   const hasAdvancedTechnique = ['Whiskey Sour', 'Gin Fizz', 'Clover Club'].includes(recipe.name);
 
-  const techniqueMap = {
-    'Fat Washing': { icon: Beaker, link: '/learn' },
-    'Spirit Infusions': { icon: FlaskConical, link: '/learn'},
-    'Clarified Milk Punch': { icon: TestTube, link: '/learn'},
-    'Dry Shake': { icon: GraduationCap, link: '/learn'}
-  }
-
-  const getTechniqueInfo = (name: string) => {
-    for (const key in techniqueMap) {
-      if (name.includes(key)) {
-        return techniqueMap[key as keyof typeof techniqueMap];
-      }
-    }
-    return null;
-  }
-  
   const handleServingsChange = (value: number[]) => {
     setServings(value[0]);
   }
@@ -183,6 +168,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
                     <>
                       <p className="text-lg font-semibold text-primary">{aiResult.content}</p>
                       {aiResult.rationale && <p className="mt-2 text-muted-foreground italic">"{aiResult.rationale}"</p>}
+                       {aiResult.notes && <p className="mt-2 text-sm text-amber-400">Heads Up: {aiResult.notes}</p>}
                     </>
                   )}
                 </CardContent>
@@ -203,23 +189,16 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
                  <Card>
                     <CardHeader>
                       <CardTitle>Ingredients</CardTitle>
-                      <div className="pt-4 space-y-4">
-                        <Label htmlFor="servings-slider" className="text-base">
-                          Servings: <span className="font-bold text-primary">{servings}</span>
-                        </Label>
-                        <div className='flex items-center gap-4'>
-                          <span className="text-sm text-muted-foreground">1</span>
-                          <Slider
-                            id="servings-slider"
-                            min={1}
-                            max={25}
-                            step={1}
-                            defaultValue={[1]}
-                            onValueChange={handleServingsChange}
-                            className="flex-1"
-                          />
-                          <span className="text-sm text-muted-foreground">25</span>
-                        </div>
+                       <div className="pt-4 space-y-2">
+                        <Label htmlFor="servings-slider">Servings: <span className="font-bold text-primary">{servings}</span></Label>
+                        <Slider
+                          id="servings-slider"
+                          min={1}
+                          max={25}
+                          step={1}
+                          defaultValue={[1]}
+                          onValueChange={handleServingsChange}
+                        />
                       </div>
                     </CardHeader>
                     <CardContent>
@@ -228,7 +207,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
                           const [amount, unit] = parseAmount(ing.amount);
                           const scaledAmount = amount * servings;
                           
-                          // Handle non-numeric amounts like "1 for garnish"
+                          // Handle non-numeric amounts like '1 for garnish'
                           let displayAmount: string;
                           if (amount === 0 || isNaN(amount)) {
                              displayAmount = unit; // Show "for garnish" or "1"
@@ -314,5 +293,3 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
     </div>
   );
 }
-
-    

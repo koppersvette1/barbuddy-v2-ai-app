@@ -21,7 +21,7 @@ function isCocktailSmokingOutput(explanation: any): explanation is ExplainCockta
   return explanation && 'chimneySmokerGuide' in explanation;
 }
 
-const techniqueConfig: Record<Technique, { icon: React.ElementType, label: string, imageId: string, disabled?: (settings: any) => boolean }> = {
+const techniqueConfig: Record<Technique, { icon: React.ElementType, label: string, imageId: string }> = {
   fatWashing: { icon: Beaker, label: 'Fat Washing', imageId: 'learn-fat-washing' },
   infusion: { icon: FlaskConical, label: 'Spirit Infusions', imageId: 'learn-infusion' },
   cocktailSmoking: { icon: Flame, label: 'Cocktail Smoking', imageId: 'learn-cocktail-smoking' },
@@ -140,6 +140,15 @@ export default function LearnPage() {
                           <ol className="list-decimal list-outside space-y-4 pl-5 text-base text-foreground/80">
                             {explanation.torchGuide.refillSteps.map((step, i) => <li key={i} className="pl-2">{step}</li>)}
                           </ol>
+                          <h4 className="font-semibold text-xl mb-2 mt-4 text-foreground">Troubleshooting</h4>
+                           <div className="space-y-4">
+                            {explanation.torchGuide.troubleshooting.map((item, i) => (
+                              <div key={i} className="p-3 rounded-md border border-border/50 bg-background/30">
+                                <p className="font-semibold text-foreground">{item.issue}</p>
+                                <p className="text-foreground/80">{item.solution}</p>
+                              </div>
+                            ))}
+                          </div>
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="item-3" className="border-b-0">
@@ -150,6 +159,21 @@ export default function LearnPage() {
                               <div key={i} className="p-3 rounded-md border border-border/50 bg-background/30">
                                 <p className="font-semibold text-foreground">{item.glassType}</p>
                                 <p className="text-foreground/80">{item.tip}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="item-4" className="border-b-0">
+                        <AccordionTrigger className="text-2xl font-headline hover:no-underline">Pro-Tips & Safety</AccordionTrigger>
+                        <AccordionContent className="pt-2">
+                           <div className="space-y-4">
+                            {explanation.proTips.map((item, i) => (
+                              <div key={i} className="p-3 rounded-md border border-border/50 bg-background/30">
+                                <p className="font-semibold text-foreground">{item.title}</p>
+                                 <ul className="list-disc list-outside space-y-2 pl-5 text-base text-foreground/80 mt-2">
+                                  {item.points.map((point, j) => <li key={j} className="pl-2">{point}</li>)}
+                                </ul>
                               </div>
                             ))}
                           </div>

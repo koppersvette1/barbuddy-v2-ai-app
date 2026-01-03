@@ -20,7 +20,11 @@ const ExplainCocktailSmokingOutputSchema = z.object({
     title: z.string().default("Handling the Torch"),
     description: z.string().describe("Tips for getting the best flame from your torch."),
     refillSteps: z.array(z.string()).describe("The 'No-Sputter' method for refilling the torch with butane."),
-  }).describe('A guide on how to properly fill and use the torch for optimal performance.'),
+    troubleshooting: z.array(z.object({
+      issue: z.string().describe("The problem, e.g., 'Yellow, Flickering Flame'."),
+      solution: z.string().describe("The fix for the issue, explaining what's wrong and how to correct it."),
+    })).describe("Common torch problems and how to fix them."),
+  }).describe('A guide on how to properly fill, use, and troubleshoot the torch.'),
   glasswareTips: z.array(z.object({
     glassType: z.string().describe("The type of glassware (e.g., Rocks Glass)."),
     tip: z.string().describe("A tip or consideration for using this type of glassware for smoking."),
@@ -48,8 +52,9 @@ const prompt = ai.definePrompt({
   1.  A clear, engaging description of what cocktail smoking is and why it's done.
   2.  A step-by-step guide on using the chimney smoker unit, including how much wood to use ("a small pinch") and how to light it.
   3.  A guide to using the torch, including the "No-Sputter" refill method (purging, filling, and waiting) and what a good flame looks like.
-  4.  Practical tips for different glassware, specifically for a Rocks Glass, a Coupe/Martini glass (and the tip about smoking it upside down or in a mixing glass), and a Highball glass.
-  5.  A "Pro-Tips / Heads Up" section covering:
+  4.  A new "Troubleshooting" section for the torch. Explain the difference between a "sharp blue cone" (good flame) and a "yellow, flickering flame" (bad flame, needs purging). Also explain how to diagnose a clogged smoker (e.g., "if the smoke isn't dropping into the glass, the mesh is likely clogged with ash").
+  5.  Practical tips for different glassware, specifically for a Rocks Glass, a Coupe/Martini glass (and the tip about smoking it upside down or in a mixing glass), and a Highball glass.
+  6.  A "Pro-Tips / Heads Up" section covering:
       - Flavor Advisories: Mention that smoking fresh mint directly can make it taste burnt and that smoking oils/fats can leave a residue.
       - Fire Best Practices: Explain how to handle flare-ups by capping the smoker and keeping open bottles of high-proof alcohol away from the flame.
       - Gear Maintenance: Include tips on cleaning the mesh screen and wiping the wooden chimney without soaking it.
