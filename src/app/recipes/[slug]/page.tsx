@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useSettings } from '@/contexts/settings-context';
 import { useToast } from '@/hooks/use-toast';
-import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight, Star } from 'lucide-react';
+import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight, Star, ShoppingCart, ListChecks } from 'lucide-react';
 import { suggestFoodPairing } from '@/ai/flows/suggest-food-pairing';
 import { suggestWoodPairing } from '@/ai/flows/suggest-wood-pairing';
 import { suggestCocktailSubstitutions, SuggestCocktailSubstitutionsOutput } from '@/ai/flows/suggest-cocktail-substitutions';
@@ -68,6 +68,14 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
     : PlaceHolderImages.find(img => img.id === recipe.image) || PlaceHolderImages.find(img => img.id === 'default-cocktail');
   
   const isFavorite = settings.favoriteRecipes.includes(recipe.slug);
+  
+  const userInventorySet = new Set(settings.inventory.map(i => i.toLowerCase()));
+  const missingIngredients = recipe.spec.ingredients.filter(ing => {
+    const requiredItem = ing.item.toLowerCase();
+    // A simple check: if no inventory item is a substring of the required item or vice-versa.
+    // This handles cases like "Whiskey" in inventory and "Rye Whiskey" in recipe.
+    return !Array.from(userInventorySet).some(invItem => invItem.includes(requiredItem) || requiredItem.includes(invItem));
+  });
 
   const handleToggleFavorite = () => {
     toggleFavorite(recipe.slug);
@@ -143,7 +151,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
       <Header title={recipe.name} />
       <main className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="md:col-span-1">
+          <div className="md:col-span-1 space-y-6">
             <Card>
               <CardContent className="p-0 relative">
                 {recipeImage && (
@@ -166,7 +174,30 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
               </CardHeader>
             </Card>
             
-            <Card className="mt-6">
+            {missingIngredients.length > 0 && (
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            <ShoppingCart className="w-6 h-6" /> Shopping List
+                        </CardTitle>
+                        <CardDescription>
+                            You're missing a few items for this recipe.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="space-y-2 text-sm text-muted-foreground">
+                            {missingIngredients.map(ing => (
+                                <li key={ing.item} className="flex items-center gap-2">
+                                    <ListChecks className="w-4 h-4 text-primary" />
+                                    <span>{ing.item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </CardContent>
+                </Card>
+            )}
+
+            <Card>
               <CardHeader><CardTitle>AI-Powered Suggestions</CardTitle></CardHeader>
               <CardContent className="flex flex-col gap-2">
                 <Button onClick={handleFoodPairing} disabled={isPending} variant="outline"><Utensils className="mr-2" /> Food Pairing</Button>
@@ -178,7 +209,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
             {isPending && <div className="mt-6 flex justify-center items-center gap-2 text-muted-foreground"><Loader className="animate-spin" /> Generating...</div>}
             
             {aiResult && (
-              <Card className="mt-6">
+              <Card>
                 <CardHeader><CardTitle>{aiResult.title}</CardTitle></CardHeader>
                 <CardContent>
                   {aiResult.substitutions ? (
@@ -322,4 +353,5 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
       </main>
     </div>
   );
-}
+
+    
