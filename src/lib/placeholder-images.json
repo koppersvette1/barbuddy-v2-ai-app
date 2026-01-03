@@ -63,7 +63,7 @@
     {
       "id": "inventory-scan-placeholder",
       "description": "A placeholder for the inventory scan.",
-      "imageUrl": "https://images.unsplash.com/photo-1763688459566-32c3d53f724b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsaXF1b3IlMjBjYWJpbmV0fGVufDB8fHx8MTc2NzQwODg4MHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1763688459566-32c3d53f724b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsaXF1b3IlMjBjYWJpbmV0fGVufDB8fHx8MTc2NzQwODg4MHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "liquor cabinet"
     },
     {
@@ -183,7 +183,7 @@
     {
       "id": "penicillin",
       "description": "A Penicillin cocktail in a rocks glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1559842623-b82d2e1228a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxQZW5pY2lsbGluJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1559842623-b82d2e1228a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxQZW5pY2lsbGluJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "Penicillin cocktail"
     },
     {
@@ -194,9 +194,9 @@
     },
     {
       "id": "pomegranate-hugo-spritz",
-      "description": "A Pomegranate Hugo Spritz in a wine glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1622597444390-333d7b7381b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxIdWdvJTIwU3ByaXR6fGVufDB8fHx8MTc2NzQyMTE0NHww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "Hugo Spritz"
+      "description": "A Pomegranate Hugo Spritz in a wine glass with pomegranate seeds and mint.",
+      "imageUrl": "https://images.unsplash.com/photo-1552501014-105b43a8b2c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb21lZ3JhbmF0ZSUyMHNwcml0enxlbnwwfHx8fDE3Njc0MjQxMjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pomegranate spritz"
     },
     {
       "id": "heb-honey-smoked-margarita",

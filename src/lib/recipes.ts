@@ -1,3 +1,4 @@
+
 import type { Recipe } from '@/lib/types';
 
 export const recipes: Recipe[] = [
@@ -828,11 +829,11 @@ export const recipes: Recipe[] = [
         { item: 'Pomegranate Seeds', amount: 'for garnish' },
       ],
       instructions: [
-        'Gently muddle mint leaves in a large wine glass.',
-        'Fill the glass with ice.',
-        'Add Prosecco, Pomegranate Liqueur, and Elderflower Liqueur.',
-        'Top with a splash of soda water and stir gently.',
-        'Garnish with more mint and a sprinkle of pomegranate seeds.'
+        'In a large wine glass, add mint leaves and gently press them with a muddler to release their aroma.',
+        'Fill the glass with ice cubes.',
+        'Pour in the Prosecco, Pomegranate Liqueur, and Elderflower Liqueur.',
+        'Top with a splash of soda water and stir gently to combine.',
+        'Garnish with a fresh sprig of mint and a sprinkle of pomegranate seeds.'
       ],
     },
     swap: 'Use Pomegranate juice if you don\'t have the liqueur.',
