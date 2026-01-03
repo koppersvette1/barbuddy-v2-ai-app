@@ -12,6 +12,10 @@ import {z} from 'genkit';
 const ExplainCocktailSmokingOutputSchema = z.object({
   techniqueName: z.string().describe('The name of the technique, which is "Cocktail Smoking".'),
   description: z.string().describe('A detailed but approachable overview of what cocktail smoking is, its purpose, and the flavor effects it creates.'),
+  preflightChecklist: z.array(z.object({
+    check: z.string().describe("The item to check, e.g., 'Torch Purged'"),
+    details: z.string().describe("Details about why this check is important, e.g., 'Ensure a sharp blue cone for a clean burn.'")
+  })).describe("A pre-flight checklist for safety and performance before smoking."),
   chimneySmokerGuide: z.object({
     title: z.string().default("Using the Chimney Smoker"),
     steps: z.array(z.string()).describe('A list of step-by-step instructions on how to use the chimney smoker unit.'),
@@ -32,7 +36,7 @@ const ExplainCocktailSmokingOutputSchema = z.object({
   proTips: z.array(z.object({
       title: z.string().describe("The title of the tip, e.g., 'Flavor Advisories' or 'Gear Maintenance'."),
       points: z.array(z.string()).describe("A list of tips or best practices.")
-  })).describe("A list of pro-tips and best practices for safety, maintenance, and flavor.")
+  })).describe("A list of pro-tips and best practices for safety, maintenance, and flavor. Include a note about using the Carafe Smoke method for batching cocktails for a party.")
 });
 
 export type ExplainCocktailSmokingOutput = z.infer<typeof ExplainCocktailSmokingOutputSchema>;
@@ -44,20 +48,25 @@ export async function explainCocktailSmoking(): Promise<ExplainCocktailSmokingOu
 const prompt = ai.definePrompt({
   name: 'explainCocktailSmokingPrompt',
   output: {schema: ExplainCocktailSmokingOutputSchema},
-  prompt: `You are BarBuddy, a creative Mixology Partner and Flavor Architect. Your goal is to help the user master their hardware.
+  prompt: `You are BarBuddy, a creative Mixology Partner and Flavor Architect. Your goal is to help the user master their hardware safely and effectively.
 
-  Explain the technique of "Smoking Cocktails" using the chimney-style smoker that sits on top of the glass. Your tone should be conversational, fun, and expert but accessible.
+  Explain the technique of "Smoking Cocktails" using the chimney-style smoker. Your tone should be conversational, fun, and expert but accessible.
   
   Your explanation must include:
   1.  A clear, engaging description of what cocktail smoking is and why it's done.
-  2.  A step-by-step guide on using the chimney smoker unit, including how much wood to use ("a small pinch") and how to light it.
-  3.  A guide to using the torch, including the "No-Sputter" refill method (purging, filling, and waiting) and what a good flame looks like.
-  4.  A new "Troubleshooting" section for the torch. Explain the difference between a "sharp blue cone" (good flame) and a "yellow, flickering flame" (bad flame, needs purging). Also explain how to diagnose a clogged smoker (e.g., "if the smoke isn't dropping into the glass, the mesh is likely clogged with ash").
-  5.  Practical tips for different glassware, specifically for a Rocks Glass, a Coupe/Martini glass (and the tip about smoking it upside down or in a mixing glass), and a Highball glass.
-  6.  A "Pro-Tips / Heads Up" section covering:
-      - Flavor Advisories: Mention that smoking fresh mint directly can make it taste burnt and that smoking oils/fats can leave a residue.
-      - Fire Best Practices: Explain how to handle flare-ups by capping the smoker and keeping open bottles of high-proof alcohol away from the flame.
-      - Gear Maintenance: Include tips on cleaning the mesh screen and wiping the wooden chimney without soaking it.
+  2.  A new "Pre-Flight Checklist" section. This should be a simple list of checks to perform *before* starting:
+      - Torch purged? (Ensure a sharp blue cone for a clean burn.)
+      - Mesh basket clean? (Ensure proper airflow for smoke to drop.)
+      - High-proof bottles moved? (Keep flammable liquids at least 1 foot away.)
+  3.  A step-by-step guide on using the chimney smoker unit, including how much wood to use ("a small pinch") and how to light it.
+  4.  A guide to using the torch, including the "No-Sputter" refill method (purging, filling, and waiting) and what a good flame looks like.
+  5.  A "Troubleshooting" section for the torch. Explain the difference between a "sharp blue cone" (good flame) and a "yellow, flickering flame" (bad flame, needs purging). Also explain how to diagnose a clogged smoker (e.g., "if the smoke isn't dropping into the glass, the mesh is likely clogged with ash").
+  6.  Practical tips for different glassware, specifically for a Rocks Glass, a Coupe/Martini glass, and a Highball glass.
+  7.  A "Pro-Tips / Heads Up" section covering:
+      - Flavor Advisories: Mention smoking fresh mint can taste burnt and oils/fats can leave residue.
+      - Fire Best Practices: Explain handling flare-ups and keeping open bottles away.
+      - Gear Maintenance: Tips on cleaning the mesh screen and wiping the chimney.
+      - Party Tip: Include a point about using the "Carafe Smoke" method for batching drinks for a group to save time, mentioning that the user should swirl the liquid in the carafe for 30 seconds to integrate the smoke.
   `,
 });
 
