@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState, useTransition, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +24,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Header } from "@/components/layout/header";
 import { useToast } from "@/hooks/use-toast";
-import { X, Plus, Sparkles, Loader, Image as ImageIcon, Link as LinkIcon } from "lucide-react";
+import { X, Plus, Sparkles, Loader, Image as ImageIcon, Link as LinkIcon, Trash2 } from "lucide-react";
 import { Recipe } from "@/lib/types";
 import { generateCocktailImage } from "@/ai/flows/generate-cocktail-image";
 import Image from "next/image";
@@ -48,6 +48,20 @@ const recipeSchema = z.object({
 
 type RecipeFormValues = z.infer<typeof recipeSchema>;
 
+const defaultFormValues: RecipeFormValues = {
+  name: "",
+  category: "Sours",
+  imagePrompt: "",
+  spec: {
+    ingredients: [{ item: "", amount: "" }],
+    instructions: [""],
+  },
+  imageDataUri: ""
+};
+
+const RECIPE_DRAFT_KEY = 'barbuddy-recipe-draft';
+
+
 export default function AddRecipePage() {
   const router = useRouter();
   const { toast } = useToast();
@@ -58,16 +72,29 @@ export default function AddRecipePage() {
   
   const form = useForm<RecipeFormValues>({
     resolver: zodResolver(recipeSchema),
-    defaultValues: {
-      name: "",
-      category: "Sours",
-      imagePrompt: "",
-      spec: {
-        ingredients: [{ item: "", amount: "" }],
-        instructions: [""],
-      },
-    },
+    defaultValues: defaultFormValues,
   });
+  
+  // Load from localStorage on initial render
+  useEffect(() => {
+    const savedDraft = window.localStorage.getItem(RECIPE_DRAFT_KEY);
+    if (savedDraft) {
+      try {
+        const draft = JSON.parse(savedDraft);
+        form.reset(draft);
+        toast({ title: "Draft Loaded", description: "Your previous recipe draft has been restored." });
+      } catch (e) {
+        console.error("Failed to parse recipe draft", e);
+      }
+    }
+  }, [form, toast]);
+
+  // Save to localStorage on change
+  const watchedValues = form.watch();
+  useEffect(() => {
+    window.localStorage.setItem(RECIPE_DRAFT_KEY, JSON.stringify(watchedValues));
+  }, [watchedValues]);
+
 
   const { fields: ingredientFields, append: appendIngredient, remove: removeIngredient } = useFieldArray({
     control: form.control,
@@ -154,7 +181,15 @@ export default function AddRecipePage() {
       description: `Your custom cocktail "${data.name}" has been saved to your library.`,
     });
     
+    window.localStorage.removeItem(RECIPE_DRAFT_KEY);
     router.push("/recipes");
+  }
+
+  const handleClearForm = () => {
+    form.reset(defaultFormValues);
+    setUrlToImport("");
+    window.localStorage.removeItem(RECIPE_DRAFT_KEY);
+    toast({ title: "Form Cleared", description: "Your recipe draft has been discarded." });
   }
 
   const imageDataUri = form.watch("imageDataUri");
@@ -165,7 +200,14 @@ export default function AddRecipePage() {
       <main className="p-6">
         <Card className="max-w-4xl mx-auto">
           <CardHeader>
-            <CardTitle>Create Your Cocktail</CardTitle>
+            <div className="flex justify-between items-start">
+              <div>
+                <CardTitle>Create Your Cocktail</CardTitle>
+              </div>
+              <Button variant="ghost" size="sm" onClick={handleClearForm} className="flex items-center gap-2 text-muted-foreground">
+                <Trash2 className="w-4 h-4"/> Clear Form
+              </Button>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-4 mb-8 p-4 border rounded-lg bg-background/50">
@@ -346,5 +388,3 @@ export default function AddRecipePage() {
     </div>
   );
 }
-
-    
