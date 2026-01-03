@@ -1140,4 +1140,3 @@ export const recipes: Recipe[] = [
     }
   }
 ];
-
