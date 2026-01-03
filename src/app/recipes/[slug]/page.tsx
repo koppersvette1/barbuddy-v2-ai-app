@@ -110,23 +110,20 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
     return null;
   }
   
-  const servingsMap: {[key: number]: number} = {
-    1: 1,
-    2: 5,
-    3: 10,
-    4: 20,
-  }
-
   const handleServingsChange = (value: number[]) => {
-    setServings(servingsMap[value[0]]);
+    setServings(value[0]);
   }
 
   const parseAmount = (amount: string): [number, string] => {
     const parts = amount.split(' ');
-    if (parts.length === 2 && !isNaN(parseFloat(parts[0]))) {
-      return [parseFloat(parts[0]), parts[1]];
+    if (parts.length > 1 && !isNaN(parseFloat(parts[0]))) {
+      return [parseFloat(parts[0]), parts.slice(1).join(' ')];
     }
-    return [0, amount];
+    const match = amount.match(/^([\d.]+)(.*)/);
+    if (match) {
+        return [parseFloat(match[1]), match[2].trim()];
+    }
+    return [1, amount]; // Default for items like 'Orange Peel'
   }
 
   return (
@@ -207,18 +204,21 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
                     <CardHeader>
                       <CardTitle>Ingredients</CardTitle>
                       <div className="pt-4 space-y-4">
-                        <Label htmlFor="servings-slider">Servings: {servings}</Label>
+                        <Label htmlFor="servings-slider" className="text-base">
+                          Servings: <span className="font-bold text-primary">{servings}</span>
+                        </Label>
                         <div className='flex items-center gap-4'>
-                          <span className="text-xs text-muted-foreground">1</span>
+                          <span className="text-sm text-muted-foreground">1</span>
                           <Slider
                             id="servings-slider"
                             min={1}
-                            max={4}
+                            max={25}
                             step={1}
                             defaultValue={[1]}
                             onValueChange={handleServingsChange}
+                            className="flex-1"
                           />
-                          <span className="text-xs text-muted-foreground">20</span>
+                          <span className="text-sm text-muted-foreground">25</span>
                         </div>
                       </div>
                     </CardHeader>
@@ -227,10 +227,23 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
                         {recipe.spec.ingredients.map((ing, i) => {
                           const [amount, unit] = parseAmount(ing.amount);
                           const scaledAmount = amount * servings;
+                          
+                          // Handle non-numeric amounts like "1 for garnish"
+                          let displayAmount: string;
+                          if (amount === 0 || isNaN(amount)) {
+                             displayAmount = unit; // Show "for garnish" or "1"
+                          } else if (scaledAmount === 0 && unit.includes('dash')) {
+                             displayAmount = `${servings > 1 ? 'A few' : '1'} ${unit}`;
+                          } else if (Number.isInteger(scaledAmount)) {
+                            displayAmount = `${scaledAmount} ${unit}`;
+                          } else {
+                            displayAmount = `${scaledAmount.toFixed(2)} ${unit}`;
+                          }
+
                           return (
                             <li key={i} className="flex justify-between">
                               <span>{ing.item}</span>
-                              <span className="text-muted-foreground">{scaledAmount > 0 ? `${scaledAmount} ${unit}` : unit}</span>
+                              <span className="text-muted-foreground">{displayAmount}</span>
                             </li>
                           );
                         })}
@@ -302,3 +315,4 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
   );
 }
 
+    
