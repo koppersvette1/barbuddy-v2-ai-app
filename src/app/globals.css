@@ -4,84 +4,84 @@
 
 @layer base {
   :root {
-    --background: 60 56% 91%; /* #F5F5DC soft beige */
-    --foreground: 25 71% 21%; /* #5a2d0d deep red-brown darker for text */
+    --background: 25 20% 12%; /* #26211d very dark brown */
+    --foreground: 30 40% 90%; /* #e9e6e3 off-white */
 
-    --card: 60 50% 95%; /* lighter beige */
-    --card-foreground: 25 71% 21%;
+    --card: 25 20% 15%; /* #2d2824 slightly lighter dark brown */
+    --card-foreground: 30 40% 90%;
 
-    --popover: 60 50% 95%;
-    --popover-foreground: 25 71% 21%;
+    --popover: 25 20% 10%;
+    --popover-foreground: 30 40% 90%;
 
-    --primary: 29 56% 45%; /* #B87333 rich copper */
-    --primary-foreground: 29 56% 95%; /* very light cream */
+    --primary: 29 56% 55%; /* #d48a47 brighter copper */
+    --primary-foreground: 15 60% 10%; /* very dark brown for text on primary */
 
-    --secondary: 29 50% 80%; /* lighter copper for secondary elements */
-    --secondary-foreground: 29 56% 35%; /* darker copper for text on secondary */
+    --secondary: 29 50% 30%; /* #5c3f26 darker, muted copper */
+    --secondary-foreground: 29 56% 95%;
 
-    --muted: 60 40% 88%; /* slightly darker beige */
-    --muted-foreground: 60 25% 45%;
+    --muted: 25 20% 25%; /* #4a413b mid-range brown */
+    --muted-foreground: 30 30% 70%;
 
-    --accent: 25 71% 31%; /* #8B4513 deep red-brown */
-    --accent-foreground: 60 56% 95%;
+    --accent: 29 56% 45%; /* #b87333 original copper for accents */
+    --accent-foreground: 29 56% 95%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 0 63% 40%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 29 35% 80%;
-    --input: 29 35% 85%;
-    --ring: 29 56% 45%;
+    --border: 29 35% 30%; /* #5c4738 */
+    --input: 29 35% 25%; /* #4f3c2e */
+    --ring: 29 56% 55%;
 
     --radius: 0.5rem;
 
     /* Sidebar specific theme */
-    --sidebar-background: 25 71% 15%; /* very dark red-brown */
-    --sidebar-foreground: 60 56% 85%;
-    --sidebar-primary: 29 56% 45%; /* copper */
-    --sidebar-primary-foreground: 60 56% 95%;
-    --sidebar-accent: 25 71% 25%;
-    --sidebar-accent-foreground: 60 56% 95%;
-    --sidebar-border: 25 71% 20%;
-    --sidebar-ring: 29 56% 45%;
+    --sidebar-background: 25 20% 8%; /* #1a1715 even darker for sidebar */
+    --sidebar-foreground: 30 40% 85%;
+    --sidebar-primary: 29 56% 55%; /* copper */
+    --sidebar-primary-foreground: 15 60% 10%;
+    --sidebar-accent: 29 50% 30%;
+    --sidebar-accent-foreground: 29 56% 95%;
+    --sidebar-border: 25 20% 15%;
+    --sidebar-ring: 29 56% 55%;
   }
 
   .dark {
-    --background: 25 20% 5%;
-    --foreground: 60 56% 91%;
+    --background: 25 20% 12%; 
+    --foreground: 30 40% 90%; 
 
-    --card: 25 20% 8%;
-    --card-foreground: 60 56% 91%;
+    --card: 25 20% 15%; 
+    --card-foreground: 30 40% 90%;
 
-    --popover: 25 20% 8%;
-    --popover-foreground: 60 56% 91%;
+    --popover: 25 20% 10%;
+    --popover-foreground: 30 40% 90%;
 
-    --primary: 29 56% 45%;
-    --primary-foreground: 29 56% 95%;
+    --primary: 29 56% 55%; 
+    --primary-foreground: 15 60% 10%; 
 
-    --secondary: 29 50% 30%;
+    --secondary: 29 50% 30%; 
     --secondary-foreground: 29 56% 95%;
 
-    --muted: 25 20% 15%;
-    --muted-foreground: 60 40% 70%;
+    --muted: 25 20% 25%; 
+    --muted-foreground: 30 30% 70%;
 
-    --accent: 25 71% 31%;
-    --accent-foreground: 60 56% 95%;
-    
-    --destructive: 0 63% 31%;
+    --accent: 29 56% 45%; 
+    --accent-foreground: 29 56% 95%;
+
+    --destructive: 0 63% 40%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 25 20% 20%;
-    --input: 25 20% 25%;
-    --ring: 29 56% 45%;
+    --border: 29 35% 30%;
+    --input: 29 35% 25%;
+    --ring: 29 56% 55%;
     
     --sidebar-background: 25 20% 8%;
-    --sidebar-foreground: 60 56% 85%;
-    --sidebar-primary: 29 56% 45%;
-    --sidebar-primary-foreground: 60 56% 95%;
-    --sidebar-accent: 25 20% 12%;
-    --sidebar-accent-foreground: 60 56% 95%;
+    --sidebar-foreground: 30 40% 85%;
+    --sidebar-primary: 29 56% 55%;
+    --sidebar-primary-foreground: 15 60% 10%;
+    --sidebar-accent: 29 50% 30%;
+    --sidebar-accent-foreground: 29 56% 95%;
     --sidebar-border: 25 20% 15%;
-    --sidebar-ring: 29 56% 45%;
+    --sidebar-ring: 29 56% 55%;
   }
 }
 

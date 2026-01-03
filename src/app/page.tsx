@@ -1,17 +1,22 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Archive, ArrowRight, BookOpen } from 'lucide-react';
+import { recipes } from '@/lib/recipes';
+import { Archive, ArrowRight, BookOpen, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { RecipeCard } from '@/components/recipe-card';
 
 export default function Home() {
   const heroImage = PlaceHolderImages.find(img => img.id === 'hero');
 
+  const featuredSlugs = ['old-fashioned', 'negroni', 'daiquiri', 'manhattan'];
+  const featuredRecipes = recipes.filter(r => featuredSlugs.includes(r.slug));
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-background">
       <main className="flex-1">
-        <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center text-center">
+        <section className="relative w-full h-[60vh] min-h-[450px] flex items-center justify-center text-center">
           {heroImage && (
             <Image
               src={heroImage.imageUrl}
@@ -22,27 +27,60 @@ export default function Home() {
               data-ai-hint={heroImage.imageHint}
             />
           )}
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="relative z-10 p-4 sm:p-6 md:p-8">
-            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight">
-              Welcome to BarBuddy
+          <div className="absolute inset-0 bg-black/60" />
+          <div className="relative z-10 p-4 sm:p-6 md:p-8 text-white">
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+              BarBuddy
             </h1>
-            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-primary-foreground/80">
+            <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-white/80 text-shadow-[0_1px_2px_rgba(0,0,0,0.4)]">
               Your personal AI Mixology Partner and Flavor Architect. Let's craft something amazing.
             </p>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+               <Button asChild size="lg" className="text-lg">
+                  <Link href="/recipes">
+                    Explore Recipes <ChevronRight className="ml-2" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="secondary" className="text-lg">
+                  <Link href="/inventory">
+                    My Inventory <ChevronRight className="ml-2" />
+                  </Link>
+                </Button>
+            </div>
           </div>
         </section>
 
-        <section className="py-12 md:py-20 px-4 sm:px-6">
+        <section className="py-16 md:py-24 px-4 sm:px-6 bg-background">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">Featured Cocktails</h2>
+              <p className="mt-2 text-lg text-muted-foreground">
+                A taste of the classics to get you started.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {featuredRecipes.map(recipe => (
+                <RecipeCard key={recipe.slug} recipe={recipe} />
+              ))}
+            </div>
+             <div className="text-center mt-12">
+                <Button asChild variant="outline" size="lg">
+                    <Link href="/recipes">View All Recipes <ArrowRight className="ml-2" /></Link>
+                </Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="py-16 md:py-24 px-4 sm:px-6 border-t border-border">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary">Get Started</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">Your Personal Bar</h2>
               <p className="mt-2 text-lg text-muted-foreground">
-                Begin your mixology journey here.
+                Catalogue your collection and discover what you can create.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card className="hover:shadow-lg transition-shadow duration-300 bg-card">
                 <CardHeader>
                   <div className="flex items-center gap-4">
                     <div className="bg-primary/10 p-3 rounded-full">
@@ -62,7 +100,7 @@ export default function Home() {
                   </Button>
                 </CardContent>
               </Card>
-              <Card className="hover:shadow-lg transition-shadow duration-300">
+              <Card className="hover:shadow-lg transition-shadow duration-300 bg-card">
                 <CardHeader>
                   <div className="flex items-center gap-4">
                     <div className="bg-primary/10 p-3 rounded-full">
@@ -73,7 +111,7 @@ export default function Home() {
                 </CardHeader>
                 <CardContent>
                   <CardDescription className="mb-4">
-                    Explore a curated list of classic and modern cocktails, or let BarBuddy generate recipes based on your personal inventory.
+                    Explore curated classics or let BarBuddy generate recipes based on your personal inventory.
                   </CardDescription>
                   <Button asChild className="group">
                     <Link href="/recipes">

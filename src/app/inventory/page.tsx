@@ -9,11 +9,13 @@ import { useSettings } from '@/contexts/settings-context';
 import { inventoryScanningFromImage } from '@/ai/flows/inventory-scanning-from-image';
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '@/components/ui/badge';
-import { Loader, ScanLine, Trash2, X } from 'lucide-react';
+import { Loader, ScanLine, X } from 'lucide-react';
 import Image from 'next/image';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 function ImageUploader({ onImageUpload, isPending }: { onImageUpload: (dataUri: string) => void; isPending: boolean; }) {
   const [preview, setPreview] = useState<string | null>(null);
+  const placeholder = PlaceHolderImages.find(img => img.id === 'inventory-scan-placeholder');
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -33,26 +35,31 @@ function ImageUploader({ onImageUpload, isPending }: { onImageUpload: (dataUri: 
   };
 
   return (
-    <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
+    <div className="relative border-2 border-dashed border-border rounded-lg p-4 text-center aspect-video flex flex-col justify-center items-center overflow-hidden">
       {preview ? (
-        <div className="relative">
-          <Image src={preview} alt="Inventory preview" width={400} height={300} className="rounded-md mx-auto" />
-          <Button variant="ghost" size="icon" className="absolute top-2 right-2 bg-background/50 hover:bg-background" onClick={handleClear}>
+        <div className="absolute inset-0">
+          <Image src={preview} alt="Inventory preview" layout="fill" objectFit="cover" className="rounded-md" />
+           <div className="absolute inset-0 bg-black/20" />
+           <Button variant="destructive" size="icon" className="absolute top-2 right-2 h-8 w-8" onClick={handleClear}>
             <X className="w-4 h-4" />
           </Button>
         </div>
-      ) : (
-        <div className="flex flex-col items-center gap-4">
-          <ScanLine className="w-12 h-12 text-muted-foreground" />
-          <p className="text-muted-foreground">Drag & drop an image of your bar, or click to upload.</p>
-          <Button variant="outline" asChild>
-            <label htmlFor="image-upload" className="cursor-pointer">
-              {isPending ? <><Loader className="mr-2 h-4 w-4 animate-spin" /> Processing...</> : 'Select Image'}
-            </label>
-          </Button>
-          <input id="image-upload" type="file" accept="image/*" className="hidden" onChange={handleFileChange} disabled={isPending} />
+      ) : placeholder && (
+        <div className="absolute inset-0 opacity-20">
+          <Image src={placeholder.imageUrl} alt={placeholder.description} layout="fill" objectFit="cover" className="rounded-md" />
         </div>
       )}
+
+      <div className="relative z-10 flex flex-col items-center gap-2 text-white/90" style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}>
+        <ScanLine className="w-12 h-12" />
+        <p className="font-semibold">Scan an image of your bar to add ingredients.</p>
+        <Button variant="secondary" asChild>
+          <label htmlFor="image-upload" className="cursor-pointer">
+            {isPending ? <><Loader className="mr-2 h-4 w-4 animate-spin" /> Processing...</> : 'Select Image'}
+          </label>
+        </Button>
+        <input id="image-upload" type="file" accept="image/*" className="hidden" onChange={handleFileChange} disabled={isPending} />
+      </div>
     </div>
   );
 }
@@ -98,7 +105,7 @@ export default function InventoryPage() {
     <div className="flex flex-col">
       <Header title="My Inventory" />
       <main className="p-6 grid gap-6 md:grid-cols-2">
-        <Card>
+        <Card className="bg-card">
           <CardHeader>
             <CardTitle>Scan Your Bar</CardTitle>
             <CardDescription>Use your camera to automatically add ingredients to your inventory.</CardDescription>
@@ -107,7 +114,7 @@ export default function InventoryPage() {
             <ImageUploader onImageUpload={handleImageScan} isPending={isPending} />
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-card">
           <CardHeader>
             <CardTitle>Manage Ingredients</CardTitle>
             <CardDescription>Manually add or remove items from your virtual bar.</CardDescription>
@@ -124,18 +131,18 @@ export default function InventoryPage() {
             </div>
             <div className="space-y-2">
               <h3 className="font-semibold text-muted-foreground">Your Items:</h3>
-              <div className="flex flex-wrap gap-2 min-h-[40px] p-2 border rounded-md">
+              <div className="flex flex-wrap gap-2 min-h-[40px] p-3 border rounded-md bg-background/50">
                 {settings.inventory.length > 0 ? (
                   settings.inventory.map((item) => (
                     <Badge key={item} variant="secondary" className="text-sm font-normal group relative pr-7">
                       {item}
-                      <button onClick={() => handleRemoveIngredient(item)} className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full opacity-50 group-hover:opacity-100 hover:bg-destructive/20">
+                      <button onClick={() => handleRemoveIngredient(item)} className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full opacity-50 group-hover:opacity-100 hover:bg-destructive/20 p-0.5">
                          <X className="w-3 h-3 text-destructive" />
                       </button>
                     </Badge>
                   ))
                 ) : (
-                  <p className="text-sm text-muted-foreground">Your inventory is empty.</p>
+                  <p className="text-sm text-muted-foreground px-1">Your inventory is empty.</p>
                 )}
               </div>
             </div>
