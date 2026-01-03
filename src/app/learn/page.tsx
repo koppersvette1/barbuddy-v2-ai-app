@@ -6,7 +6,7 @@ import { Header } from '@/components/layout/header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Loader, FlaskConical, Beaker, Flame, BookOpen, TestTube, AlertTriangle } from 'lucide-react';
+import { Loader, FlaskConical, Beaker, Flame, BookOpen, TestTube, AlertTriangle, Smoking } from 'lucide-react';
 import { explainFatWashing, type ExplainFatWashingOutput } from '@/ai/flows/explain-fat-washing';
 import { explainInfusion, type ExplainInfusionOutput } from '@/ai/flows/explain-infusion';
 import { explainCocktailSmoking, type ExplainCocktailSmokingOutput } from '@/ai/flows/explain-cocktail-smoking';
@@ -122,7 +122,7 @@ export default function LearnPage() {
               </CardHeader>
               <CardContent>
                 <Separator className="my-4 bg-border" />
-                 <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
+                 <Accordion type="single" collapsible defaultValue="item-preflight" className="w-full">
                   {isCocktailSmokingOutput(explanation) ? (
                     <>
                       <AccordionItem value="item-preflight" className="border-b-border">
@@ -142,10 +142,26 @@ export default function LearnPage() {
                         </AccordionContent>
                       </AccordionItem>
                       <AccordionItem value="item-1" className="border-b-border">
-                        <AccordionTrigger className="text-2xl font-headline hover:no-underline">{explanation.chimneySmokerGuide.title}</AccordionTrigger>
+                        <AccordionTrigger className="text-2xl font-headline hover:no-underline">
+                           <div className="flex items-center gap-2">
+                            <Flame /> {explanation.chimneySmokerGuide.title}
+                          </div>
+                        </AccordionTrigger>
                         <AccordionContent className="pt-2">
                            <ol className="list-decimal list-outside space-y-4 pl-5 text-base text-foreground/80">
                             {explanation.chimneySmokerGuide.steps.map((step, i) => <li key={i} className="pl-2">{step}</li>)}
+                          </ol>
+                        </AccordionContent>
+                      </AccordionItem>
+                       <AccordionItem value="item-gun" className="border-b-border">
+                        <AccordionTrigger className="text-2xl font-headline hover:no-underline">
+                           <div className="flex items-center gap-2">
+                            <Smoking /> {explanation.smokingGunGuide.title}
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="pt-2">
+                           <ol className="list-decimal list-outside space-y-4 pl-5 text-base text-foreground/80">
+                            {explanation.smokingGunGuide.steps.map((step, i) => <li key={i} className="pl-2">{step}</li>)}
                           </ol>
                         </AccordionContent>
                       </AccordionItem>

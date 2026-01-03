@@ -18,8 +18,12 @@ const ExplainCocktailSmokingOutputSchema = z.object({
   })).describe("A pre-flight checklist for safety and performance before smoking."),
   chimneySmokerGuide: z.object({
     title: z.string().default("Using the Chimney Smoker"),
-    steps: z.array(z.string()).describe('A list of step-by-step instructions on how to use the chimney smoker unit.'),
+    steps: z.array(z.string()).describe('A list of step-by-step instructions on how to use the chimney smoker unit that sits on the glass.'),
   }).describe('A guide on how to use the chimney smoker unit that sits on the glass.'),
+  smokingGunGuide: z.object({
+    title: z.string().default("Using a Smoking Gun & Cloche"),
+    steps: z.array(z.string()).describe('A list of step-by-step instructions on how to use a smoking gun with a bell jar or cloche.'),
+  }).describe('A guide on how to use a smoking gun and cloche, for infusing the entire cocktail or just the glass.'),
   torchGuide: z.object({
     title: z.string().default("Handling the Torch"),
     description: z.string().describe("Tips for getting the best flame from your torch."),
@@ -50,20 +54,21 @@ const prompt = ai.definePrompt({
   output: {schema: ExplainCocktailSmokingOutputSchema},
   prompt: `You are BarBuddy, a creative Mixology Partner and Flavor Architect. Your goal is to help the user master their hardware safely and effectively.
 
-  Explain the technique of "Smoking Cocktails" using the chimney-style smoker. Your tone should be conversational, fun, and expert but accessible.
+  Explain the technique of "Smoking Cocktails" using both a chimney-style smoker and a smoking gun with a cloche. Your tone should be conversational, fun, and expert but accessible.
   
   Your explanation must include:
-  1.  A clear, engaging description of what cocktail smoking is and why it's done.
+  1.  A clear, engaging description of what cocktail smoking is and why it's done (adds aroma, flavor, and theater).
   2.  A new "Pre-Flight Checklist" section. This should be a simple list of checks to perform *before* starting:
       - Torch purged? (Ensure a sharp blue cone for a clean burn.)
       - Mesh basket clean? (Ensure proper airflow for smoke to drop.)
       - High-proof bottles moved? (Keep flammable liquids at least 1 foot away.)
-  3.  A step-by-step guide on using the chimney smoker unit, including how much wood to use ("a small pinch") and how to light it.
-  4.  A guide to using the torch, including the "No-Sputter" refill method (purging, filling, and waiting) and what a good flame looks like.
-  5.  A "Troubleshooting" section for the torch. Explain the difference between a "sharp blue cone" (good flame) and a "yellow, flickering flame" (bad flame, needs purging). Also explain how to diagnose a clogged smoker (e.g., "if the smoke isn't dropping into the glass, the mesh is likely clogged with ash").
-  6.  Practical tips for different glassware, specifically for a Rocks Glass, a Coupe/Martini glass, and a Highball glass.
-  7.  A "Pro-Tips / Heads Up" section covering:
-      - Flavor Advisories: Mention smoking fresh mint can taste burnt and oils/fats can leave residue.
+  3.  A step-by-step guide on using the **chimney smoker unit**, including how much wood to use ("a small pinch") and how to light it.
+  4.  A step-by-step guide on using a **smoking gun with a cloche (bell jar)**. Explain how to place the prepared cocktail under the cloche, fill it with smoke, and let it rest for a moment before serving.
+  5.  A guide to using the torch, including the "No-Sputter" refill method (purging, filling, and waiting) and what a good flame looks like.
+  6.  A "Troubleshooting" section for the torch. Explain the difference between a "sharp blue cone" (good flame) and a "yellow, flickering flame" (bad flame, needs purging). Also explain how to diagnose a clogged smoker (e.g., "if the smoke isn't dropping into the glass, the mesh is likely clogged with ash").
+  7.  Practical tips for different glassware, specifically for a Rocks Glass, a Coupe/Martini glass, and a Highball glass.
+  8.  A "Pro-Tips / Heads Up" section covering:
+      - Flavor Advisories: Mention smoking fresh mint can taste burnt and oils/fats can leave residue. Mention that the best cocktails for smoking are spirit-forward ones like an Old Fashioned or Negroni.
       - Fire Best Practices: Explain handling flare-ups and keeping open bottles away.
       - Gear Maintenance: Tips on cleaning the mesh screen and wiping the chimney.
       - Party Tip: Include a point about using the "Carafe Smoke" method for batching drinks for a group to save time, mentioning that the user should swirl the liquid in the carafe for 30 seconds to integrate the smoke.
