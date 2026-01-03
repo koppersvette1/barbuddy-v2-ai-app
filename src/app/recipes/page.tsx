@@ -15,6 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import { generateRecipesFromInventory } from "@/ai/flows/generate-recipes-from-inventory";
 import { Loader, Sparkles, PlusCircle } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function RecipesPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -23,6 +24,7 @@ export default function RecipesPage() {
   const { toast } = useToast();
   const [isPending, startTransition] = useTransition();
   const [generatedRecipes, setGeneratedRecipes] = useState<Recipe[] | null>(null);
+  const [unlockSuggestion, setUnlockSuggestion] = useState<{ ingredient: string; unlockedRecipes: string[] } | null>(null);
 
   const allRecipes = [...defaultRecipes, ...settings.customRecipes];
 
@@ -36,6 +38,9 @@ export default function RecipesPage() {
     }
 
     startTransition(async () => {
+      setGeneratedRecipes(null);
+      setUnlockSuggestion(null);
+
       const result = await generateRecipesFromInventory({ inventory: settings.inventory });
       if (result.recipes && result.recipes.length > 0) {
         const foundRecipes = allRecipes.filter(r => result.recipes.includes(r.name));
@@ -43,6 +48,13 @@ export default function RecipesPage() {
         toast({
           title: "Cheers!",
           description: `Found ${foundRecipes.length} cocktails you can make.`,
+        });
+      } else if (result.unlockSuggestion) {
+        setGeneratedRecipes([]);
+        setUnlockSuggestion(result.unlockSuggestion);
+        toast({
+            title: "Unlock New Cocktails!",
+            description: `You're just one ingredient away from more recipes.`,
         });
       } else {
         setGeneratedRecipes([]);
@@ -67,7 +79,7 @@ export default function RecipesPage() {
         return b.name.localeCompare(a.name);
       }
       if (sortOrder === 'category') {
-        return a.category.localeCompare(b.category) || a.name.localeCompare(b.name);
+        return a.category.localeCompare(b.category) || a.name.localeCompare(a.name);
       }
       // sort custom recipes to the top
       if (a.custom && !b.custom) return -1;
@@ -114,8 +126,25 @@ export default function RecipesPage() {
                     <RecipeCard key={recipe.slug} recipe={recipe} />
                   ))}
                 </div>
+              ) : unlockSuggestion ? (
+                 <Card className="mt-4 bg-background/50 border-dashed">
+                    <CardHeader>
+                        <CardTitle className="text-xl text-primary">Taste Architect Suggestion</CardTitle>
+                        <CardDescription>
+                            You're close! Grab a bottle of <strong className="text-foreground">{unlockSuggestion.ingredient}</strong> next time you're out.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-sm text-muted-foreground mb-3">Adding it to your bar would instantly unlock these cocktails:</p>
+                        <div className="flex flex-wrap gap-2">
+                            {unlockSuggestion.unlockedRecipes.map(name => (
+                                <Badge key={name} variant="secondary">{name}</Badge>
+                            ))}
+                        </div>
+                    </CardContent>
+                </Card>
               ) : (
-                <p className="text-center text-muted-foreground">No recipes found with your current ingredients.</p>
+                <p className="text-center text-muted-foreground py-4">No simple recipe matches found with your current inventory.</p>
               )}
             </div>
           )}

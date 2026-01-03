@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useTransition, use } from 'react';
@@ -11,13 +12,15 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useSettings } from '@/contexts/settings-context';
 import { useToast } from '@/hooks/use-toast';
-import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight } from 'lucide-react';
+import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight, Beaker, TestTube, FlaskConical } from 'lucide-react';
 import { suggestFoodPairing } from '@/ai/flows/suggest-food-pairing';
 import { suggestWoodPairing } from '@/ai/flows/suggest-wood-pairing';
 import { suggestCocktailSubstitutions, SuggestCocktailSubstitutionsOutput } from '@/ai/flows/suggest-cocktail-substitutions';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
+import { Slider } from '@/components/ui/slider';
+import { Label } from '@/components/ui/label';
 
 type AIResult = {
   title: string;
@@ -33,6 +36,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
   const [aiResult, setAiResult] = useState<AIResult | null>(null);
   const { settings } = useSettings();
   const { toast } = useToast();
+  const [servings, setServings] = useState(1);
 
   const allRecipes = [...recipes, ...settings.customRecipes];
   const recipe = allRecipes.find(r => r.slug === params.slug);
@@ -44,7 +48,6 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
   const recipeImage = recipe.imageDataUri 
     ? { imageUrl: recipe.imageDataUri, imageHint: recipe.imageHint || 'custom cocktail' }
     : PlaceHolderImages.find(img => img.id === recipe.image) || PlaceHolderImages.find(img => img.id === 'default-cocktail');
-
 
   const handleFoodPairing = () => {
     startTransition(async () => {
@@ -90,6 +93,41 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
   };
 
   const hasAdvancedTechnique = ['Whiskey Sour', 'Gin Fizz', 'Clover Club'].includes(recipe.name);
+
+  const techniqueMap = {
+    'Fat Washing': { icon: Beaker, link: '/learn' },
+    'Spirit Infusions': { icon: FlaskConical, link: '/learn'},
+    'Clarified Milk Punch': { icon: TestTube, link: '/learn'},
+    'Dry Shake': { icon: GraduationCap, link: '/learn'}
+  }
+
+  const getTechniqueInfo = (name: string) => {
+    for (const key in techniqueMap) {
+      if (name.includes(key)) {
+        return techniqueMap[key as keyof typeof techniqueMap];
+      }
+    }
+    return null;
+  }
+  
+  const servingsMap: {[key: number]: number} = {
+    1: 1,
+    2: 5,
+    3: 10,
+    4: 20,
+  }
+
+  const handleServingsChange = (value: number[]) => {
+    setServings(servingsMap[value[0]]);
+  }
+
+  const parseAmount = (amount: string): [number, string] => {
+    const parts = amount.split(' ');
+    if (parts.length === 2 && !isNaN(parseFloat(parts[0]))) {
+      return [parseFloat(parts[0]), parts[1]];
+    }
+    return [0, amount];
+  }
 
   return (
     <div className="flex flex-col">
@@ -166,21 +204,42 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
 
               <TabsContent value="recipe">
                  <Card>
-                    <CardHeader><CardTitle>Ingredients</CardTitle></CardHeader>
+                    <CardHeader>
+                      <CardTitle>Ingredients</CardTitle>
+                      <div className="pt-4 space-y-4">
+                        <Label htmlFor="servings-slider">Servings: {servings}</Label>
+                        <div className='flex items-center gap-4'>
+                          <span className="text-xs text-muted-foreground">1</span>
+                          <Slider
+                            id="servings-slider"
+                            min={1}
+                            max={4}
+                            step={1}
+                            defaultValue={[1]}
+                            onValueChange={handleServingsChange}
+                          />
+                          <span className="text-xs text-muted-foreground">20</span>
+                        </div>
+                      </div>
+                    </CardHeader>
                     <CardContent>
                         <ul className="space-y-2">
-                        {recipe.spec.ingredients.map((ing, i) => (
+                        {recipe.spec.ingredients.map((ing, i) => {
+                          const [amount, unit] = parseAmount(ing.amount);
+                          const scaledAmount = amount * servings;
+                          return (
                             <li key={i} className="flex justify-between">
-                            <span>{ing.item}</span>
-                            <span className="text-muted-foreground">{ing.amount}</span>
+                              <span>{ing.item}</span>
+                              <span className="text-muted-foreground">{scaledAmount > 0 ? `${scaledAmount} ${unit}` : unit}</span>
                             </li>
-                        ))}
+                          );
+                        })}
                         </ul>
                     </CardContent>
                     <Separator/>
                     <CardHeader><CardTitle>Instructions</CardTitle></CardHeader>
                     <CardContent>
-                        <ol className="list-decimal list-inside space-y-3">
+                        <ol className="list-decimal list-outside space-y-3 pl-4">
                         {recipe.spec.instructions.map((step, i) => <li key={i}>{step}</li>)}
                         </ol>
                     </CardContent>
@@ -201,7 +260,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
                 <Card>
                   <CardHeader><CardTitle className="flex items-center gap-2"><GlassWater /> {recipe.mocktail.name} (0% ABV)</CardTitle></CardHeader>
                   <CardContent>
-                    <p className="text-lg">{recipe.mocktail.recipe}</p>
+                     <p className="text-lg">{recipe.mocktail.recipe}</p>
                   </CardContent>
                 </Card>
               </TabsContent>
@@ -242,3 +301,4 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
     </div>
   );
 }
+

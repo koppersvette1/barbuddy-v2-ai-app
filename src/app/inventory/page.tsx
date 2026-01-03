@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useTransition } from 'react';
@@ -9,9 +10,10 @@ import { useSettings } from '@/contexts/settings-context';
 import { inventoryScanningFromImage } from '@/ai/flows/inventory-scanning-from-image';
 import { useToast } from '@/hooks/use-toast';
 import { Badge } from '@/components/ui/badge';
-import { Loader, ScanLine, X } from 'lucide-react';
+import { Loader, ScanLine, X, Info } from 'lucide-react';
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 function ImageUploader({ onImageUpload, isPending }: { onImageUpload: (dataUri: string) => void; isPending: boolean; }) {
   const [preview, setPreview] = useState<string | null>(null);
@@ -104,50 +106,59 @@ export default function InventoryPage() {
   return (
     <div className="flex flex-col">
       <Header title="My Inventory" />
-      <main className="p-6 grid gap-6 md:grid-cols-2">
-        <Card className="bg-card">
-          <CardHeader>
-            <CardTitle>Scan Your Bar</CardTitle>
-            <CardDescription>Use your camera to automatically add ingredients to your inventory.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ImageUploader onImageUpload={handleImageScan} isPending={isPending} />
-          </CardContent>
-        </Card>
-        <Card className="bg-card">
-          <CardHeader>
-            <CardTitle>Manage Ingredients</CardTitle>
-            <CardDescription>Manually add or remove items from your virtual bar.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex gap-2 mb-4">
-              <Input
-                placeholder="e.g., Bulleit Bourbon"
-                value={manualIngredient}
-                onChange={(e) => setManualIngredient(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && handleAddIngredient()}
-              />
-              <Button onClick={handleAddIngredient}>Add</Button>
-            </div>
-            <div className="space-y-2">
-              <h3 className="font-semibold text-muted-foreground">Your Items:</h3>
-              <div className="flex flex-wrap gap-2 min-h-[40px] p-3 border rounded-md bg-background/50">
-                {settings.inventory.length > 0 ? (
-                  settings.inventory.map((item) => (
-                    <Badge key={item} variant="secondary" className="text-sm font-normal group relative pr-7">
-                      {item}
-                      <button onClick={() => handleRemoveIngredient(item)} className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full opacity-50 group-hover:opacity-100 hover:bg-destructive/20 p-0.5">
-                         <X className="w-3 h-3 text-destructive" />
-                      </button>
-                    </Badge>
-                  ))
-                ) : (
-                  <p className="text-sm text-muted-foreground px-1">Your inventory is empty.</p>
-                )}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      <main className="p-6 grid gap-6 md:grid-cols-1">
+        <div className="grid gap-6 md:grid-cols-2">
+            <Card className="bg-card">
+              <CardHeader>
+                <CardTitle>Scan Your Bar</CardTitle>
+                <CardDescription>Use your camera to automatically add ingredients to your inventory.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ImageUploader onImageUpload={handleImageScan} isPending={isPending} />
+              </CardContent>
+            </Card>
+            <Card className="bg-card">
+              <CardHeader>
+                <CardTitle>Manage Ingredients</CardTitle>
+                <CardDescription>Manually add or remove items from your virtual bar.</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex gap-2 mb-4">
+                  <Input
+                    placeholder="e.g., Bulleit Bourbon"
+                    value={manualIngredient}
+                    onChange={(e) => setManualIngredient(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleAddIngredient()}
+                  />
+                  <Button onClick={handleAddIngredient}>Add</Button>
+                </div>
+                <div className="space-y-2">
+                  <h3 className="font-semibold text-muted-foreground">Your Items:</h3>
+                  <div className="flex flex-wrap gap-2 min-h-[40px] p-3 border rounded-md bg-background/50">
+                    {settings.inventory.length > 0 ? (
+                      settings.inventory.map((item) => (
+                        <Badge key={item} variant="secondary" className="text-sm font-normal group relative pr-7">
+                          {item}
+                          <button onClick={() => handleRemoveIngredient(item)} className="absolute right-0 top-1/2 -translate-y-1/2 rounded-full opacity-50 group-hover:opacity-100 hover:bg-destructive/20 p-0.5">
+                             <X className="w-3 h-3 text-destructive" />
+                          </button>
+                        </Badge>
+                      ))
+                    ) : (
+                      <p className="text-sm text-muted-foreground px-1">Your inventory is empty.</p>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+        </div>
+        <Alert>
+            <Info className="h-4 w-4" />
+            <AlertTitle>Heads Up: Shelf Life</AlertTitle>
+            <AlertDescription>
+                Remember to refrigerate items like Vermouth and Lillet Blanc after opening. As fortified wines, they can spoil over time. Using them within a month or two ensures the best taste for your cocktails.
+            </AlertDescription>
+        </Alert>
       </main>
     </div>
   );
