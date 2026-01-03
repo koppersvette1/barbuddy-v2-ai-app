@@ -25,6 +25,10 @@ const ExplainCocktailSmokingOutputSchema = z.object({
     glassType: z.string().describe("The type of glassware (e.g., Rocks Glass)."),
     tip: z.string().describe("A tip or consideration for using this type of glassware for smoking."),
   })).describe('Tips for different types of glassware when smoking a cocktail.'),
+  proTips: z.array(z.object({
+      title: z.string().describe("The title of the tip, e.g., 'Flavor Advisories' or 'Gear Maintenance'."),
+      points: z.array(z.string()).describe("A list of tips or best practices.")
+  })).describe("A list of pro-tips and best practices for safety, maintenance, and flavor.")
 });
 
 export type ExplainCocktailSmokingOutput = z.infer<typeof ExplainCocktailSmokingOutputSchema>;
@@ -42,9 +46,13 @@ const prompt = ai.definePrompt({
   
   Your explanation must include:
   1.  A clear, engaging description of what cocktail smoking is and why it's done.
-  2.  A step-by-step guide on using the chimney smoker unit, including how much wood to use and how to light it.
+  2.  A step-by-step guide on using the chimney smoker unit, including how much wood to use ("a small pinch") and how to light it.
   3.  A guide to using the torch, including the "No-Sputter" refill method (purging, filling, and waiting) and what a good flame looks like.
   4.  Practical tips for different glassware, specifically for a Rocks Glass, a Coupe/Martini glass (and the tip about smoking it upside down or in a mixing glass), and a Highball glass.
+  5.  A "Pro-Tips / Heads Up" section covering:
+      - Flavor Advisories: Mention that smoking fresh mint directly can make it taste burnt and that smoking oils/fats can leave a residue.
+      - Fire Best Practices: Explain how to handle flare-ups by capping the smoker and keeping open bottles of high-proof alcohol away from the flame.
+      - Gear Maintenance: Include tips on cleaning the mesh screen and wiping the wooden chimney without soaking it.
   `,
 });
 
