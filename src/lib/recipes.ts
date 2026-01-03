@@ -343,12 +343,12 @@ export const recipes: Recipe[] = [
     slug: 'sazerac',
     name: 'Sazerac',
     category: 'Spirit Forward',
-    image: 'sazerac',
+image: 'sazerac',
     spec: {
       ingredients: [
         { item: 'Rye Whiskey', amount: '2 oz' },
         { item: 'Simple Syrup', amount: '0.25 oz' },
-        { item: 'Peychaud\'s Bitters', amount: '3 dashes' },
+        { item: "Peychaud's Bitters", amount: '3 dashes' },
         { item: 'Absinthe', amount: 'Rinse' },
       ],
       instructions: [
@@ -480,12 +480,12 @@ export const recipes: Recipe[] = [
   },
   {
     slug: 'dark-n-stormy',
-    name: 'Dark \'n\' Stormy',
+    name: "Dark 'n' Stormy",
     category: 'Highballs & Spritzes',
     image: 'dark-n-stormy',
     spec: {
       ingredients: [
-        { item: 'Gosling\'s Black Seal Rum', amount: '2 oz' },
+        { item: "Gosling's Black Seal Rum", amount: '2 oz' },
         { item: 'Ginger Beer', amount: 'Top with' },
       ],
       instructions: [
@@ -495,7 +495,7 @@ export const recipes: Recipe[] = [
         'Garnish with a lime wedge.',
       ],
     },
-    swap: 'Any dark rum will do, but it\'s not technically a Dark \'n\' Stormy!',
+    swap: "Any dark rum will do, but it's not technically a Dark 'n' Stormy!",
     mocktail: {
       name: 'Cloudy and Calm',
       recipe: 'Cola floated on top of ginger beer',
