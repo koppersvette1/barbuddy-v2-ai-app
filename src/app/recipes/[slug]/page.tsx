@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition, useContext } from 'react';
+import { useState, useTransition, useContext, use } from 'react';
 import { notFound } from 'next/navigation';
 import { recipes } from '@/lib/recipes';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -24,13 +24,14 @@ type AIResult = {
   rationale?: string;
 };
 
-export default function RecipeDetailPage({ params }: { params: { slug: string } }) {
+export default function RecipeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const [isPending, startTransition] = useTransition();
   const [aiResult, setAiResult] = useState<AIResult | null>(null);
   const { settings } = useSettings();
   const { toast } = useToast();
 
-  const recipe = recipes.find(r => r.slug === params.slug);
+  const resolvedParams = use(params);
+  const recipe = recipes.find(r => r.slug === resolvedParams.slug);
 
   if (!recipe) {
     notFound();
