@@ -45,19 +45,19 @@
     {
       "id": "whiskey-sour",
       "description": "A Whiskey Sour with foam and a cherry.",
-      "imageUrl": "https://images.unsplash.com/photo-1712181938400-a76d207d4fcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxXaGlza2V5JTIwU291cnxlbnwwfHx8fDE3Njc0MDg4ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1712181938400-a76d207d4fcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxXaGlza2V5JTIwU291cnxlbnwwfHx8fDE3Njc0MDg4ODB8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Whiskey Sour"
     },
     {
       "id": "margarita",
       "description": "A Margarita with a salt rim and lime wedge.",
-      "imageUrl": "https://images.unsplash.com/photo-1544145945-b4744b209fc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxNYXJnYXJpdGElMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDg4ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1544145945-b4744b209fc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxNYXJnYXJpdGElMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDg4ODB8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Margarita cocktail"
     },
     {
       "id": "daiquiri",
       "description": "A classic Daiquiri in a coupe glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1634564324736-1049b7c440ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxEYWlxdWlyaSUyMGNvY2t0YWlsfGVufDB8fHx8MTc2NzQwODg4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1634564324736-1049b7c440ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxEYWlxdWlyaSUyMGNvY2t0YWlsfGVufDB8fHx8MTc2NzQwODg4MXww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Daiquiri cocktail"
     },
     {
@@ -69,7 +69,7 @@
     {
       "id": "gimlet",
       "description": "A Gimlet cocktail in a coupe glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1559842623-b82d2e1228a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxHaW1sZXQlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1559842623-b82d2e1228a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxHaW1sZXQlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Gimlet cocktail"
     },
     {
@@ -93,7 +93,7 @@
     {
       "id": "lemon-drop",
       "description": "A Lemon Drop cocktail in a sugar-rimmed martini glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1561730973-ca7d366889a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxMZW1vbiUyMERyb3AlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MzMxMzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1561730973-ca7d366889a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxMZW1vbiUyMERyb3AlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MzMxMzd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Lemon Drop cocktail"
     },
     {
@@ -105,7 +105,7 @@
     {
       "id": "mojito",
       "description": "A Mojito in a highball glass with mint and lime.",
-      "imageUrl": "https://images.unsplash.com/photo-1674716538651-3c45ebb05d82?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxNb2ppdG8lMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MzMxMzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1674716538651-3c45ebb05d82?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxNb2ppdG8lMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MzMxMzd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Mojito cocktail"
     },
     {
@@ -147,7 +147,7 @@
     {
       "id": "mint-julep",
       "description": "A Mint Julep in a julep cup.",
-      "imageUrl": "https://images.unsplash.com/photo-1588905206064-41e49c50d505?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxNaW50JTIwSnVsZXB8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1588905206064-41e49c50d505?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxNaW50JTIwSnVsZXB8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Mint Julep"
     },
     {
@@ -177,13 +177,13 @@
     {
       "id": "espresso-martini",
       "description": "An Espresso Martini in a martini glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1663908672815-fd62829ad3f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxFc3ByZXNzbyUyME1hcnRpbml8ZW58MHx8fHwxNzY3NDMzMTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1663908672815-fd62829ad3f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxFc3ByZXNzbyUyME1hcnRpbml8ZW58MHx8fHwxNzY3NDMzMTM3fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Espresso Martini"
     },
     {
       "id": "white-russian",
       "description": "A White Russian cocktail in a rocks glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1608330863012-4afeafeedbf5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxXaGl0ZSUyMFJ1c3NpYW58ZW58MHx8fHwxNzY3NDMzMTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1608330863012-4afeafeedbf5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxXaGl0ZSUyMFJ1c3NpYW58ZW58MHx8fHwxNzY3NDMzMTM3fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "White Russian"
     },
     {
@@ -195,19 +195,19 @@
     {
       "id": "french-75",
       "description": "A French 75 cocktail in a champagne flute.",
-      "imageUrl": "https://images.unsplash.com/photo-1683020370065-a9e015111037?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxGcmVuY2glMjA3NXxlbnwwfHx8fDE3Njc0MDkzODh8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1683020370065-a9e015111037?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxGcmVuY2glMjA3NXxlbnwwfHx8fDE3Njc0MDkzODh8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "French 75"
     },
     {
       "id": "gin-fizz",
       "description": "A Gin Fizz in a highball glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1679038555214-fde035f21701?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxHaW4lMjBGaXp6fGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1679038555214-fde035f21701?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxHaW4lMjBGaXp6fGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Gin Fizz"
     },
     {
       "id": "vesper",
       "description": "A Vesper cocktail in a martini glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1767065702558-028211bacd2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxWZXNwZXIlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1767065702558-028211bacd2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxWZXNwZXIlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Vesper cocktail"
     },
     {
@@ -255,14 +255,20 @@
     {
       "id": "learn-infusion",
       "description": "Illustration of infusing spirits with fruits and herbs.",
-      "imageUrl": "https://images.unsplash.com/photo-1614902047920-5695627238ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcGlyaXQlMjBpbmZ1c2lvbnxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1614902047920-5695627238ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcGlyaXQlMjBpbmZ1c2lvbnxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "spirit infusion"
     },
     {
       "id": "learn-cocktail-smoking",
       "description": "Illustration of a cocktail being smoked with a smoking gun.",
-      "imageUrl": "https://images.unsplash.com/photo-1552566524-2c069006956b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbW9rZWQlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1552566524-2c069006956b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbW9rZWQlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "smoked cocktail"
+    },
+    {
+      "id": "learn-milk-punch",
+      "description": "A crystal clear clarified milk punch in a glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1629853275954-4a2e5414c35b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtaWxrJTIwcHVuY2h8ZW58MHx8fHwxNzY3NDExMzgxfDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "milk punch"
     },
     {
       "id": "default-cocktail",

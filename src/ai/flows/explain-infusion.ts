@@ -13,7 +13,7 @@ const ExplainInfusionOutputSchema = z.object({
   techniqueName: z.string().describe('The name of the technique, which is "Spirit Infusion".'),
   description: z.string().describe('A detailed but approachable overview of what spirit infusion is, its purpose, and how it transforms flavors.'),
   steps: z.array(z.string()).describe('A list of step-by-step instructions on how to create an infusion.'),
-  proTips: z.array(z.string()).describe('A list of expert tips for successful infusions.'),
+  proTips: z.array(z.string()).describe('A list of expert tips for successful infusions, including example recipes and synergy with smoke.'),
 });
 export type ExplainInfusionOutput = z.infer<typeof ExplainInfusionOutputSchema>;
 
@@ -24,16 +24,18 @@ export async function explainInfusion(): Promise<ExplainInfusionOutput> {
 const prompt = ai.definePrompt({
   name: 'explainInfusionPrompt',
   output: {schema: ExplainInfusionOutputSchema},
-  prompt: `You are a master mixologist and educator, known for making complex topics easy to understand.
+  prompt: `You are BarBuddy, a creative Mixology Partner and Flavor Architect.
   
-  Explain the technique of "Spirit Infusion" for cocktails.
+  Explain the technique of "Spirit Infusion" for cocktails. Your tone should be conversational, fun, and expert but accessible.
   
-  Your explanation should include:
-  1.  A clear description of what an infusion is and why it's a fundamental skill in creative mixology.
-  2.  A simple, step-by-step guide on how to do it. Use a classic example like cucumber and gin or chili peppers and tequila.
-  3.  A few "pro tips" for someone trying it for the first time, including advice on infusion times and choosing ingredients.
-
-  Present the information in a clear, encouraging, and educational tone.
+  Your explanation must include:
+  1.  Concept: A clear description of what an infusion is. It's about adding deep flavor over days, not quick aroma like smoking.
+  2.  Basic Technique: Provide a simple, step-by-step guide for using an infusion vessel (jar with a mesh filter).
+  3.  "Make Your Own" Logic / Pro-Tips: Include a section with creative examples:
+      - DIY Gin: Vodka + Juniper Berries + Citrus Peel (24 hours).
+      - Spiced Rum: White Rum + Vanilla Bean + Cinnamon Stick + Orange Peel (48 hours).
+      - Quick Oak Aging: White Whiskey + Charred Oak Chips (1 week).
+  4.  Synergy with Smoking: Explain how to layer flavors. Infuse the spirit first to create the "Base Flavor," then smoke the final cocktail to add a "Top Note." Use the example of a Jalapeño-infused Vodka Mule that is then smoked with Mesquite.
   `,
 });
 

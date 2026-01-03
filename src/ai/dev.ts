@@ -10,5 +10,4 @@ import '@/ai/flows/explain-fat-washing.ts';
 import '@/ai/flows/explain-infusion.ts';
 import '@/ai/flows/explain-cocktail-smoking.ts';
 import '@/ai/flows/generate-cocktail-image.ts';
-
-    
+import '@/ai/flows/explain-clarified-milk-punch.ts';

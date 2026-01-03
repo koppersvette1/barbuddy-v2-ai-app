@@ -6,17 +6,18 @@ import { Header } from '@/components/layout/header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Loader, FlaskConical, Beaker, Flame, BookOpen } from 'lucide-react';
+import { Loader, FlaskConical, Beaker, Flame, BookOpen, TestTube } from 'lucide-react';
 import { useSettings } from '@/contexts/settings-context';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { explainFatWashing, type ExplainFatWashingOutput } from '@/ai/flows/explain-fat-washing';
 import { explainInfusion, type ExplainInfusionOutput } from '@/ai/flows/explain-infusion';
 import { explainCocktailSmoking, type ExplainCocktailSmokingOutput } from '@/ai/flows/explain-cocktail-smoking';
+import { explainClarifiedMilkPunch, type ExplainClarifiedMilkPunchOutput } from '@/ai/flows/explain-clarified-milk-punch';
 import { Separator } from '@/components/ui/separator';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
-type TechniqueExplanation = ExplainFatWashingOutput | ExplainInfusionOutput | ExplainCocktailSmokingOutput;
-type Technique = 'fatWashing' | 'infusion' | 'cocktailSmoking';
+type TechniqueExplanation = ExplainFatWashingOutput | ExplainInfusionOutput | ExplainCocktailSmokingOutput | ExplainClarifiedMilkPunchOutput;
+type Technique = 'fatWashing' | 'infusion' | 'cocktailSmoking' | 'milkPunch';
 
 function isCocktailSmokingOutput(explanation: any): explanation is ExplainCocktailSmokingOutput {
   return explanation && 'chimneySmokerGuide' in explanation;
@@ -26,6 +27,7 @@ const techniqueConfig: Record<Technique, { icon: React.ElementType, label: strin
   fatWashing: { icon: Beaker, label: 'Fat Washing', imageId: 'learn-fat-washing' },
   infusion: { icon: FlaskConical, label: 'Spirit Infusions', imageId: 'learn-infusion' },
   cocktailSmoking: { icon: Flame, label: 'Cocktail Smoking', imageId: 'learn-cocktail-smoking' },
+  milkPunch: { icon: TestTube, label: 'Clarified Milk Punch', imageId: 'learn-milk-punch' },
 };
 
 export default function LearnPage() {
@@ -43,6 +45,8 @@ export default function LearnPage() {
         result = await explainFatWashing();
       } else if (technique === 'infusion') {
         result = await explainInfusion();
+      } else if (technique === 'milkPunch') {
+        result = await explainClarifiedMilkPunch();
       } else {
         result = await explainCocktailSmoking();
       }
