@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useTransition, useEffect } from 'react';
+import { useState, useTransition, useEffect, use } from 'react';
 import { notFound } from 'next/navigation';
 import { recipes } from '@/lib/recipes';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -60,7 +60,8 @@ const RecipeContent = ({ spec }: { spec: RecipeSpec }) => (
     </Card>
   );
 
-export default function RecipeDetailPage({ params }: { params: { slug: string } }) {
+export default function RecipeDetailPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
+  const params = use(paramsPromise);
   const [isPending, startTransition] = useTransition();
   const [aiResult, setAiResult] = useState<AIResult | null>(null);
   const { settings, toggleFavorite } = useSettings();
@@ -270,7 +271,7 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
                                 </CardDescription>
                             </div>
                              {isShareable && (
-                                <Button variant="ghost" size="icon" onClick={handleShareShoppingList}>
+                                <Button variant="ghost" size="icon" onClick={handleShareShoppingList} aria-label="Share Shopping List">
                                     <Share2 className="w-5 h-5" />
                                 </Button>
                             )}
@@ -433,3 +434,5 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
     </div>
   );
 }
+
+    
