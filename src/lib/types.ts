@@ -1,25 +1,27 @@
 
+export type RecipeSpec = {
+  ingredients: {
+    item: string;
+    amount: string;
+  }[];
+  instructions: string[];
+};
+
 export interface Recipe {
   slug: string;
   name: string;
-  category: 'Spirit Forward' | 'Sours' | 'Highballs & Spritzes' | 'Tiki, Tropical & Dessert';
+  category: 'Spirit Forward' | 'Sours' | 'Highballs & Spritzes' | 'Tiki, Tropical & Dessert' | 'Other';
   image: string;
   imageHint?: string;
-  spec: {
-    ingredients: {
-      item: string;
-      amount: string;
-    }[];
-    instructions: string[];
-  };
+  spec: RecipeSpec;
   swap: string;
   mocktail: {
     name:string;
-    recipe: string;
+    spec: RecipeSpec;
   };
   kid: {
     name: string;
-    recipe: string;
+    spec: RecipeSpec;
   };
   custom?: boolean;
   imageDataUri?: string;

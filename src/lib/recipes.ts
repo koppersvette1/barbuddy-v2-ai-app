@@ -17,7 +17,7 @@ export const recipes: Recipe[] = [
       instructions: [
         'Add Demerara syrup and bitters to a mixing glass.',
         'Add whiskey and fill the glass with ice.',
-        'Stir with a bar spoon for 30-45 seconds until well-chilled. The goal is to chill and dilute, not aerate.',
+        'Stir with a bar spoon for 30-45 seconds until well-chilled.',
         'Strain into a rocks glass over a large ice cube.',
         'Express the oils from an orange peel over the drink, then drop it in as garnish.',
       ],
@@ -25,11 +25,33 @@ export const recipes: Recipe[] = [
     swap: 'Aged Rum or Añejo Tequila.',
     mocktail: {
       name: 'Bold Fashioned',
-      recipe: 'Combine 2 oz of strongly brewed (and chilled) black tea and 0.5 oz of maple syrup in a rocks glass with a large ice cube. Stir gently to combine. Express the oils from an orange peel over the top and drop it in.',
+      spec: {
+        ingredients: [
+          { item: 'Strong Black Tea (chilled)', amount: '2 oz' },
+          { item: 'Maple Syrup', amount: '0.5 oz' },
+          { item: 'Orange Peel', amount: '1' },
+        ],
+        instructions: [
+          'Combine chilled black tea and maple syrup in a rocks glass with a large ice cube.',
+          'Stir gently to combine.',
+          'Express the oils from an orange peel over the top and drop it in.',
+        ]
+      }
     },
     kid: {
       name: "Gentleman's Root Beer",
-      recipe: 'Pour a high-quality root beer into a rocks glass over a large ice cube. Garnish with a fresh orange slice for a hint of citrus aroma. It looks just like the real thing!',
+      spec: {
+        ingredients: [
+          { item: 'Root Beer', amount: '1 bottle' },
+          { item: 'Orange Slice', amount: '1' },
+          { item: 'Large Ice Cube', amount: '1' },
+        ],
+        instructions: [
+          'Place a large ice cube in a rocks glass.',
+          'Pour a high-quality root beer over the ice.',
+          'Garnish with a fresh orange slice for a hint of citrus aroma.',
+        ]
+      }
     },
   },
   {
@@ -54,11 +76,36 @@ export const recipes: Recipe[] = [
     swap: 'Bourbon (makes it sweeter) or Scotch (Rob Roy).',
     mocktail: {
       name: 'The Pre-War',
-      recipe: 'In a mixing glass, combine 2 oz of tart cherry juice and 1 oz of chilled Earl Grey tea with a drop of vanilla extract. Stir with ice, then strain into a coupe glass and garnish with a cherry.',
+      spec: {
+        ingredients: [
+          { item: 'Tart Cherry Juice', amount: '2 oz' },
+          { item: 'Chilled Earl Grey Tea', amount: '1 oz' },
+          { item: 'Vanilla Extract', amount: '1 drop' },
+          { item: 'Cherry', amount: '1 for garnish' },
+        ],
+        instructions: [
+          'In a mixing glass, combine tart cherry juice, chilled tea, and vanilla extract.',
+          'Stir with ice until well-chilled.',
+          'Strain into a coupe glass.',
+          'Garnish with a cherry.'
+        ]
+      }
     },
     kid: {
       name: 'Shirley Temple Black',
-      recipe: 'Fill a glass with ice and top with your favorite cola. Drizzle in a small amount of grenadine for color and sweetness. Garnish with a fancy Luxardo cherry.',
+      spec: {
+        ingredients: [
+          { item: 'Cola', amount: '6 oz' },
+          { item: 'Grenadine', amount: '0.25 oz' },
+          { item: 'Luxardo Cherry', amount: '1 for garnish' },
+        ],
+        instructions: [
+          'Fill a glass with ice.',
+          'Pour in your favorite cola.',
+          'Drizzle in a small amount of grenadine for color and sweetness.',
+          'Garnish with a fancy Luxardo cherry.',
+        ]
+      }
     },
   },
   {
@@ -83,11 +130,33 @@ export const recipes: Recipe[] = [
     swap: 'Bourbon (Boulevardier) or Mezcal.',
     mocktail: {
       name: 'Phony Negroni',
-      recipe: 'Pour a chilled bottle of Sanbitter or Chinotto soda into a rocks glass over a large ice cube. Garnish with a fresh orange peel to complete the look.',
+      spec: {
+        ingredients: [
+          { item: 'Sanbitter or Chinotto Soda', amount: '1 bottle' },
+          { item: 'Orange Peel', amount: '1 for garnish' },
+        ],
+        instructions: [
+          'Chill a rocks glass.',
+          'Pour a chilled bottle of Sanbitter or Chinotto soda into the glass over a large ice cube.',
+          'Garnish with a fresh orange peel.',
+        ]
+      }
     },
     kid: {
       name: 'Traffic Light',
-      recipe: 'Carefully layer the ingredients in a clear glass. Start with grenadine on the bottom. Gently pour orange juice over the back of a spoon to create the middle layer. Top it off with Sprite for the final layer.',
+      spec: {
+        ingredients: [
+          { item: 'Grenadine', amount: '0.5 oz' },
+          { item: 'Orange Juice', amount: '3 oz' },
+          { item: 'Sprite', amount: '3 oz' },
+        ],
+        instructions: [
+          'Carefully layer the ingredients in a clear glass.',
+          'Start with grenadine on the bottom.',
+          'Gently pour orange juice over the back of a spoon to create the middle layer.',
+          'Top it off with Sprite for the final layer.',
+        ]
+      }
     },
   },
   {
@@ -111,11 +180,32 @@ export const recipes: Recipe[] = [
     swap: 'Vodka.',
     mocktail: {
       name: 'Faux-tini',
-      recipe: 'Shake 2 oz of coconut water with plenty of ice until it\'s absolutely freezing. Strain into a chilled martini glass and express the oils from a lemon peel over the top.',
+      spec: {
+        ingredients: [
+          { item: 'Coconut Water', amount: '2 oz' },
+          { item: 'Lemon Peel', amount: '1' },
+        ],
+        instructions: [
+          'Shake 2 oz of coconut water with plenty of ice until it\'s absolutely freezing.',
+          'Strain into a chilled martini glass.',
+          'Express the oils from a lemon peel over the top.',
+        ]
+      }
     },
     kid: {
       name: 'Secret Agent',
-      recipe: 'Pour white grape juice into a fancy glass and top with a splash of sparkling water. For the "olive," drop in a frozen green grape!',
+      spec: {
+        ingredients: [
+          { item: 'White Grape Juice', amount: '4 oz' },
+          { item: 'Sparkling Water', amount: '1 oz' },
+          { item: 'Frozen Green Grape', amount: '1' },
+        ],
+        instructions: [
+          'Pour white grape juice into a fancy glass.',
+          'Top with a splash of sparkling water.',
+          'For the "olive," drop in a frozen green grape!',
+        ]
+      }
     },
   },
   {
@@ -142,12 +232,32 @@ export const recipes: Recipe[] = [
     swap: 'Cognac.',
     mocktail: {
       name: 'NOLA Zero',
-      recipe: 'Brew a strong fennel tea and let it chill. In a mixing glass, combine 2 oz of the tea with 1 oz of cherry juice. Stir with ice, strain into a glass, and garnish with an anise star.',
+      spec: {
+        ingredients: [
+          { item: 'Fennel Tea (chilled)', amount: '2 oz' },
+          { item: 'Cherry Juice', amount: '1 oz' },
+          { item: 'Anise Star', amount: '1 for garnish' },
+        ],
+        instructions: [
+          'Brew a strong fennel tea and let it chill.',
+          'In a mixing glass, combine the tea with cherry juice.',
+          'Stir with ice, strain into a glass, and garnish with an anise star.',
+        ]
+      }
     },
     kid: {
       name: 'Root Beer Barrel',
-      recipe: 'Pour a good quality root beer into a glass. Express the oils from a lemon peel over the top for a surprisingly complex aroma.',
-    },
+      spec: {
+        ingredients: [
+          { item: 'Root Beer', amount: '1 bottle' },
+          { item: 'Lemon Peel', amount: '1' },
+        ],
+        instructions: [
+          'Pour a good quality root beer into a glass.',
+          'Express the oils from a lemon peel over the top for a surprisingly complex aroma.',
+        ]
+      }
+    }
   },
   {
     slug: 'vieux-carre',
@@ -173,11 +283,31 @@ export const recipes: Recipe[] = [
     swap: 'Drambuie.',
     mocktail: {
       name: 'Big Easy',
-      recipe: 'Combine 2 oz of chilled black tea and 1 oz of tart cherry juice in a mixing glass. Stir with ice, strain over a large ice cube, and garnish with a dash of nutmeg.'
+      spec: {
+        ingredients: [
+          { item: 'Chilled Black Tea', amount: '2 oz' },
+          { item: 'Tart Cherry Juice', amount: '1 oz' },
+          { item: 'Nutmeg', amount: '1 dash' },
+        ],
+        instructions: [
+          'Combine chilled black tea and tart cherry juice in a mixing glass.',
+          'Stir with ice.',
+          'Strain over a large ice cube and garnish with a dash of nutmeg.'
+        ]
+      }
     },
     kid: {
       name: 'Jazz Cola',
-      recipe: 'Pour vanilla-flavored cola into a glass with ice. Drop in a cherry for a sweet finish.'
+      spec: {
+        ingredients: [
+          { item: 'Vanilla Cola', amount: '1 can' },
+          { item: 'Cherry', amount: '1' },
+        ],
+        instructions: [
+          'Pour vanilla-flavored cola into a glass with ice.',
+          'Drop in a cherry for a sweet finish.'
+        ]
+      }
     }
   },
   {
@@ -203,11 +333,33 @@ export const recipes: Recipe[] = [
     swap: 'Amaretto.',
     mocktail: {
       name: 'Sour Patch',
-      recipe: 'In a shaker, combine 2 oz of strong, chilled tea, 0.75 oz of lemon juice, and 1 oz of aquafaba (chickpea brine). Dry shake without ice, then add ice and shake again until cold. Strain into a coupe.',
+      spec: {
+        ingredients: [
+          { item: 'Strong Chilled Tea', amount: '2 oz' },
+          { item: 'Lemon Juice', amount: '0.75 oz' },
+          { item: 'Aquafaba (chickpea brine)', amount: '1 oz' },
+        ],
+        instructions: [
+          'In a shaker, combine tea, lemon juice, and aquafaba.',
+          'Dry shake without ice for 15 seconds.',
+          'Add ice and shake again until cold.',
+          'Strain into a coupe glass.'
+        ]
+      }
     },
     kid: {
       name: 'Frothy Lemonade',
-      recipe: 'Add lemonade and a small drop of vanilla extract to a sealed jar or shaker. Shake it as hard as you can for 15 seconds. Pour into a glass to see the foam!',
+      spec: {
+        ingredients: [
+          { item: 'Lemonade', amount: '4 oz' },
+          { item: 'Vanilla Extract', amount: '1 drop' },
+        ],
+        instructions: [
+          'Add lemonade and a small drop of vanilla extract to a sealed jar or shaker.',
+          'Shake it as hard as you can for 15 seconds.',
+          'Pour into a glass to see the foam!',
+        ]
+      }
     },
   },
   {
@@ -234,11 +386,32 @@ export const recipes: Recipe[] = [
     swap: 'Mezcal.',
     mocktail: {
       name: 'Nada-Rita',
-      recipe: 'In a shaker with ice, combine 3 oz limeade, 1 oz orange juice, and a small squeeze of agave. Shake well and pour into a salt-rimmed glass.',
+      spec: {
+        ingredients: [
+          { item: 'Limeade', amount: '3 oz' },
+          { item: 'Orange Juice', amount: '1 oz' },
+          { item: 'Agave Nectar', amount: '1 squeeze' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine limeade, orange juice, and a small squeeze of agave.',
+          'Shake well and pour into a salt-rimmed glass.',
+        ]
+      }
     },
     kid: {
       name: 'Cactus Juice',
-      recipe: 'Rim a glass with sugar. Fill with limeade and add a single drop of green food coloring for a fun effect. Stir and enjoy!',
+      spec: {
+        ingredients: [
+          { item: 'Limeade', amount: '4 oz' },
+          { item: 'Green Food Coloring', amount: '1 drop' },
+          { item: 'Sugar for rim', amount: 'Optional' },
+        ],
+        instructions: [
+          'Rim a glass with sugar.',
+          'Fill with limeade.',
+          'Add a single drop of green food coloring for a fun effect, then stir.',
+        ]
+      }
     },
   },
   {
@@ -261,11 +434,31 @@ export const recipes: Recipe[] = [
     swap: 'Gin (Gimlet).',
     mocktail: {
       name: "Sailor's Delight",
-      recipe: 'In a shaker with ice, combine 2 oz coconut water, 1 oz fresh lime juice, and 0.5 oz simple syrup. Shake hard and strain into a coupe glass.',
+      spec: {
+        ingredients: [
+          { item: 'Coconut Water', amount: '2 oz' },
+          { item: 'Fresh Lime Juice', amount: '1 oz' },
+          { item: 'Simple Syrup', amount: '0.5 oz' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine coconut water, lime juice, and simple syrup.',
+          'Shake hard and strain into a coupe glass.',
+        ]
+      }
     },
     kid: {
       name: 'Frozen Snowball',
-      recipe: 'In a blender, combine 1 cup of ice, 4 oz of Sprite, and a big squeeze of lime juice. Blend until slushy and serve immediately.',
+      spec: {
+        ingredients: [
+          { item: 'Ice', amount: '1 cup' },
+          { item: 'Sprite', amount: '4 oz' },
+          { item: 'Lime Juice', amount: '1 big squeeze' },
+        ],
+        instructions: [
+          'In a blender, combine ice, Sprite, and lime juice.',
+          'Blend until slushy and serve immediately.',
+        ]
+      }
     },
   },
   {
@@ -289,11 +482,32 @@ export const recipes: Recipe[] = [
     swap: 'Gin.',
     mocktail: {
       name: 'The Metro',
-      recipe: 'In a shaker with ice, combine 2 oz cranberry juice, 0.75 oz lime juice, and a 0.5 oz splash of orange juice. Shake well and strain into a martini glass.',
+      spec: {
+        ingredients: [
+          { item: 'Cranberry Juice', amount: '2 oz' },
+          { item: 'Lime Juice', amount: '0.75 oz' },
+          { item: 'Orange Juice', amount: '0.5 oz' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine cranberry juice, lime juice, and orange juice.',
+          'Shake well and strain into a martini glass.',
+        ]
+      }
     },
     kid: {
       name: 'Pink Princess',
-      recipe: 'Fill a fun glass with Sprite and add a splash of cranberry juice for color. Garnish with a whole lime wheel on the rim.',
+      spec: {
+        ingredients: [
+          { item: 'Sprite', amount: '4 oz' },
+          { item: 'Cranberry Juice', amount: '1 splash' },
+          { item: 'Lime Wheel', amount: '1 for garnish' },
+        ],
+        instructions: [
+          'Fill a fun glass with Sprite.',
+          'Add a splash of cranberry juice for color.',
+          'Garnish with a whole lime wheel on the rim.',
+        ]
+      }
     },
   },
   {
@@ -316,11 +530,31 @@ export const recipes: Recipe[] = [
     swap: 'Vodka.',
     mocktail: {
       name: 'Garden Gimlet',
-      recipe: 'In a glass, gently muddle a few slices of cucumber with 1 oz of lime juice. Add ice and top with club soda. Stir gently.',
+      spec: {
+        ingredients: [
+          { item: 'Cucumber', amount: 'A few slices' },
+          { item: 'Lime Juice', amount: '1 oz' },
+          { item: 'Club Soda', amount: 'Top with' },
+        ],
+        instructions: [
+          'In a glass, gently muddle a few slices of cucumber with lime juice.',
+          'Add ice and top with club soda.',
+          'Stir gently.',
+        ]
+      }
     },
     kid: {
       name: 'Lime Slush',
-      recipe: 'In a blender, combine 1 cup of ice with 4 oz of limeade. Blend until you have a perfect slushy consistency.',
+      spec: {
+        ingredients: [
+          { item: 'Ice', amount: '1 cup' },
+          { item: 'Limeade', amount: '4 oz' },
+        ],
+        instructions: [
+          'In a blender, combine ice with limeade.',
+          'Blend until you have a perfect slushy consistency.',
+        ]
+      }
     },
   },
   {
@@ -343,11 +577,31 @@ export const recipes: Recipe[] = [
     swap: 'Bourbon (Gold Rush).',
     mocktail: {
       name: 'Bumblebee',
-      recipe: 'Brew 2 oz of chamomile tea and let it cool. In a shaker, combine the tea, 0.75 oz of lemon juice, and 0.75 oz of honey syrup with ice. Shake and strain into a coupe.'
+      spec: {
+        ingredients: [
+          { item: 'Chamomile Tea (cooled)', amount: '2 oz' },
+          { item: 'Lemon Juice', amount: '0.75 oz' },
+          { item: 'Honey Syrup', amount: '0.75 oz' },
+        ],
+        instructions: [
+          'Brew 2 oz of chamomile tea and let it cool.',
+          'In a shaker, combine the tea, lemon juice, and honey syrup with ice.',
+          'Shake and strain into a coupe.',
+        ]
+      }
     },
     kid: {
       name: 'Honey Bear',
-      recipe: 'Simply mix honey into lemonade for a sweet, delicious treat. Serve over ice.'
+      spec: {
+        ingredients: [
+          { item: 'Lemonade', amount: '4 oz' },
+          { item: 'Honey', amount: '1 tsp' },
+        ],
+        instructions: [
+          'Simply mix honey into lemonade for a sweet, delicious treat.',
+          'Serve over ice.'
+        ]
+      }
     }
   },
   {
@@ -371,11 +625,28 @@ export const recipes: Recipe[] = [
     swap: 'Bourbon.',
     mocktail: {
       name: 'Side-Kick',
-      recipe: 'Combine 2 oz of chilled orange-flavored tea with 0.75 oz of lemon juice. Shake with ice and strain into a sugar-rimmed glass.'
+      spec: {
+        ingredients: [
+          { item: 'Orange-flavored Tea (chilled)', amount: '2 oz' },
+          { item: 'Lemon Juice', amount: '0.75 oz' },
+        ],
+        instructions: [
+          'Combine chilled orange-flavored tea with lemon juice.',
+          'Shake with ice and strain into a sugar-rimmed glass.'
+        ]
+      }
     },
     kid: {
       name: 'Sugar Rim Lemonade',
-      recipe: 'A classic for a reason! Pour pink lemonade into a glass with a sugar-coated rim for a fun, crunchy texture.'
+      spec: {
+        ingredients: [
+          { item: 'Pink Lemonade', amount: '4 oz' },
+          { item: 'Sugar for rim', amount: 'Optional' },
+        ],
+        instructions: [
+          'Pour pink lemonade into a glass with a sugar-coated rim for a fun, crunchy texture.'
+        ]
+      }
     }
   },
   {
@@ -399,11 +670,31 @@ export const recipes: Recipe[] = [
     swap: 'Campari.',
     mocktail: {
       name: 'Paper Glider',
-      recipe: 'In a shaker with ice, combine 1.5 oz grapefruit juice and 0.75 oz lemon juice. Shake and strain, then top with a bitter soda.'
+      spec: {
+        ingredients: [
+          { item: 'Grapefruit Juice', amount: '1.5 oz' },
+          { item: 'Lemon Juice', amount: '0.75 oz' },
+          { item: 'Bitter Soda (like Chinotto)', amount: 'Top with' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine grapefruit juice and lemon juice.',
+          'Shake and strain, then top with a bitter soda.'
+        ]
+      }
     },
     kid: {
       name: 'Airplane',
-      recipe: 'Pour orange juice into a glass and top with Sprite. Cut a lemon or orange wedge to look like wings and place it on the rim of the glass.'
+      spec: {
+        ingredients: [
+          { item: 'Orange Juice', amount: '3 oz' },
+          { item: 'Sprite', amount: 'Top with' },
+          { item: 'Lemon or Orange Wedge', amount: '1' },
+        ],
+        instructions: [
+          'Pour orange juice into a glass and top with Sprite.',
+          'Cut a lemon or orange wedge to look like wings and place it on the rim of the glass.'
+        ]
+      }
     }
   },
   {
@@ -427,11 +718,29 @@ export const recipes: Recipe[] = [
     swap: 'Gin.',
     mocktail: {
       name: 'Lemon Candy',
-      recipe: 'In a shaker with ice, combine 3 oz of lemonade with a drop of vanilla extract. Shake hard and strain into a sugar-rimmed glass.'
+      spec: {
+        ingredients: [
+          { item: 'Lemonade', amount: '3 oz' },
+          { item: 'Vanilla Extract', amount: '1 drop' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine lemonade with a drop of vanilla extract.',
+          'Shake hard and strain into a sugar-rimmed glass.'
+        ]
+      }
     },
     kid: {
       name: 'Sour Pop',
-      recipe: 'Fill a glass with lemonade and then slowly pour in a little grenadine so it sinks to the bottom, creating a cool layered effect.'
+      spec: {
+        ingredients: [
+          { item: 'Lemonade', amount: '4 oz' },
+          { item: 'Grenadine', amount: '0.25 oz' },
+        ],
+        instructions: [
+          'Fill a glass with lemonade.',
+          'Slowly pour in a little grenadine so it sinks to the bottom, creating a cool layered effect.'
+        ]
+      }
     }
   },
   {
@@ -455,11 +764,31 @@ export const recipes: Recipe[] = [
     swap: 'Bourbon (Kentucky Mule) or Tequila (Mexican Mule).',
     mocktail: {
       name: 'Garden Mule',
-      recipe: 'Fill a copper mug with ice. Add a few slices of fresh cucumber. Top with high-quality ginger beer and a squeeze of lime.',
+      spec: {
+        ingredients: [
+          { item: 'Cucumber', amount: 'A few slices' },
+          { item: 'Ginger Beer', amount: '1 bottle' },
+          { item: 'Lime', amount: '1 wedge' },
+        ],
+        instructions: [
+          'Fill a copper mug with ice.',
+          'Add a few slices of fresh cucumber.',
+          'Top with high-quality ginger beer and a squeeze of lime.',
+        ]
+      }
     },
     kid: {
       name: 'Spicy Soda',
-      recipe: 'For a fun experience, serve ginger ale in a copper mug with a big squeeze of fresh lime. The mug makes it feel special!',
+      spec: {
+        ingredients: [
+          { item: 'Ginger Ale', amount: '1 can' },
+          { item: 'Lime', amount: '1 squeeze' },
+        ],
+        instructions: [
+          'For a fun experience, serve ginger ale in a copper mug with a big squeeze of fresh lime.',
+          'The mug makes it feel special!',
+        ]
+      }
     },
   },
   {
@@ -485,11 +814,32 @@ export const recipes: Recipe[] = [
     swap: 'Gin (Southside).',
     mocktail: {
       name: 'No-jito',
-      recipe: 'In a highball glass, gently muddle fresh mint leaves with lime juice and simple syrup. Add ice and top with club soda. Garnish with more mint.'
+      spec: {
+        ingredients: [
+          { item: 'Mint Leaves', amount: '6-8' },
+          { item: 'Lime Juice', amount: '0.75 oz' },
+          { item: 'Simple Syrup', amount: '0.5 oz' },
+          { item: 'Club Soda', amount: 'Top with' },
+        ],
+        instructions: [
+          'In a highball glass, gently muddle fresh mint leaves with lime juice and simple syrup.',
+          'Add ice and top with club soda.',
+          'Garnish with more mint.'
+        ]
+      }
     },
     kid: {
       name: 'Swamp Water',
-      recipe: 'Muddle mint leaves in a glass, then strain the juice into a separate glass filled with Sprite and ice. This gives you the mint flavor without any green bits floating around!'
+      spec: {
+        ingredients: [
+          { item: 'Mint Leaves', amount: 'A few' },
+          { item: 'Sprite', amount: '1 can' },
+        ],
+        instructions: [
+          'Muddle mint leaves in a glass, then strain the juice into a separate glass filled with Sprite and ice.',
+          'This gives you the mint flavor without any green bits floating around!'
+        ]
+      }
     }
   },
   {
@@ -512,11 +862,29 @@ export const recipes: Recipe[] = [
     swap: 'Grapefruit Juice + Soda.',
     mocktail: {
       name: 'The Dove',
-      recipe: 'Pour grapefruit soda into a salt-rimmed glass filled with ice. Add a squeeze of fresh lime juice and stir gently.',
+      spec: {
+        ingredients: [
+          { item: 'Grapefruit Soda', amount: '1 bottle' },
+          { item: 'Lime Juice', amount: '1 squeeze' },
+        ],
+        instructions: [
+          'Pour grapefruit soda into a salt-rimmed glass filled with ice.',
+          'Add a squeeze of fresh lime juice and stir gently.',
+        ]
+      }
     },
     kid: {
       name: 'Pink Fizz',
-      recipe: 'In a fun glass, pour grapefruit soda over ice and drop in a fresh strawberry for a pop of color and flavor.',
+      spec: {
+        ingredients: [
+          { item: 'Grapefruit Soda', amount: '1 bottle' },
+          { item: 'Fresh Strawberry', amount: '1' },
+        ],
+        instructions: [
+          'In a fun glass, pour grapefruit soda over ice.',
+          'Drop in a fresh strawberry for a pop of color and flavor.',
+        ]
+      }
     },
   },
   {
@@ -540,11 +908,29 @@ export const recipes: Recipe[] = [
     swap: 'Vodka.',
     mocktail: {
       name: 'Lavender Lemonade',
-      recipe: 'In a tall glass with ice, combine 2 oz of lavender syrup and 1 oz of lemon juice. Top with club soda and stir gently.',
+      spec: {
+        ingredients: [
+          { item: 'Lavender Syrup', amount: '2 oz' },
+          { item: 'Lemon Juice', amount: '1 oz' },
+          { item: 'Club Soda', amount: 'Top with' },
+        ],
+        instructions: [
+          'In a tall glass with ice, combine lavender syrup and lemon juice.',
+          'Top with club soda and stir gently.',
+        ]
+      }
     },
     kid: {
       name: 'Fancy Lemonade',
-      recipe: 'A simple classic! Pour lemonade into a tall glass with ice and top with sparkling water for a bit of fizz.',
+      spec: {
+        ingredients: [
+          { item: 'Lemonade', amount: '4 oz' },
+          { item: 'Sparkling Water', amount: 'Top with' },
+        ],
+        instructions: [
+          'A simple classic! Pour lemonade into a tall glass with ice and top with sparkling water for a bit of fizz.',
+        ]
+      }
     },
   },
   {
@@ -567,11 +953,31 @@ export const recipes: Recipe[] = [
     swap: 'Campari.',
     mocktail: {
       name: 'Sunset Spritz',
-      recipe: 'Fill a wine glass with ice. Add 2 oz of cranberry juice and a squeeze of orange. Top with tonic water and stir.',
+      spec: {
+        ingredients: [
+          { item: 'Cranberry Juice', amount: '2 oz' },
+          { item: 'Orange', amount: '1 squeeze' },
+          { item: 'Tonic Water', amount: 'Top with' },
+        ],
+        instructions: [
+          'Fill a wine glass with ice.',
+          'Add cranberry juice and a squeeze of orange.',
+          'Top with tonic water and stir.',
+        ]
+      }
     },
     kid: {
       name: 'Orange Sparkler',
-      recipe: 'In a large glass, add a scoop of vanilla ice cream and slowly pour orange soda over it to create a delicious, fizzy float.',
+      spec: {
+        ingredients: [
+          { item: 'Vanilla Ice Cream', amount: '1 scoop' },
+          { item: 'Orange Soda', amount: '1 can' },
+        ],
+        instructions: [
+          'In a large glass, add a scoop of vanilla ice cream.',
+          'Slowly pour orange soda over it to create a delicious, fizzy float.',
+        ]
+      }
     },
   },
   {
@@ -598,11 +1004,32 @@ export const recipes: Recipe[] = [
     swap: "Elderflower Syrup.",
     mocktail: {
       name: 'Winter Garden',
-      recipe: 'In a wine glass, gently press a few mint leaves. Add 1 oz elderflower syrup and 2 oz pomegranate juice. Fill with ice, top with club soda, and stir.'
+      spec: {
+        ingredients: [
+          { item: 'Mint', amount: 'A few leaves' },
+          { item: 'Elderflower Syrup', amount: '1 oz' },
+          { item: 'Pomegranate Juice', amount: '2 oz' },
+          { item: 'Club Soda', amount: 'Top with' },
+        ],
+        instructions: [
+          'In a wine glass, gently press a few mint leaves.',
+          'Add elderflower syrup and pomegranate juice.',
+          'Fill with ice, top with club soda, and stir.'
+        ]
+      }
     },
     kid: {
       name: 'Berry Bubbly',
-      recipe: 'Fill a glass with 7-Up or Sprite and add a generous splash of pomegranate juice for color and flavor.'
+      spec: {
+        ingredients: [
+          { item: '7-Up or Sprite', amount: '1 can' },
+          { item: 'Pomegranate Juice', amount: '1 splash' },
+        ],
+        instructions: [
+          'Fill a glass with 7-Up or Sprite.',
+          'Add a generous splash of pomegranate juice for color and flavor.'
+        ]
+      }
     }
   },
   {
@@ -626,11 +1053,30 @@ export const recipes: Recipe[] = [
     swap: 'Must be Mineral Water.',
     mocktail: {
       name: 'Mineral Lime',
-      recipe: 'The ultimate refresher. Pour Topo Chico over ice in a highball glass and squeeze in a generous amount of fresh lime juice.'
+      spec: {
+        ingredients: [
+          { item: 'Topo Chico', amount: '1 bottle' },
+          { item: 'Lime Juice', amount: 'A generous squeeze' },
+        ],
+        instructions: [
+          'The ultimate refresher!',
+          'Pour Topo Chico over ice in a highball glass.',
+          'Squeeze in a generous amount of fresh lime juice.'
+        ]
+      }
     },
     kid: {
       name: 'Fizzy Lime',
-      recipe: 'A simple, bubbly treat. Pour Sprite over ice and add a squeeze of fresh lime.'
+      spec: {
+        ingredients: [
+          { item: 'Sprite', amount: '1 can' },
+          { item: 'Lime', amount: '1 squeeze' },
+        ],
+        instructions: [
+          'A simple, bubbly treat.',
+          'Pour Sprite over ice and add a squeeze of fresh lime.',
+        ]
+      }
     }
   },
   {
@@ -654,11 +1100,29 @@ export const recipes: Recipe[] = [
     swap: "White Rum (Rum Buck).",
     mocktail: {
       name: 'Storm Cloud',
-      recipe: 'Fill a highball glass with ice and top with ginger beer. For the "stormy" effect, drizzle a tiny bit of molasses over the top.',
+      spec: {
+        ingredients: [
+          { item: 'Ginger Beer', amount: '1 bottle' },
+          { item: 'Molasses', amount: '1 drizzle' },
+        ],
+        instructions: [
+          'Fill a highball glass with ice and top with ginger beer.',
+          'For the "stormy" effect, drizzle a tiny bit of molasses over the top.',
+        ]
+      }
     },
     kid: {
       name: 'Pirate Punch',
-      recipe: 'Fill a glass with ice and top with ginger ale. Add a squeeze of fresh lime for a tangy kick.',
+      spec: {
+        ingredients: [
+          { item: 'Ginger Ale', amount: '1 can' },
+          { item: 'Lime', amount: '1 squeeze' },
+        ],
+        instructions: [
+          'Fill a glass with ice and top with ginger ale.',
+          'Add a squeeze of fresh lime for a tangy kick.',
+        ]
+      }
     },
   },
   {
@@ -682,11 +1146,30 @@ export const recipes: Recipe[] = [
     swap: 'Brandy.',
     mocktail: {
       name: 'Southern Tea',
-      recipe: 'In a Julep cup, gently muddle mint leaves. Fill with crushed ice and top with sweet tea. Garnish with a big sprig of mint.',
+      spec: {
+        ingredients: [
+          { item: 'Mint Leaves', amount: 'A handful' },
+          { item: 'Sweet Tea', amount: 'Fill with' },
+        ],
+        instructions: [
+          'In a Julep cup, gently muddle mint leaves.',
+          'Fill with crushed ice and top with sweet tea.',
+          'Garnish with a big sprig of mint.',
+        ]
+      }
     },
     kid: {
       name: 'Minty Fresh',
-      recipe: 'Fill a fun cup with crushed ice and top with Sprite. Add a splash of mint-flavored syrup for a cool, refreshing treat.',
+      spec: {
+        ingredients: [
+          { item: 'Sprite', amount: '1 can' },
+          { item: 'Mint-flavored Syrup', amount: '1 splash' },
+        ],
+        instructions: [
+          'Fill a fun cup with crushed ice and top with Sprite.',
+          'Add a splash of mint-flavored syrup for a cool, refreshing treat.',
+        ]
+      }
     },
   },
   {
@@ -710,11 +1193,32 @@ export const recipes: Recipe[] = [
     swap: 'Amaretto.',
     mocktail: {
       name: 'No Tai',
-      recipe: 'In a shaker with ice, combine 2 oz pineapple juice, 1 oz lime juice, and 0.5 oz orgeat (almond syrup). Shake well and pour into a glass. Garnish with mint.',
+      spec: {
+        ingredients: [
+          { item: 'Pineapple Juice', amount: '2 oz' },
+          { item: 'Lime Juice', amount: '1 oz' },
+          { item: 'Orgeat (almond syrup)', amount: '0.5 oz' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine pineapple juice, lime juice, and orgeat.',
+          'Shake well and pour into a glass. Garnish with mint.',
+        ]
+      }
     },
     kid: {
       name: 'Island Explorer',
-      recipe: 'Fill a glass with ice. Add pineapple juice and orange juice. Top with a splash of grenadine for a fun, layered look.',
+      spec: {
+        ingredients: [
+          { item: 'Pineapple Juice', amount: '2 oz' },
+          { item: 'Orange Juice', amount: '2 oz' },
+          { item: 'Grenadine', amount: '1 splash' },
+        ],
+        instructions: [
+          'Fill a glass with ice.',
+          'Add pineapple juice and orange juice.',
+          'Top with a splash of grenadine for a fun, layered look.',
+        ]
+      }
     },
   },
   {
@@ -737,11 +1241,28 @@ export const recipes: Recipe[] = [
     swap: 'Vodka.',
     mocktail: {
       name: 'Virgin Colada',
-      recipe: 'In a shaker with ice, combine 2 oz pineapple juice and 1.5 oz of Coco Lopez or coconut cream. Shake very hard until frothy and strain into a tall glass.',
+      spec: {
+        ingredients: [
+          { item: 'Pineapple Juice', amount: '2 oz' },
+          { item: 'Coco Lopez or Coconut Cream', amount: '1.5 oz' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine pineapple juice and Coco Lopez.',
+          'Shake very hard until frothy and strain into a tall glass.',
+        ]
+      }
     },
     kid: {
       name: 'Coco-Pine Smoothie',
-      recipe: 'Same as the mocktail! It\'s a perfect, creamy, tropical smoothie that everyone can enjoy.',
+      spec: {
+        ingredients: [
+          { item: 'Pineapple Juice', amount: '2 oz' },
+          { item: 'Coconut Cream', amount: '1.5 oz' },
+        ],
+        instructions: [
+          'Same as the mocktail! It\'s a perfect, creamy, tropical smoothie that everyone can enjoy.',
+        ]
+      }
     },
   },
   {
@@ -765,11 +1286,31 @@ export const recipes: Recipe[] = [
     swap: 'Vodka.',
     mocktail: {
       name: 'The Sunrise',
-      recipe: 'Fill a highball glass with ice and orange juice. Slowly pour grenadine down the side so it settles at the bottom. Do not stir.'
+      spec: {
+        ingredients: [
+          { item: 'Orange Juice', amount: '4 oz' },
+          { item: 'Grenadine', amount: '0.5 oz' },
+        ],
+        instructions: [
+          'Fill a highball glass with ice and orange juice.',
+          'Slowly pour grenadine down the side so it settles at the bottom.',
+          'Do not stir.',
+        ]
+      }
     },
     kid: {
       name: 'Morning Sun',
-      recipe: 'Fill a highball glass with ice and orange juice, then top with a splash of Sprite for fizz. Slowly add grenadine for the sunrise effect.'
+      spec: {
+        ingredients: [
+          { item: 'Orange Juice', amount: '4 oz' },
+          { item: 'Sprite', amount: 'Top with' },
+          { item: 'Grenadine', amount: '0.5 oz' },
+        ],
+        instructions: [
+          'Fill a highball glass with ice and orange juice, then top with a splash of Sprite for fizz.',
+          'Slowly add grenadine for the sunrise effect.',
+        ]
+      }
     }
   },
   {
@@ -792,11 +1333,31 @@ export const recipes: Recipe[] = [
     swap: 'Vodka.',
     mocktail: {
       name: 'Lime Crush',
-      recipe: 'In a rocks glass, firmly muddle fresh lime wedges with sugar. Fill the glass with ice and top with club soda.',
+      spec: {
+        ingredients: [
+          { item: 'Lime Wedges', amount: 'Half a lime' },
+          { item: 'Sugar', amount: '2 tsp' },
+          { item: 'Club Soda', amount: 'Top with' },
+        ],
+        instructions: [
+          'In a rocks glass, firmly muddle fresh lime wedges with sugar.',
+          'Fill the glass with ice and top with club soda.',
+        ]
+      }
     },
     kid: {
       name: 'Brazilian Limeade',
-      recipe: 'A creamy, sweet treat. In a blender, combine whole limes (with peel!), water, and sweetened condensed milk. Blend and strain. Serve over ice.',
+      spec: {
+        ingredients: [
+          { item: 'Whole Limes', amount: '2' },
+          { item: 'Water', amount: '3 cups' },
+          { item: 'Sweetened Condensed Milk', amount: '0.5 can' },
+        ],
+        instructions: [
+          'A creamy, sweet treat! In a blender, combine whole limes (with peel!), water, and sweetened condensed milk.',
+          'Blend and strain. Serve over ice.',
+        ]
+      }
     },
   },
   {
@@ -822,11 +1383,28 @@ export const recipes: Recipe[] = [
     swap: 'Rum.',
     mocktail: {
       name: 'Espresso Marti-NO',
-      recipe: 'In a shaker with lots of ice, combine 2 oz of cold brew concentrate with a splash of chocolate syrup. Shake as hard as you can to build a foam, then strain into a martini glass.'
+      spec: {
+        ingredients: [
+          { item: 'Cold Brew Concentrate', amount: '2 oz' },
+          { item: 'Chocolate Syrup', amount: '1 splash' },
+        ],
+        instructions: [
+          'In a shaker with lots of ice, combine cold brew concentrate with a splash of chocolate syrup.',
+          'Shake as hard as you can to build a foam, then strain into a martini glass.',
+        ]
+      }
     },
     kid: {
       name: 'Choc Milkshake Martini',
-      recipe: 'Put chocolate milk in a shaker with ice and shake hard until it\'s frothy. Pour into a fancy glass for a fun "martini" experience.'
+      spec: {
+        ingredients: [
+          { item: 'Chocolate Milk', amount: '4 oz' },
+        ],
+        instructions: [
+          'Put chocolate milk in a shaker with ice and shake hard until it\'s frothy.',
+          'Pour into a fancy glass for a fun "martini" experience.',
+        ]
+      }
     }
   },
   {
@@ -849,11 +1427,32 @@ export const recipes: Recipe[] = [
     swap: 'Milk.',
     mocktail: {
       name: 'White Lie',
-      recipe: 'Fill a rocks glass with ice. Add 3 oz of chilled coffee or cold brew, then gently pour 1 oz of cream and a drop of vanilla extract over the top.'
+      spec: {
+        ingredients: [
+          { item: 'Chilled Coffee or Cold Brew', amount: '3 oz' },
+          { item: 'Cream', amount: '1 oz' },
+          { item: 'Vanilla Extract', amount: '1 drop' },
+        ],
+        instructions: [
+          'Fill a rocks glass with ice.',
+          'Add chilled coffee, then gently pour cream and a drop of vanilla extract over the top.',
+        ]
+      }
     },
     kid: {
       name: 'Iced Coffee Milk',
-      recipe: 'Fill a glass with ice. Pour in milk and add a splash of decaf coffee or coffee-flavored syrup. Stir in chocolate syrup to taste.'
+      spec: {
+        ingredients: [
+          { item: 'Milk', amount: '4 oz' },
+          { item: 'Decaf Coffee or Coffee Syrup', amount: '1 splash' },
+          { item: 'Chocolate Syrup', amount: 'To taste' },
+        ],
+        instructions: [
+          'Fill a glass with ice. Pour in milk.',
+          'Add a splash of decaf coffee or coffee-flavored syrup.',
+          'Stir in chocolate syrup to taste.',
+        ]
+      }
     }
   },
   {
@@ -876,11 +1475,30 @@ export const recipes: Recipe[] = [
     swap: 'Rye Whiskey for a spicier kick.',
     mocktail: {
       name: 'The Parisian',
-      recipe: 'In a mixing glass with ice, stir together 2 oz of cranberry juice and 1 oz of orange juice with a dash of non-alcoholic bitters. Strain into a glass over a large ice cube.',
+      spec: {
+        ingredients: [
+          { item: 'Cranberry Juice', amount: '2 oz' },
+          { item: 'Orange Juice', amount: '1 oz' },
+          { item: 'Non-alcoholic Bitters', amount: '1 dash' },
+        ],
+        instructions: [
+          'In a mixing glass with ice, stir together cranberry juice and orange juice with a dash of non-alcoholic bitters.',
+          'Strain into a glass over a large ice cube.',
+        ]
+      }
     },
     kid: {
       name: 'Cran-Orange Cooler',
-      recipe: 'A simple and tasty mix of cranberry juice and orange juice. Serve over ice.',
+      spec: {
+        ingredients: [
+          { item: 'Cranberry Juice', amount: '2 oz' },
+          { item: 'Orange Juice', amount: '2 oz' },
+        ],
+        instructions: [
+          'A simple and tasty mix of cranberry juice and orange juice.',
+          'Serve over ice.',
+        ]
+      }
     },
   },
   {
@@ -904,11 +1522,30 @@ export const recipes: Recipe[] = [
     swap: 'Cognac.',
     mocktail: {
       name: 'French 0.0',
-      recipe: 'In a champagne flute, combine 0.5 oz of lemon juice and 0.5 oz of simple syrup. Top with chilled sparkling white grape juice.',
+      spec: {
+        ingredients: [
+          { item: 'Lemon Juice', amount: '0.5 oz' },
+          { item: 'Simple Syrup', amount: '0.5 oz' },
+          { item: 'Sparkling White Grape Juice', amount: 'Top with' },
+        ],
+        instructions: [
+          'In a champagne flute, combine lemon juice and simple syrup.',
+          'Top with chilled sparkling white grape juice.',
+        ]
+      }
     },
     kid: {
       name: 'Sparkling Lemon Drop',
-      recipe: 'Pour sparkling lemonade into a fancy flute and garnish with a long lemon twist for a touch of elegance.',
+      spec: {
+        ingredients: [
+          { item: 'Sparkling Lemonade', amount: '1 bottle' },
+          { item: 'Lemon Twist', amount: '1 for garnish' },
+        ],
+        instructions: [
+          'Pour sparkling lemonade into a fancy flute.',
+          'Garnish with a long lemon twist for a touch of elegance.',
+        ]
+      }
     },
   },
   {
@@ -933,11 +1570,32 @@ export const recipes: Recipe[] = [
     swap: 'Vodka.',
     mocktail: {
       name: 'Lemon Cloud',
-      recipe: 'Dry shake 1 oz lemon juice, 0.75 oz simple syrup, and 1 oz aquafaba. Add ice and shake again. Strain into a tall glass and top with club soda.',
+      spec: {
+        ingredients: [
+          { item: 'Lemon Juice', amount: '1 oz' },
+          { item: 'Simple Syrup', amount: '0.75 oz' },
+          { item: 'Aquafaba', amount: '1 oz' },
+          { item: 'Club Soda', amount: 'Top with' },
+        ],
+        instructions: [
+          'Dry shake lemon juice, simple syrup, and aquafaba.',
+          'Add ice and shake again.',
+          'Strain into a tall glass and top with club soda.',
+        ]
+      }
     },
     kid: {
       name: 'Fizzy Lemonade',
-      recipe: 'A fun science experiment! Pour lemonade into a tall glass and gently top with Sprite or 7-Up to see the bubbles interact.',
+      spec: {
+        ingredients: [
+          { item: 'Lemonade', amount: '4 oz' },
+          { item: 'Sprite or 7-Up', amount: 'Top with' },
+        ],
+        instructions: [
+          'A fun science experiment!',
+          'Pour lemonade into a tall glass and gently top with Sprite to see the bubbles interact.',
+        ]
+      }
     },
   },
   {
@@ -960,11 +1618,31 @@ export const recipes: Recipe[] = [
     swap: 'Cocchi Americano instead of Lillet for a more traditional flavor.',
     mocktail: {
       name: 'The Spy',
-      recipe: 'In a shaker with ice, combine 3 oz of Seedlip Grove 42 (or other non-alcoholic spirit) with a splash of white grape juice. Shake well and strain into a martini glass. Garnish with a lemon peel.',
+      spec: {
+        ingredients: [
+          { item: 'Seedlip Grove 42 (or other NA spirit)', amount: '3 oz' },
+          { item: 'White Grape Juice', amount: '1 splash' },
+          { item: 'Lemon Peel', amount: '1 for garnish' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine Seedlip and a splash of white grape juice.',
+          'Shake well and strain into a martini glass.',
+          'Garnish with a lemon peel.',
+        ]
+      }
     },
     kid: {
       name: '00-Lemon',
-      recipe: 'Pour Sprite or 7-Up into a fancy glass and add a very large, dramatic lemon peel twist.',
+      spec: {
+        ingredients: [
+          { item: 'Sprite or 7-Up', amount: '4 oz' },
+          { item: 'Lemon Peel', amount: '1 large twist' },
+        ],
+        instructions: [
+          'Pour Sprite or 7-Up into a fancy glass.',
+          'Add a very large, dramatic lemon peel twist.',
+        ]
+      }
     },
   },
   {
@@ -989,11 +1667,33 @@ export const recipes: Recipe[] = [
     swap: 'Vodka.',
     mocktail: {
       name: 'Raspberry Kiss',
-      recipe: 'Dry shake 0.5 oz raspberry syrup, 0.5 oz lemon juice, and 1 oz aquafaba. Add ice, shake again, and strain into a coupe. Top with sparkling water.',
+      spec: {
+        ingredients: [
+          { item: 'Raspberry Syrup', amount: '0.5 oz' },
+          { item: 'Lemon Juice', amount: '0.5 oz' },
+          { item: 'Aquafaba', amount: '1 oz' },
+          { item: 'Sparkling Water', amount: 'Top with' },
+        ],
+        instructions: [
+          'Dry shake raspberry syrup, lemon juice, and aquafaba.',
+          'Add ice, shake again, and strain into a coupe.',
+          'Top with sparkling water.',
+        ]
+      }
     },
     kid: {
       name: 'Pink Cloud',
-      recipe: 'In a shaker with ice, combine 2 oz raspberry syrup, 2 oz lemonade, and a splash of cream or milk. Shake hard and strain into a glass for a frothy, pink drink.',
+      spec: {
+        ingredients: [
+          { item: 'Raspberry Syrup', amount: '2 oz' },
+          { item: 'Lemonade', amount: '2 oz' },
+          { item: 'Cream or Milk', amount: '1 splash' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine raspberry syrup, lemonade, and a splash of cream.',
+          'Shake hard and strain into a glass for a frothy, pink drink.',
+        ]
+      }
     },
   },
   {
@@ -1017,11 +1717,32 @@ export const recipes: Recipe[] = [
     swap: 'Omit the Crème de Violette for a simpler, but still delicious, gin sour.',
     mocktail: {
       name: 'The Blue Sky',
-      recipe: 'In a shaker, combine 2 oz Seedlip Grove 42, 0.5 oz cherry syrup, and 0.75 oz lemon juice. Add a single drop of blue food coloring, shake with ice, and strain into a coupe.',
+      spec: {
+        ingredients: [
+          { item: 'Seedlip Grove 42', amount: '2 oz' },
+          { item: 'Cherry Syrup', amount: '0.5 oz' },
+          { item: 'Lemon Juice', amount: '0.75 oz' },
+          { item: 'Blue Food Coloring', amount: '1 drop' },
+        ],
+        instructions: [
+          'In a shaker, combine Seedlip, cherry syrup, and lemon juice.',
+          'Add a single drop of blue food coloring, shake with ice, and strain into a coupe.',
+        ]
+      }
     },
     kid: {
       name: 'Purple Rain',
-      recipe: 'Pour lemonade into a glass and add a splash of grape juice for color. Garnish with a cherry.',
+      spec: {
+        ingredients: [
+          { item: 'Lemonade', amount: '4 oz' },
+          { item: 'Grape Juice', amount: '1 splash' },
+          { item: 'Cherry', amount: '1 for garnish' },
+        ],
+        instructions: [
+          'Pour lemonade into a glass and add a splash of grape juice for color.',
+          'Garnish with a cherry.',
+        ]
+      }
     },
   },
   {
@@ -1045,11 +1766,29 @@ export const recipes: Recipe[] = [
     swap: 'Simple syrup instead of Maraschino Liqueur for a less complex flavor.',
     mocktail: {
       name: 'The Old Man and the C',
-      recipe: 'Combine 2 oz grapefruit juice, 0.5 oz lime juice, and a splash of cherry syrup in a shaker with ice. Shake and strain into a coupe.',
+      spec: {
+        ingredients: [
+          { item: 'Grapefruit Juice', amount: '2 oz' },
+          { item: 'Lime Juice', amount: '0.5 oz' },
+          { item: 'Cherry Syrup', amount: '1 splash' },
+        ],
+        instructions: [
+          'Combine grapefruit juice, lime juice, and a splash of cherry syrup in a shaker with ice.',
+          'Shake and strain into a coupe.',
+        ]
+      }
     },
     kid: {
       name: 'Pink Grapefruit Fizz',
-      recipe: 'Pour grapefruit soda over ice and add a squeeze of fresh lime for a tangy, bubbly drink.',
+      spec: {
+        ingredients: [
+          { item: 'Grapefruit Soda', amount: '1 bottle' },
+          { item: 'Lime', amount: '1 squeeze' },
+        ],
+        instructions: [
+          'Pour grapefruit soda over ice and add a squeeze of fresh lime for a tangy, bubbly drink.',
+        ]
+      }
     },
   },
   {
@@ -1074,11 +1813,33 @@ export const recipes: Recipe[] = [
     swap: 'Bourbon for a sweeter, less smoky version.',
     mocktail: {
       name: 'The Cure',
-      recipe: 'Brew 2 oz of strong ginger tea and let it cool. Combine with 0.75 oz honey syrup and 0.75 oz lemon juice in a shaker with ice. Shake and strain. For a smoky hint, add a splash of Lapsang Souchong tea.',
+      spec: {
+        ingredients: [
+          { item: 'Strong Ginger Tea (cooled)', amount: '2 oz' },
+          { item: 'Honey Syrup', amount: '0.75 oz' },
+          { item: 'Lemon Juice', amount: '0.75 oz' },
+          { item: 'Lapsang Souchong Tea', amount: '1 splash (optional)' },
+        ],
+        instructions: [
+          'Brew 2 oz of strong ginger tea and let it cool.',
+          'Combine with honey syrup and lemon juice in a shaker with ice. Shake and strain.',
+          'For a smoky hint, add a splash of Lapsang Souchong tea.',
+        ]
+      }
     },
     kid: {
       name: 'Honey-Ginger Ale',
-      recipe: 'Pour ginger ale into a glass with ice. Stir in a spoonful of honey and add a lemon slice.',
+      spec: {
+        ingredients: [
+          { item: 'Ginger Ale', amount: '1 can' },
+          { item: 'Honey', amount: '1 tsp' },
+          { item: 'Lemon Slice', amount: '1' },
+        ],
+        instructions: [
+          'Pour ginger ale into a glass with ice.',
+          'Stir in a spoonful of honey and add a lemon slice.',
+        ]
+      }
     },
   },
   {
@@ -1102,11 +1863,29 @@ export const recipes: Recipe[] = [
     swap: 'Use blood orange juice for a more intense flavor and color.',
     mocktail: {
       name: 'The Matador',
-      recipe: 'In a shaker with ice, combine 1.5 oz orange juice and 1.5 oz cherry juice. Shake well and strain into a coupe glass.',
+      spec: {
+        ingredients: [
+          { item: 'Orange Juice', amount: '1.5 oz' },
+          { item: 'Cherry Juice', amount: '1.5 oz' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine orange juice and cherry juice.',
+          'Shake well and strain into a coupe glass.',
+        ]
+      }
     },
     kid: {
       name: 'Vampire Punch',
-      recipe: 'A fun and easy mix of orange juice and cherry juice. Serve over ice for a spooky treat.',
+      spec: {
+        ingredients: [
+          { item: 'Orange Juice', amount: '2 oz' },
+          { item: 'Cherry Juice', amount: '2 oz' },
+        ],
+        instructions: [
+          'A fun and easy mix of orange juice and cherry juice.',
+          'Serve over ice for a spooky treat.',
+        ]
+      }
     },
   },
   {
@@ -1132,11 +1911,32 @@ export const recipes: Recipe[] = [
     swap: 'Mezcal for an extra smoky flavor.',
     mocktail: {
       name: 'Smoky Honey Limeade',
-      recipe: 'In a shaker with ice, combine 2 oz water, 1 oz lime juice, and 0.75 oz smoked honey syrup (or regular honey syrup with a drop of liquid smoke). Shake and strain into a salt-rimmed glass, then top with soda.',
+      spec: {
+        ingredients: [
+          { item: 'Water', amount: '2 oz' },
+          { item: 'Lime Juice', amount: '1 oz' },
+          { item: 'Smoked Honey Syrup', amount: '0.75 oz' },
+          { item: 'Soda Water', amount: 'Top with' },
+        ],
+        instructions: [
+          'In a shaker with ice, combine water, lime juice, and smoked honey syrup.',
+          'Shake and strain into a salt-rimmed glass, then top with soda.',
+        ]
+      }
     },
     kid: {
       name: 'Sweet and Smoky',
-      recipe: 'Make a simple limeade and serve it in a glass with a honey and sugar rim. For adventurous kids, add a tiny, tiny drop of liquid smoke for a "smoky" surprise.'
+      spec: {
+        ingredients: [
+          { item: 'Limeade', amount: '4 oz' },
+          { item: 'Honey and Sugar for rim', amount: 'Optional' },
+          { item: 'Liquid Smoke', amount: '1 tiny drop (optional)' },
+        ],
+        instructions: [
+          'Make a simple limeade and serve it in a glass with a honey and sugar rim.',
+          'For adventurous kids, add a tiny, tiny drop of liquid smoke for a "smoky" surprise.',
+        ]
+      }
     }
   }
 ];

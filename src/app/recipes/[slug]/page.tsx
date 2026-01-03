@@ -22,6 +22,7 @@ import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
+import type { RecipeSpec } from '@/lib/types';
 
 type AIResult = {
   title: string;
@@ -30,6 +31,35 @@ type AIResult = {
   notes?: string;
   substitutions?: SuggestCocktailSubstitutionsOutput['substitutions'];
 };
+
+const RecipeContent = ({ spec }: { spec: RecipeSpec }) => (
+    <Card>
+      <CardHeader>
+        <CardTitle>Ingredients</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <ul className="space-y-2">
+          {spec.ingredients.map((ing, i) => (
+            <li key={i} className="flex justify-between">
+              <span>{ing.item}</span>
+              <span className="text-muted-foreground">{ing.amount}</span>
+            </li>
+          ))}
+        </ul>
+      </CardContent>
+      <Separator />
+      <CardHeader>
+        <CardTitle>Instructions</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <ol className="list-decimal list-outside space-y-3 pl-4">
+          {spec.instructions.map((step, i) => (
+            <li key={i}>{step}</li>
+          ))}
+        </ol>
+      </CardContent>
+    </Card>
+  );
 
 export default function RecipeDetailPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
   const [params, setParams] = useState<{ slug: string } | null>(null);
@@ -188,6 +218,29 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
     }
     return [1, amount]; // Default for items like 'Orange Peel'
   }
+  
+  const scaleIngredients = (spec: RecipeSpec, servings: number): RecipeSpec => {
+    return {
+        ...spec,
+        ingredients: spec.ingredients.map(ing => {
+            const [amount, unit] = parseAmount(ing.amount);
+            const scaledAmount = amount * servings;
+            
+            let displayAmount: string;
+            if (amount === 0 || isNaN(amount)) {
+               displayAmount = unit;
+            } else if (scaledAmount === 0 && unit.includes('dash')) {
+               displayAmount = `${servings > 1 ? 'A few' : '1'} ${unit}`;
+            } else if (Number.isInteger(scaledAmount)) {
+              displayAmount = `${scaledAmount} ${unit}`;
+            } else {
+              displayAmount = `${scaledAmount.toFixed(2)} ${unit}`;
+            }
+            return { item: ing.item, amount: displayAmount };
+        })
+    }
+  }
+
 
   return (
     <div className="flex flex-col">
@@ -301,48 +354,35 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
               <TabsList className="flex flex-wrap h-auto justify-start">
                 <TabsTrigger value="recipe">Recipe</TabsTrigger>
                 <TabsTrigger value="swap">Swaps</TabsTrigger>
-                <TabsTrigger value="mocktail">Mocktail</TabsTrigger>
-                <TabsTrigger value="kid">For Kids</TabsTrigger>
+                <TabsTrigger value="mocktail" disabled={!settings.showMocktails}>Mocktail</TabsTrigger>
+                <TabsTrigger value="kid" disabled={!settings.showKids}>For Kids</TabsTrigger>
               </TabsList>
 
               <TabsContent value="recipe">
                  <Card>
                     <CardHeader>
-                      <CardTitle>Ingredients</CardTitle>
-                       <div className="pt-4 space-y-2">
-                        <Label htmlFor="servings-slider">Servings: <span className="font-bold text-primary">{servings}</span></Label>
-                        <Slider
-                          id="servings-slider"
-                          min={1}
-                          max={25}
-                          step={1}
-                          defaultValue={[1]}
-                          onValueChange={handleServingsChange}
-                        />
+                      <div className="flex justify-between items-center">
+                        <CardTitle>Ingredients</CardTitle>
+                         <div className="pt-4 space-y-2 w-1/2">
+                          <Label htmlFor="servings-slider">Servings: <span className="font-bold text-primary">{servings}</span></Label>
+                          <Slider
+                            id="servings-slider"
+                            min={1}
+                            max={25}
+                            step={1}
+                            defaultValue={[1]}
+                            onValueChange={handleServingsChange}
+                          />
+                        </div>
                       </div>
                     </CardHeader>
                     <CardContent>
                         <ul className="space-y-2">
-                        {recipe.spec.ingredients.map((ing, i) => {
-                          const [amount, unit] = parseAmount(ing.amount);
-                          const scaledAmount = amount * servings;
-                          
-                          // Handle non-numeric amounts like '1 for garnish'
-                          let displayAmount: string;
-                          if (amount === 0 || isNaN(amount)) {
-                             displayAmount = unit; // Show "for garnish" or "1"
-                          } else if (scaledAmount === 0 && unit.includes('dash')) {
-                             displayAmount = `${servings > 1 ? 'A few' : '1'} ${unit}`;
-                          } else if (Number.isInteger(scaledAmount)) {
-                            displayAmount = `${scaledAmount} ${unit}`;
-                          } else {
-                            displayAmount = `${scaledAmount.toFixed(2)} ${unit}`;
-                          }
-
+                        {scaleIngredients(recipe.spec, servings).ingredients.map((ing, i) => {
                           return (
                             <li key={i} className="flex justify-between">
                               <span>{ing.item}</span>
-                              <span className="text-muted-foreground">{displayAmount}</span>
+                              <span className="text-muted-foreground">{ing.amount}</span>
                             </li>
                           );
                         })}
@@ -369,20 +409,20 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
               </TabsContent>
               
               <TabsContent value="mocktail">
-                <Card>
-                  <CardHeader><CardTitle className="flex items-center gap-2"><GlassWater /> {recipe.mocktail.name} (0% ABV)</CardTitle></CardHeader>
-                  <CardContent>
-                     <p className="text-lg">{recipe.mocktail.recipe}</p>
-                  </CardContent>
+                 <Card>
+                    <CardHeader><CardTitle className="flex items-center gap-2"><GlassWater /> {recipe.mocktail.name} (0% ABV)</CardTitle></CardHeader>
+                    <CardContent>
+                      <RecipeContent spec={recipe.mocktail.spec} />
+                    </CardContent>
                 </Card>
               </TabsContent>
 
               <TabsContent value="kid">
                 <Card>
-                  <CardHeader><CardTitle className="flex items-center gap-2"><Baby /> {recipe.kid.name}</CardTitle></CardHeader>
-                  <CardContent>
-                     <p className="text-lg">{recipe.kid.recipe}</p>
-                  </CardContent>
+                    <CardHeader><CardTitle className="flex items-center gap-2"><Baby /> {recipe.kid.name}</CardTitle></CardHeader>
+                    <CardContent>
+                      <RecipeContent spec={recipe.kid.spec} />
+                    </CardContent>
                 </Card>
               </TabsContent>
 
@@ -412,7 +452,4 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
       </main>
     </div>
   );
-
-    
-
-    
+}
