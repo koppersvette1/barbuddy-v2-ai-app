@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useTransition } from 'react';
+import Image from 'next/image';
 import { Header } from '@/components/layout/header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -12,26 +13,28 @@ import { explainFatWashing, type ExplainFatWashingOutput } from '@/ai/flows/expl
 import { explainInfusion, type ExplainInfusionOutput } from '@/ai/flows/explain-infusion';
 import { explainCocktailSmoking, type ExplainCocktailSmokingOutput } from '@/ai/flows/explain-cocktail-smoking';
 import { Separator } from '@/components/ui/separator';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 type TechniqueExplanation = ExplainFatWashingOutput | ExplainInfusionOutput | ExplainCocktailSmokingOutput;
+type Technique = 'fatWashing' | 'infusion' | 'cocktailSmoking';
 
 function isCocktailSmokingOutput(explanation: any): explanation is ExplainCocktailSmokingOutput {
   return explanation && 'methods' in explanation;
 }
 
-const techniqueConfig = {
-  fatWashing: { icon: Beaker, label: 'Fat Washing' },
-  infusion: { icon: FlaskConical, label: 'Spirit Infusions' },
-  cocktailSmoking: { icon: Flame, label: 'Cocktail Smoking' },
+const techniqueConfig: Record<Technique, { icon: React.ElementType, label: string, imageId: string }> = {
+  fatWashing: { icon: Beaker, label: 'Fat Washing', imageId: 'learn-fat-washing' },
+  infusion: { icon: FlaskConical, label: 'Spirit Infusions', imageId: 'learn-infusion' },
+  cocktailSmoking: { icon: Flame, label: 'Cocktail Smoking', imageId: 'learn-cocktail-smoking' },
 };
 
 export default function LearnPage() {
   const { settings } = useSettings();
   const [isPending, startTransition] = useTransition();
   const [explanation, setExplanation] = useState<TechniqueExplanation | null>(null);
-  const [activeTechnique, setActiveTechnique] = useState<string | null>(null);
+  const [activeTechnique, setActiveTechnique] = useState<Technique | null>(null);
 
-  const handleExplainTechnique = (technique: 'fatWashing' | 'infusion' | 'cocktailSmoking') => {
+  const handleExplainTechnique = (technique: Technique) => {
     startTransition(async () => {
       setExplanation(null);
       setActiveTechnique(technique);
@@ -46,6 +49,8 @@ export default function LearnPage() {
       setExplanation(result);
     });
   };
+
+  const techniqueImage = activeTechnique ? PlaceHolderImages.find(img => img.id === techniqueConfig[activeTechnique].imageId) : null;
 
   if (!settings.showBeta) {
     return (
@@ -76,15 +81,15 @@ export default function LearnPage() {
               <CardDescription>Select a technique to learn more.</CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-2">
-              {Object.entries(techniqueConfig).map(([key, config]) => {
-                const techKey = key as keyof typeof techniqueConfig;
+              {(Object.keys(techniqueConfig) as Technique[]).map((key) => {
+                const config = techniqueConfig[key];
                 const Icon = config.icon;
                 return (
                   <Button
-                    key={techKey}
-                    variant={activeTechnique === techKey ? 'default' : 'secondary'}
-                    onClick={() => handleExplainTechnique(techKey)}
-                    disabled={isPending || (techKey === 'cocktailSmoking' && !settings.hasSmoker)}
+                    key={key}
+                    variant={activeTechnique === key ? 'default' : 'secondary'}
+                    onClick={() => handleExplainTechnique(key)}
+                    disabled={isPending || (key === 'cocktailSmoking' && !settings.hasSmoker)}
                     className="justify-start"
                   >
                     <Icon className="mr-2 h-4 w-4" /> {config.label}
@@ -113,10 +118,22 @@ export default function LearnPage() {
           )}
 
           {explanation && (
-            <Card className="bg-card">
-              <CardHeader>
-                <CardTitle className="text-4xl text-primary">{explanation.techniqueName}</CardTitle>
-                <CardDescription className="text-lg pt-2">{explanation.description}</CardDescription>
+            <Card className="bg-card overflow-hidden">
+               {techniqueImage && (
+                <div className="relative aspect-[16/7] w-full">
+                    <Image 
+                        src={techniqueImage.imageUrl}
+                        alt={techniqueImage.description}
+                        fill
+                        className="object-cover"
+                        data-ai-hint={techniqueImage.imageHint}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card via-card/70 to-transparent" />
+                </div>
+              )}
+              <CardHeader className="pt-2 -mt-12 relative z-10">
+                <CardTitle className="text-4xl text-primary font-bold">{explanation.techniqueName}</CardTitle>
+                <CardDescription className="text-lg pt-2 text-foreground/80">{explanation.description}</CardDescription>
               </CardHeader>
               <CardContent>
                 <Separator className="my-4 bg-border" />
@@ -162,3 +179,5 @@ export default function LearnPage() {
     </div>
   );
 }
+
+    

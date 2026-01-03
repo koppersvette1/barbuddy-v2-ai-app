@@ -63,7 +63,7 @@
     {
       "id": "inventory-scan-placeholder",
       "description": "A placeholder for the inventory scan.",
-      "imageUrl": "https://images.unsplash.com/photo-1763688459566-32c3d53f724b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsaXF1b3IlMjBjYWJpbmV0fGVufDB8fHx8MTc2NzQwODg4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1763688459566-32c3d53f724b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsaXF1b3IlMjBjYWJpbmV0fGVufDB8fHx8MTc2NzQwODg4MHww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "liquor cabinet"
     },
     {
@@ -75,19 +75,19 @@
     {
       "id": "tom-collins",
       "description": "A Tom Collins cocktail in a highball glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1673375206719-209b219a89a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxUb20lMjBDb2xsaW5zfGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1673375206719-209b219a89a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxUb20lMjBDb2xsaW5zfGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Tom Collins"
     },
     {
       "id": "mai-tai",
       "description": "A Mai Tai cocktail in a tiki glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1663263827383-d5af4d6735e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxNYWklMjBUYWl8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1663263827383-d5af4d6735e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxNYWklMjBUYWl8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Mai Tai"
     },
     {
       "id": "boulevardier",
       "description": "A Boulevardier cocktail in a rocks glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1676471905760-10fccb031a31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxCb3VsZXZhcmRpZXIlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1676471905760-10fccb031a31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxCb3VsZXZhcmRpZXIlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Boulevardier cocktail"
     },
     {
@@ -201,8 +201,26 @@
     {
       "id": "heb-honey-smoked-margarita",
       "description": "A smoked margarita with a honey and salt rim.",
-      "imageUrl": "https://images.unsplash.com/photo-1631505330362-972173b18501?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzbW9rZWQlMjBtYXJnYXJpdGF8ZW58MHx8fHwxNzY3NDIyMjUxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1631505330362-972173b18501?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzbW9rZWQlMjBtYXJnYXJpdGF8ZW58MHx8fHwxNzY3NDIyMjUxfDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "smoked margarita"
+    },
+    {
+      "id": "learn-fat-washing",
+      "description": "Illustration of fat-washing bourbon with bacon fat.",
+      "imageUrl": "https://images.unsplash.com/photo-1628522799307-a93179269557?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiYWNvbiUyMGJvdXJib258ZW58MHx8fHwxNzY3NDExMzgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bacon bourbon"
+    },
+    {
+      "id": "learn-infusion",
+      "description": "Illustration of infusing spirits with fruits and herbs.",
+      "imageUrl": "https://images.unsplash.com/photo-1614902047920-5695627238ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcGlyaXQlMjBpbmZ1c2lvbnxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "spirit infusion"
+    },
+    {
+      "id": "learn-cocktail-smoking",
+      "description": "Illustration of a cocktail being smoked with a smoking gun.",
+      "imageUrl": "https://images.unsplash.com/photo-1552566524-2c069006956b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbW9rZWQlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smoked cocktail"
     }
   ]
 }
