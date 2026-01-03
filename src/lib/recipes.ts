@@ -844,5 +844,35 @@ export const recipes: Recipe[] = [
       name: 'Ruby Fizz',
       recipe: 'Sprite mixed with a splash of pomegranate juice and a few pomegranate seeds.'
     }
+  },
+  {
+    slug: 'heb-honey-smoked-margarita',
+    name: 'H-E-B Honey Smoked Margarita',
+    category: 'Sours',
+    image: 'heb-honey-smoked-margarita',
+    spec: {
+      ingredients: [
+        { item: 'Tequila', amount: '2 oz' },
+        { item: 'Lime Juice', amount: '1 oz' },
+        { item: 'Honey Syrup', amount: '0.75 oz' },
+        { item: 'Smoked Salt', amount: 'for rim' },
+      ],
+      instructions: [
+        'Rim a rocks glass with smoked salt.',
+        'Add tequila, lime juice, and honey syrup to a shaker with ice.',
+        'Shake well until chilled.',
+        'Strain into the prepared glass over fresh ice.',
+        'Garnish with a lime wheel.'
+      ],
+    },
+    swap: 'Mezcal for an extra smoky flavor.',
+    mocktail: {
+      name: 'Smoky Honey Limeade',
+      recipe: 'Mix 2 oz water, 1 oz lime juice, and 0.75 oz smoked honey syrup. Shake with ice and top with soda.'
+    },
+    kid: {
+      name: 'Sweet and Smoky',
+      recipe: 'Limeade with a drop of liquid smoke (optional) and a honey-sugar rim.'
+    }
   }
 ];
