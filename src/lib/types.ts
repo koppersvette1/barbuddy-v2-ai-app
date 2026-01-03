@@ -1,3 +1,4 @@
+
 export interface Recipe {
   slug: string;
   name: string;
@@ -19,6 +20,7 @@ export interface Recipe {
     name: string;
     recipe: string;
   };
+  custom?: boolean;
 }
 
 export type Settings = {

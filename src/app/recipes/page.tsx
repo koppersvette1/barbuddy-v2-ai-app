@@ -2,6 +2,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import Link from 'next/link';
 import { Header } from "@/components/layout/header";
 import { RecipeCard } from "@/components/recipe-card";
 import { recipes } from "@/lib/recipes";
@@ -12,7 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useSettings } from "@/contexts/settings-context";
 import { useToast } from "@/hooks/use-toast";
 import { generateRecipesFromInventory } from "@/ai/flows/generate-recipes-from-inventory";
-import { Loader, Sparkles } from "lucide-react";
+import { Loader, Sparkles, PlusCircle } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 export default function RecipesPage() {
@@ -116,18 +117,25 @@ export default function RecipesPage() {
               className="max-w-sm"
             />
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-muted-foreground">Sort by:</span>
-            <Select value={sortOrder} onValueChange={setSortOrder}>
-              <SelectTrigger className="w-[180px]">
-                <SelectValue placeholder="Sort by" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="name-asc">Name (A-Z)</SelectItem>
-                <SelectItem value="name-desc">Name (Z-A)</SelectItem>
-                <SelectItem value="category">Category</SelectItem>
-              </SelectContent>
-            </Select>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">Sort by:</span>
+              <Select value={sortOrder} onValueChange={setSortOrder}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="name-asc">Name (A-Z)</SelectItem>
+                  <SelectItem value="name-desc">Name (Z-A)</SelectItem>
+                  <SelectItem value="category">Category</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+             <Button asChild variant="outline">
+                <Link href="/add-recipe" className="flex items-center gap-2">
+                  <PlusCircle className="w-4 h-4" /> Add Recipe
+                </Link>
+            </Button>
           </div>
         </div>
 
