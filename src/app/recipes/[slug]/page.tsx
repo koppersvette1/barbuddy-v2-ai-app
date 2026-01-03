@@ -113,8 +113,10 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
           text: shoppingListText,
         });
         toast({ title: 'Shopping list shared!' });
-      } catch (error) {
-        toast({ variant: 'destructive', title: 'Could not share list', description: 'Sharing was cancelled or failed.' });
+      } catch (error: any) {
+        if (error.name !== 'AbortError') {
+            toast({ variant: 'destructive', title: 'Could not share list', description: 'An error occurred while sharing.' });
+        }
       }
     }
   };
@@ -132,8 +134,10 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
           url: window.location.href,
         });
         toast({ title: 'Recipe shared!' });
-      } catch (error) {
-        toast({ variant: 'destructive', title: 'Could not share recipe', description: 'Sharing was cancelled or failed.' });
+      } catch (error: any) {
+        if (error.name !== 'AbortError') {
+            toast({ variant: 'destructive', title: 'Could not share recipe', description: 'An error occurred while sharing.' });
+        }
       }
     }
   }
@@ -434,5 +438,3 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
     </div>
   );
 }
-
-    
