@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useTransition, use } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 import { notFound, useRouter } from 'next/navigation';
 import { recipes } from '@/lib/recipes';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -30,14 +30,31 @@ type AIResult = {
   substitutions?: SuggestCocktailSubstitutionsOutput['substitutions'];
 };
 
-export default function RecipeDetailPage({ params: paramsPromise }: { params: { slug: string } }) {
-  const params = use(paramsPromise);
+export default function RecipeDetailPage({ params: paramsPromise }: { params: Promise<{ slug: string }> }) {
+  const [params, setParams] = useState<{ slug: string } | null>(null);
+  
+  useEffect(() => {
+    paramsPromise.then(setParams);
+  }, [paramsPromise]);
+
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [aiResult, setAiResult] = useState<AIResult | null>(null);
   const { settings, toggleFavorite } = useSettings();
   const { toast } = useToast();
   const [servings, setServings] = useState(1);
+
+  if (!params) {
+    // You can render a loading state here
+    return (
+      <div className="flex flex-col">
+        <Header title="Loading..." />
+        <main className="p-6 flex justify-center items-center">
+          <Loader className="animate-spin" />
+        </main>
+      </div>
+    );
+  }
 
   const allRecipes = [...recipes, ...settings.customRecipes];
   const recipe = allRecipes.find(r => r.slug === params.slug);

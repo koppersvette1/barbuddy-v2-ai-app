@@ -16,7 +16,6 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { recipes } from '@/lib/recipes';
-import { cn } from '@/lib/utils';
 
 // --- Helper Functions and Data ---
 const allKnownIngredients = Array.from(new Set(recipes.flatMap(r => r.spec.ingredients.map(i => i.item))));
@@ -82,35 +81,41 @@ function ImageUploader({ onImageUpload, isPending }: { onImageUpload: (dataUri: 
 
 function IngredientInput({ onAdd }: { onAdd: (ingredient: string) => void }) {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
 
   const handleSelect = (currentValue: string) => {
     onAdd(currentValue);
-    setValue("");
+    setInputValue("");
     setOpen(false);
   };
 
   const handleManualAdd = () => {
-    if (value) {
-      onAdd(value);
-      setValue("");
+    if (inputValue) {
+      onAdd(inputValue);
+      setInputValue("");
     }
   };
+  
+  const filteredIngredients = allKnownIngredients.filter(item => item.toLowerCase().includes(inputValue.toLowerCase()));
 
   return (
     <div className="flex gap-2">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <div className="relative w-full">
-            <Command>
+             <Command shouldFilter={false}>
               <CommandInput 
                 placeholder="Type or select an ingredient..."
-                value={value}
-                onValueChange={setValue}
+                value={inputValue}
+                onValueChange={setInputValue}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' && value) {
+                  if (e.key === 'Enter' && inputValue) {
                     e.preventDefault();
-                    handleSelect(value);
+                    if (filteredIngredients.length > 0) {
+                      handleSelect(filteredIngredients[0]);
+                    } else {
+                      handleManualAdd();
+                    }
                   }
                 }}
               />
@@ -120,19 +125,21 @@ function IngredientInput({ onAdd }: { onAdd: (ingredient: string) => void }) {
         <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
           <Command>
             <CommandList>
-              <CommandEmpty>No results found. Add it manually.</CommandEmpty>
-              <CommandGroup>
-                {allKnownIngredients
-                  .filter(item => item.toLowerCase().includes(value.toLowerCase()))
-                  .map((item) => (
-                    <CommandItem
-                      key={item}
-                      onSelect={handleSelect}
-                    >
-                      {item}
-                    </CommandItem>
-                  ))}
-              </CommandGroup>
+               {filteredIngredients.length > 0 ? (
+                <CommandGroup>
+                  {filteredIngredients.map((item) => (
+                      <CommandItem
+                        key={item}
+                        value={item}
+                        onSelect={handleSelect}
+                      >
+                        {item}
+                      </CommandItem>
+                    ))}
+                </CommandGroup>
+              ) : (
+                <CommandEmpty>No results found. Add it manually.</CommandEmpty>
+              )}
             </CommandList>
           </Command>
         </PopoverContent>
@@ -243,5 +250,3 @@ export default function InventoryPage() {
     </div>
   );
 }
-
-    
