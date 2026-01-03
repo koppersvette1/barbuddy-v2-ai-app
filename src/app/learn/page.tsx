@@ -6,13 +6,14 @@ import { Header } from '@/components/layout/header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Loader, FlaskConical, Beaker, Flame, BookOpen, TestTube } from 'lucide-react';
+import { Loader, FlaskConical, Beaker, Flame, BookOpen, TestTube, AlertTriangle } from 'lucide-react';
 import { explainFatWashing, type ExplainFatWashingOutput } from '@/ai/flows/explain-fat-washing';
 import { explainInfusion, type ExplainInfusionOutput } from '@/ai/flows/explain-infusion';
 import { explainCocktailSmoking, type ExplainCocktailSmokingOutput } from '@/ai/flows/explain-cocktail-smoking';
 import { explainClarifiedMilkPunch, type ExplainClarifiedMilkPunchOutput } from '@/ai/flows/explain-clarified-milk-punch';
 import { Separator } from '@/components/ui/separator';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 type TechniqueExplanation = ExplainFatWashingOutput | ExplainInfusionOutput | ExplainCocktailSmokingOutput | ExplainClarifiedMilkPunchOutput;
 type Technique = 'fatWashing' | 'infusion' | 'cocktailSmoking' | 'milkPunch';
@@ -124,6 +125,22 @@ export default function LearnPage() {
                  <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
                   {isCocktailSmokingOutput(explanation) ? (
                     <>
+                      <AccordionItem value="item-preflight" className="border-b-border">
+                        <AccordionTrigger className="text-2xl font-headline hover:no-underline text-amber-400">
+                          <div className="flex items-center gap-2">
+                            <AlertTriangle /> Pre-Flight Checklist
+                          </div>
+                        </AccordionTrigger>
+                        <AccordionContent className="pt-2">
+                           <ul className="list-disc list-outside space-y-4 pl-5 text-base text-foreground/80">
+                            {explanation.preflightChecklist.map((item, i) => (
+                              <li key={i} className="pl-2">
+                                <strong className="text-foreground">{item.check}</strong>: {item.details}
+                              </li>
+                            ))}
+                          </ul>
+                        </AccordionContent>
+                      </AccordionItem>
                       <AccordionItem value="item-1" className="border-b-border">
                         <AccordionTrigger className="text-2xl font-headline hover:no-underline">{explanation.chimneySmokerGuide.title}</AccordionTrigger>
                         <AccordionContent className="pt-2">

@@ -27,6 +27,8 @@ export default function RecipesPage() {
   const [unlockSuggestion, setUnlockSuggestion] = useState<{ ingredient: string; unlockedRecipes: string[] } | null>(null);
 
   const allRecipes = [...defaultRecipes, ...settings.customRecipes];
+  const favoriteRecipesData = allRecipes.filter(r => settings.favoriteRecipes.includes(r.slug));
+
 
   const handleGenerateRecipes = () => {
     if (settings.inventory.length === 0) {
@@ -40,8 +42,9 @@ export default function RecipesPage() {
     startTransition(async () => {
       setGeneratedRecipes(null);
       setUnlockSuggestion(null);
-
-      const result = await generateRecipesFromInventory({ inventory: settings.inventory });
+      
+      const favoriteNames = favoriteRecipesData.map(r => r.name);
+      const result = await generateRecipesFromInventory({ inventory: settings.inventory, preferences: favoriteNames });
       if (result.recipes && result.recipes.length > 0) {
         const foundRecipes = allRecipes.filter(r => result.recipes.includes(r.name));
         setGeneratedRecipes(foundRecipes);

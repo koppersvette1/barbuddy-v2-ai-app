@@ -16,6 +16,7 @@ import type { Recipe } from '@/lib/types';
 
 const GenerateRecipesFromInventoryInputSchema = z.object({
   inventory: z.array(z.string()).describe("A list of ingredients in the user's inventory."),
+  preferences: z.array(z.string()).optional().describe("A list of user's favorited cocktail names to infer taste preferences."),
 });
 export type GenerateRecipesFromInventoryInput = z.infer<typeof GenerateRecipesFromInventoryInputSchema>;
 
@@ -127,7 +128,7 @@ You will be given the user's current inventory.
 
 2.  If the tool returns one or more makeable recipe names, present these to the user in the 'recipes' output field.
 
-3.  If the tool returns an empty list of makeable recipes but provides an 'unlockSuggestion', present this suggestion. Frame it as a helpful tip, like: *"You're very close! If you grab a bottle of [Ingredient], you'll instantly unlock the ability to make a [Recipe 1], [Recipe 2], and more."* This is the "Proactive Unlock" feature.
+3.  If the tool returns an empty list of makeable recipes but provides an 'unlockSuggestion', present this suggestion. Frame it as a helpful tip, using flavor-forward language to connect it to the user's potential preferences. For example: *"Since you enjoy [Flavor Profile from a likely-enjoyed drink], your best unlock is **[Ingredient]**. This opens up cocktails like the [Recipe 1], which matches your preference for [Flavor Profile] drinks."* If the user's preferences are available, use them to make the connection even stronger. This is the "Proactive Unlock" feature.
 
 4.  If no recipes can be made and no unlock suggestion is found, return an empty 'recipes' array. This indicates the user's inventory is too sparse to make a reasonable recommendation.
   

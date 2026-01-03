@@ -61,7 +61,7 @@ Use your knowledge of spirit and wood profiles to make an intelligent recommenda
 - Gin's botanical notes are delicate; Apple wood can soften it without overpowering it.
 - Use Oak as a "Fixer" to add barrel-aged notes to cocktails that are using a clear spirit as a substitute for a dark one.
 - Use Hickory to add a savory, bacon-like quality that can cut through sweetness.
-- Use Apple wood to soften the "burn" of less expensive spirits.
+- Use Apple wood to act as a "Softener" for less expensive or harsh spirits to smooth out the "burn."
 
 Explain your choice based on complementing or contrasting flavors to create a balanced experience.
 
