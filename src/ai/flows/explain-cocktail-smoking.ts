@@ -12,12 +12,21 @@ import {z} from 'genkit';
 const ExplainCocktailSmokingOutputSchema = z.object({
   techniqueName: z.string().describe('The name of the technique, which is "Cocktail Smoking".'),
   description: z.string().describe('A detailed but approachable overview of what cocktail smoking is, its purpose, and the flavor effects it creates.'),
-  methods: z.array(z.object({
-    name: z.string().describe('The name of the smoking method.'),
-    description: z.string().describe('A description of the method.'),
-  })).describe('A list of different methods for smoking a cocktail.'),
-  proTips: z.array(z.string()).describe('A list of expert tips for successfully smoking cocktails.'),
+  chimneySmokerGuide: z.object({
+    title: z.string().default("Using the Chimney Smoker"),
+    steps: z.array(z.string()).describe('A list of step-by-step instructions on how to use the chimney smoker unit.'),
+  }).describe('A guide on how to use the chimney smoker unit that sits on the glass.'),
+  torchGuide: z.object({
+    title: z.string().default("Handling the Torch"),
+    description: z.string().describe("Tips for getting the best flame from your torch."),
+    refillSteps: z.array(z.string()).describe("The 'No-Sputter' method for refilling the torch with butane."),
+  }).describe('A guide on how to properly fill and use the torch for optimal performance.'),
+  glasswareTips: z.array(z.object({
+    glassType: z.string().describe("The type of glassware (e.g., Rocks Glass)."),
+    tip: z.string().describe("A tip or consideration for using this type of glassware for smoking."),
+  })).describe('Tips for different types of glassware when smoking a cocktail.'),
 });
+
 export type ExplainCocktailSmokingOutput = z.infer<typeof ExplainCocktailSmokingOutputSchema>;
 
 export async function explainCocktailSmoking(): Promise<ExplainCocktailSmokingOutput> {
@@ -27,16 +36,15 @@ export async function explainCocktailSmoking(): Promise<ExplainCocktailSmokingOu
 const prompt = ai.definePrompt({
   name: 'explainCocktailSmokingPrompt',
   output: {schema: ExplainCocktailSmokingOutputSchema},
-  prompt: `You are a master mixologist and flavor scientist.
-  
-  Explain the technique of "Smoking Cocktails".
-  
-  Your explanation should include:
-  1.  A clear description of what cocktail smoking is and why it's done, focusing on aroma and flavor.
-  2.  A description of common methods (like using a smoking gun, or smoking the glass).
-  3.  A few "pro tips" for someone trying it for the first time, including which cocktails are best suited for smoking.
+  prompt: `You are BarBuddy, a creative Mixology Partner and Flavor Architect. Your goal is to help the user master their hardware.
 
-  Present the information in a clear, encouraging, and educational tone.
+  Explain the technique of "Smoking Cocktails" using the chimney-style smoker that sits on top of the glass. Your tone should be conversational, fun, and expert but accessible.
+  
+  Your explanation must include:
+  1.  A clear, engaging description of what cocktail smoking is and why it's done.
+  2.  A step-by-step guide on using the chimney smoker unit, including how much wood to use and how to light it.
+  3.  A guide to using the torch, including the "No-Sputter" refill method (purging, filling, and waiting) and what a good flame looks like.
+  4.  Practical tips for different glassware, specifically for a Rocks Glass, a Coupe/Martini glass (and the tip about smoking it upside down or in a mixing glass), and a Highball glass.
   `,
 });
 

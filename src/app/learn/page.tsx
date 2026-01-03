@@ -19,7 +19,7 @@ type TechniqueExplanation = ExplainFatWashingOutput | ExplainInfusionOutput | Ex
 type Technique = 'fatWashing' | 'infusion' | 'cocktailSmoking';
 
 function isCocktailSmokingOutput(explanation: any): explanation is ExplainCocktailSmokingOutput {
-  return explanation && 'methods' in explanation;
+  return explanation && 'chimneySmokerGuide' in explanation;
 }
 
 const techniqueConfig: Record<Technique, { icon: React.ElementType, label: string, imageId: string }> = {
@@ -137,39 +137,61 @@ export default function LearnPage() {
               </CardHeader>
               <CardContent>
                 <Separator className="my-4 bg-border" />
-                <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
+                 <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
                   {isCocktailSmokingOutput(explanation) ? (
-                    <AccordionItem value="item-1" className="border-b-border">
-                      <AccordionTrigger className="text-2xl font-headline hover:no-underline">Methods</AccordionTrigger>
-                      <AccordionContent className="pt-2">
-                        <div className="space-y-6 prose prose-invert max-w-none prose-p:text-foreground/80 prose-h4:text-foreground prose-h4:font-body prose-h4:font-semibold">
-                          {explanation.methods.map((method, i) => (
-                            <div key={i}>
-                              <h4 className="font-semibold text-xl mb-1">{method.name}</h4>
-                              <p>{method.description}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
+                    <>
+                      <AccordionItem value="item-1" className="border-b-border">
+                        <AccordionTrigger className="text-2xl font-headline hover:no-underline">{explanation.chimneySmokerGuide.title}</AccordionTrigger>
+                        <AccordionContent className="pt-2">
+                           <ol className="list-decimal list-outside space-y-4 pl-5 text-base text-foreground/80">
+                            {explanation.chimneySmokerGuide.steps.map((step, i) => <li key={i} className="pl-2">{step}</li>)}
+                          </ol>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="item-2" className="border-b-border">
+                        <AccordionTrigger className="text-2xl font-headline hover:no-underline">{explanation.torchGuide.title}</AccordionTrigger>
+                        <AccordionContent className="pt-2 prose prose-invert max-w-none prose-p:text-foreground/80">
+                          <p>{explanation.torchGuide.description}</p>
+                          <h4 className="font-semibold text-xl mb-2 mt-4 text-foreground">The "No-Sputter" Refill Method</h4>
+                          <ol className="list-decimal list-outside space-y-4 pl-5 text-base text-foreground/80">
+                            {explanation.torchGuide.refillSteps.map((step, i) => <li key={i} className="pl-2">{step}</li>)}
+                          </ol>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="item-3" className="border-b-0">
+                        <AccordionTrigger className="text-2xl font-headline hover:no-underline">Glassware Tips</AccordionTrigger>
+                        <AccordionContent className="pt-2">
+                           <div className="space-y-4">
+                            {explanation.glasswareTips.map((item, i) => (
+                              <div key={i} className="p-3 rounded-md border border-border/50 bg-background/30">
+                                <p className="font-semibold text-foreground">{item.glassType}</p>
+                                <p className="text-foreground/80">{item.tip}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </>
                   ) : (
-                    <AccordionItem value="item-1" className="border-b-border">
-                      <AccordionTrigger className="text-2xl font-headline hover:no-underline">Step-by-Step Guide</AccordionTrigger>
-                      <AccordionContent className="pt-2">
-                        <ol className="list-decimal list-outside space-y-4 pl-5 text-base text-foreground/80">
-                          {explanation.steps.map((step, i) => <li key={i} className="pl-2">{step}</li>)}
-                        </ol>
-                      </AccordionContent>
-                    </AccordionItem>
+                    <>
+                      <AccordionItem value="item-1" className="border-b-border">
+                        <AccordionTrigger className="text-2xl font-headline hover:no-underline">Step-by-Step Guide</AccordionTrigger>
+                        <AccordionContent className="pt-2">
+                          <ol className="list-decimal list-outside space-y-4 pl-5 text-base text-foreground/80">
+                            {'steps' in explanation && explanation.steps.map((step, i) => <li key={i} className="pl-2">{step}</li>)}
+                          </ol>
+                        </AccordionContent>
+                      </AccordionItem>
+                      <AccordionItem value="item-2" className="border-b-0">
+                        <AccordionTrigger className="text-2xl font-headline hover:no-underline">Pro Tips</AccordionTrigger>
+                        <AccordionContent className="pt-2">
+                          <ul className="list-disc list-outside space-y-4 pl-5 text-base text-foreground/80">
+                            {explanation.proTips.map((tip, i) => <li key={i} className="pl-2">{tip}</li>)}
+                          </ul>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </>
                   )}
-                  <AccordionItem value="item-2" className="border-b-0">
-                    <AccordionTrigger className="text-2xl font-headline hover:no-underline">Pro Tips</AccordionTrigger>
-                    <AccordionContent className="pt-2">
-                      <ul className="list-disc list-outside space-y-4 pl-5 text-base text-foreground/80">
-                        {explanation.proTips.map((tip, i) => <li key={i} className="pl-2">{tip}</li>)}
-                      </ul>
-                    </AccordionContent>
-                  </AccordionItem>
                 </Accordion>
               </CardContent>
             </Card>
@@ -179,5 +201,3 @@ export default function LearnPage() {
     </div>
   );
 }
-
-    
