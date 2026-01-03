@@ -11,12 +11,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useSettings } from '@/contexts/settings-context';
 import { useToast } from '@/hooks/use-toast';
-import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby } from 'lucide-react';
+import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap } from 'lucide-react';
 import { suggestFoodPairing } from '@/ai/flows/suggest-food-pairing';
 import { suggestWoodPairing } from '@/ai/flows/suggest-wood-pairing';
 import { suggestCocktailSubstitutions } from '@/ai/flows/suggest-cocktail-substitutions';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import Link from 'next/link';
 
 type AIResult = {
   title: string;
@@ -72,10 +73,11 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
     startTransition(async () => {
       setAiResult(null);
       const result = await suggestCocktailSubstitutions({ cocktailName: recipe.name, userInventory: settings.inventory });
-      if (result) {
+      if (result && result.suggestedSubstitutions.length > 0) {
         setAiResult({ title: 'Substitution Suggestions', content: result.suggestedSubstitutions.join(', '), rationale: result.reasoning });
       } else {
-        toast({ variant: 'destructive', title: 'Could not get substitution ideas.' });
+        toast({ title: 'No simple substitutions found.', description: 'Your inventory has what it needs or substitutions are not recommended.' });
+        setAiResult(null);
       }
     });
   };
@@ -112,6 +114,13 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
                 <Button onClick={handleFoodPairing} disabled={isPending} variant="outline"><Utensils className="mr-2" /> Food Pairing</Button>
                 {settings.hasSmoker && <Button onClick={handleWoodPairing} disabled={isPending} variant="outline"><Flame className="mr-2" /> Smoke Pairing</Button>}
                 <Button onClick={handleSubstitutions} disabled={isPending} variant="outline"><Replace className="mr-2"/> Substitutions</Button>
+                {settings.showBeta && (
+                  <Button asChild variant="outline">
+                    <Link href="/learn">
+                      <GraduationCap className="mr-2" /> Learn Techniques
+                    </Link>
+                  </Button>
+                )}
               </CardContent>
             </Card>
 
@@ -131,10 +140,10 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
           <div className="md:col-span-2">
             <Tabs defaultValue="recipe" className="w-full">
               <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
-                <TabsTrigger value="recipe" disabled={!settings.showAlcohol}>Recipe</TabsTrigger>
+                <TabsTrigger value="recipe">Recipe</TabsTrigger>
                 <TabsTrigger value="swap">Swaps</TabsTrigger>
-                <TabsTrigger value="mocktail" disabled={!settings.showMocktails}>Mocktail</TabsTrigger>
-                <TabsTrigger value="kid" disabled={!settings.showKids}>For Kids</TabsTrigger>
+                <TabsTrigger value="mocktail">Mocktail</TabsTrigger>
+                <TabsTrigger value="kid">For Kids</TabsTrigger>
               </TabsList>
 
               <TabsContent value="recipe">

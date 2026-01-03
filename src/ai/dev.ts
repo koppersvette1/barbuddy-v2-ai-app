@@ -6,3 +6,5 @@ import '@/ai/flows/inventory-scanning-from-image.ts';
 import '@/ai/flows/suggest-wood-pairing.ts';
 import '@/ai/flows/generate-recipes-from-inventory.ts';
 import '@/ai/flows/suggest-cocktail-substitutions.ts';
+import '@/ai/flows/explain-fat-washing.ts';
+import '@/ai/flows/explain-infusion.ts';
