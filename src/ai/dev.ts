@@ -9,3 +9,6 @@ import '@/ai/flows/suggest-cocktail-substitutions.ts';
 import '@/ai/flows/explain-fat-washing.ts';
 import '@/ai/flows/explain-infusion.ts';
 import '@/ai/flows/explain-cocktail-smoking.ts';
+import '@/ai/flows/generate-cocktail-image.ts';
+
+    

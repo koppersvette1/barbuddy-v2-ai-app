@@ -4,6 +4,7 @@ export interface Recipe {
   name: string;
   category: 'Spirit Forward' | 'Sours' | 'Highballs & Spritzes' | 'Tiki, Tropical & Dessert';
   image: string;
+  imageHint?: string;
   spec: {
     ingredients: {
       item: string;
@@ -38,3 +39,5 @@ export type SettingsContextType = {
   updateSettings: (newSettings: Partial<Settings>) => void;
   setInventory: (inventory: string[]) => void;
 };
+
+    

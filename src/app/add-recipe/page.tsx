@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,15 +23,16 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Header } from "@/components/layout/header";
 import { useToast } from "@/hooks/use-toast";
-import { X, Plus } from "lucide-react";
-import { useSettings } from "@/contexts/settings-context";
+import { X, Plus, Sparkles, Loader, Image as ImageIcon } from "lucide-react";
 import { Recipe } from "@/lib/types";
+import { generateCocktailImage } from "@/ai/flows/generate-cocktail-image";
+import Image from "next/image";
 
 const recipeSchema = z.object({
   name: z.string().min(3, "Recipe name must be at least 3 characters long."),
   category: z.enum(['Spirit Forward', 'Sours', 'Highballs & Spritzes', 'Tiki, Tropical & Dessert']),
-  image: z.string().min(3, "Image ID must be at least 3 characters long."),
-  imageHint: z.string().optional(),
+  imagePrompt: z.string().min(10, "Image prompt must be at least 10 characters long."),
+  imageDataUri: z.string().optional(),
   spec: z.object({
     ingredients: z.array(z.object({
       item: z.string().min(1, "Ingredient name is required."),
@@ -46,13 +47,13 @@ type RecipeFormValues = z.infer<typeof recipeSchema>;
 export default function AddRecipePage() {
   const router = useRouter();
   const { toast } = useToast();
-  // In a real app, you would have a function to persist this data.
-  // For now, we'll just log it to the console and show a toast.
+  const [isGenerating, startTransition] = useTransition();
   
   const form = useForm<RecipeFormValues>({
     resolver: zodResolver(recipeSchema),
     defaultValues: {
       name: "",
+      imagePrompt: "",
       spec: {
         ingredients: [{ item: "", amount: "" }],
         instructions: [""],
@@ -70,25 +71,47 @@ export default function AddRecipePage() {
     name: "spec.instructions",
   });
 
+  const handleGenerateImage = () => {
+    const prompt = form.getValues("imagePrompt");
+    if (!prompt) {
+      form.setError("imagePrompt", { type: "manual", message: "Please enter a prompt for the image." });
+      return;
+    }
+    startTransition(async () => {
+      const result = await generateCocktailImage({ prompt });
+      if (result.imageDataUri) {
+        form.setValue("imageDataUri", result.imageDataUri);
+        toast({ title: "Image generated successfully!" });
+      } else {
+        toast({ variant: "destructive", title: "Image generation failed." });
+      }
+    });
+  };
+
   function onSubmit(data: RecipeFormValues) {
-    const newRecipe: Recipe = {
-      ...data,
-      slug: data.name.toLowerCase().replace(/\s+/g, '-'),
-      swap: 'N/A',
-      mocktail: { name: 'N/A', recipe: 'N/A' },
-      kid: { name: 'N/A', recipe: 'N/A' },
+    const newRecipe: Omit<Recipe, 'slug' | 'swap' | 'mocktail' | 'kid' > & { custom: boolean } = {
+      name: data.name,
+      category: data.category,
+      // In a real app, you'd upload this imageDataUri to cloud storage and save the URL.
+      // For now, we'll use a temporary ID and the prompt as a hint.
+      image: `custom-${data.name.toLowerCase().replace(/\s+/g, '-')}`,
+      imageHint: data.imagePrompt,
+      spec: data.spec,
       custom: true,
     }
     
     console.log("New Recipe Submitted:", newRecipe);
+    console.log("Image Data (first 50 chars):", data.imageDataUri?.substring(0, 50));
     
     toast({
       title: "Recipe Submitted!",
-      description: `The recipe for "${data.name}" has been logged. In a real app, I would save this to the database.`,
+      description: `The recipe for "${data.name}" has been logged. In a real app, I would save this to a database and upload the image.`,
     });
     
     router.push("/recipes");
   }
+
+  const imageDataUri = form.watch("imageDataUri");
 
   return (
     <div className="flex flex-col">
@@ -138,38 +161,51 @@ export default function AddRecipePage() {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="image"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Image ID</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., custom-old-fashioned" {...field} />
-                        </FormControl>
-                         <FormDescription>
-                          A unique ID for the placeholder image. I will generate an image for you later.
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                   <FormField
-                    control={form.control}
-                    name="imageHint"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Image Hint</FormLabel>
-                        <FormControl>
-                          <Input placeholder="e.g., whiskey glass" {...field} />
-                        </FormControl>
-                         <FormDescription>
-                          Two keywords to help find the right image (e.g., "dark cocktail").
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
+                </div>
+
+                <div className="space-y-4">
+                   <div className="p-4 border rounded-lg bg-background/50 space-y-4">
+                     <FormLabel>Cocktail Image</FormLabel>
+                     <div className="grid md:grid-cols-2 gap-4 items-start">
+                        <div className="space-y-2">
+                           <FormField
+                              control={form.control}
+                              name="imagePrompt"
+                              render={({ field }) => (
+                                <FormItem>
+                                  <FormControl>
+                                    <Textarea placeholder="e.g., A cinematic photo of a dark red cocktail in a coupe glass, garnished with a single Luxardo cherry." {...field} />
+                                  </FormControl>
+                                  <FormDescription>
+                                    Describe the image you want the AI to create. Be detailed!
+                                  </FormDescription>
+                                  <FormMessage />
+                                </FormItem>
+                              )}
+                            />
+                            <Button type="button" onClick={handleGenerateImage} disabled={isGenerating}>
+                                {isGenerating ? <Loader className="animate-spin" /> : <Sparkles />}
+                                Generate Image
+                            </Button>
+                        </div>
+
+                         <div className="aspect-square w-full bg-muted/50 rounded-md flex items-center justify-center overflow-hidden border">
+                            {isGenerating ? (
+                              <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                                <Loader className="animate-spin h-8 w-8" />
+                                <p>Generating...</p>
+                              </div>
+                            ) : imageDataUri ? (
+                                <Image src={imageDataUri} alt="Generated cocktail image" width={400} height={400} className="object-cover w-full h-full" />
+                            ): (
+                              <div className="flex flex-col items-center gap-2 text-muted-foreground">
+                                <ImageIcon className="h-8 w-8" />
+                                <p>Image will appear here</p>
+                              </div>
+                            )}
+                        </div>
+                     </div>
+                   </div>
                 </div>
 
                 <div>
@@ -243,3 +279,5 @@ export default function AddRecipePage() {
     </div>
   );
 }
+
+    
