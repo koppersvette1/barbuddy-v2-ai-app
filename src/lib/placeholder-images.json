@@ -1,3 +1,70 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero",
+      "description": "A stylish, warm-lit bar setting.",
+      "imageUrl": "https://images.unsplash.com/photo-1767022724924-993b00fc04b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxzdHlsaXNoJTIwYmFyfGVufDB8fHx8MTc2NzQwODg4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "stylish bar"
+    },
+    {
+      "id": "old-fashioned",
+      "description": "An Old Fashioned cocktail in a rocks glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1500217052183-bc01eee1a74e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxPbGQlMjBGYXNoaW9uZWQlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDg4ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Old Fashioned cocktail"
+    },
+    {
+      "id": "manhattan",
+      "description": "A Manhattan cocktail in a coupe glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1500217052183-bc01eee1a74e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxNYW5oYXR0YW4lMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDg4ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Manhattan cocktail"
+    },
+    {
+      "id": "negroni",
+      "description": "A Negroni cocktail in a rocks glass with a large ice cube.",
+      "imageUrl": "https://images.unsplash.com/photo-1619978537593-6378acd9d6a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxOZWdyb25pJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA4ODgxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Negroni cocktail"
+    },
+    {
+      "id": "martini",
+      "description": "A classic Martini with an olive garnish.",
+      "imageUrl": "https://images.unsplash.com/photo-1601013450703-9050cff1ffc6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxNYXJ0aW5pJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA4ODgwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Martini cocktail"
+    },
+    {
+      "id": "whiskey-sour",
+      "description": "A Whiskey Sour with foam and a cherry.",
+      "imageUrl": "https://images.unsplash.com/photo-1712181938400-a76d207d4fcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxXaGlza2V5JTIwU291cnxlbnwwfHx8fDE3Njc0MDg4ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Whiskey Sour"
+    },
+    {
+      "id": "margarita",
+      "description": "A Margarita with a salt rim and lime wedge.",
+      "imageUrl": "https://images.unsplash.com/photo-1544145945-b4744b209fc2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxNYXJnYXJpdGElMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDg4ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Margarita cocktail"
+    },
+    {
+      "id": "daiquiri",
+      "description": "A classic Daiquiri in a coupe glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1634564324736-1049b7c440ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxEYWlxdWlyaSUyMGNvY2t0YWlsfGVufDB8fHx8MTc2NzQwODg4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Daiquiri cocktail"
+    },
+    {
+      "id": "moscow-mule",
+      "description": "A Moscow Mule in a copper mug.",
+      "imageUrl": "https://images.unsplash.com/photo-1607673882902-8f42c1ef183f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxNb3Njb3clMjBNdWxlfGVufDB8fHx8MTc2NzQwODg4MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Moscow Mule"
+    },
+    {
+      "id": "default-cocktail",
+      "description": "A generic colorful cocktail.",
+      "imageUrl": "https://images.unsplash.com/photo-1625573170107-4a83c049d993?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb2NrdGFpbCUyMGdsYXNzfGVufDB8fHx8MTc2NzM3MzE0MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cocktail glass"
+    },
+    {
+      "id": "inventory-scan-placeholder",
+      "description": "A placeholder for the inventory scan.",
+      "imageUrl": "https://images.unsplash.com/photo-1763688459566-32c3d53f724b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsaXF1b3IlMjBjYWJpbmV0fGVufDB8fHx8MTc2NzQwODg4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "liquor cabinet"
+    }
+  ]
 }
