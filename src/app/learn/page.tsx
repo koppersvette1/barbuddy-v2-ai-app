@@ -5,14 +5,20 @@ import { Header } from '@/components/layout/header';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Loader, FlaskConical, Beaker } from 'lucide-react';
+import { Loader, FlaskConical, Beaker, Flame } from 'lucide-react';
 import { useSettings } from '@/contexts/settings-context';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { explainFatWashing, type ExplainFatWashingOutput } from '@/ai/flows/explain-fat-washing';
 import { explainInfusion, type ExplainInfusionOutput } from '@/ai/flows/explain-infusion';
+import { explainCocktailSmoking, type ExplainCocktailSmokingOutput } from '@/ai/flows/explain-cocktail-smoking';
 import { Separator } from '@/components/ui/separator';
 
-type TechniqueExplanation = ExplainFatWashingOutput | ExplainInfusionOutput;
+type TechniqueExplanation = ExplainFatWashingOutput | ExplainInfusionOutput | ExplainCocktailSmokingOutput;
+
+function isCocktailSmokingOutput(explanation: any): explanation is ExplainCocktailSmokingOutput {
+  return explanation && 'methods' in explanation;
+}
+
 
 export default function LearnPage() {
   const { settings } = useSettings();
@@ -20,15 +26,17 @@ export default function LearnPage() {
   const [explanation, setExplanation] = useState<TechniqueExplanation | null>(null);
   const [activeTechnique, setActiveTechnique] = useState<string | null>(null);
 
-  const handleExplainTechnique = (technique: 'fatWashing' | 'infusion') => {
+  const handleExplainTechnique = (technique: 'fatWashing' | 'infusion' | 'cocktailSmoking') => {
     startTransition(async () => {
       setExplanation(null);
       setActiveTechnique(technique);
       let result;
       if (technique === 'fatWashing') {
         result = await explainFatWashing();
-      } else {
+      } else if (technique === 'infusion') {
         result = await explainInfusion();
+      } else {
+        result = await explainCocktailSmoking();
       }
       setExplanation(result);
     });
@@ -77,6 +85,13 @@ export default function LearnPage() {
               >
                 <FlaskConical className="mr-2" /> Spirit Infusions
               </Button>
+              <Button
+                variant={activeTechnique === 'cocktailSmoking' ? 'default' : 'outline'}
+                onClick={() => handleExplainTechnique('cocktailSmoking')}
+                disabled={isPending || !settings.hasSmoker}
+              >
+                <Flame className="mr-2" /> Cocktail Smoking
+              </Button>
             </CardContent>
           </Card>
         </div>
@@ -103,14 +118,30 @@ export default function LearnPage() {
               <CardContent>
                 <Separator className="my-4" />
                 <Accordion type="single" collapsible defaultValue="item-1">
-                  <AccordionItem value="item-1">
-                    <AccordionTrigger className="text-xl">Step-by-Step Guide</AccordionTrigger>
-                    <AccordionContent>
-                      <ol className="list-decimal list-inside space-y-3 pl-2">
-                        {explanation.steps.map((step, i) => <li key={i}>{step}</li>)}
-                      </ol>
-                    </AccordionContent>
-                  </AccordionItem>
+                  {isCocktailSmokingOutput(explanation) ? (
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger className="text-xl">Methods</AccordionTrigger>
+                      <AccordionContent>
+                        <div className="space-y-4">
+                          {explanation.methods.map((method, i) => (
+                            <div key={i}>
+                              <h4 className="font-semibold text-lg mb-1">{method.name}</h4>
+                              <p>{method.description}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ) : (
+                    <AccordionItem value="item-1">
+                      <AccordionTrigger className="text-xl">Step-by-Step Guide</AccordionTrigger>
+                      <AccordionContent>
+                        <ol className="list-decimal list-inside space-y-3 pl-2">
+                          {explanation.steps.map((step, i) => <li key={i}>{step}</li>)}
+                        </ol>
+                      </AccordionContent>
+                    </AccordionItem>
+                  )}
                   <AccordionItem value="item-2">
                     <AccordionTrigger className="text-xl">Pro Tips</AccordionTrigger>
                     <AccordionContent>
