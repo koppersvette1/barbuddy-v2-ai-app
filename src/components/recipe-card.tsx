@@ -1,4 +1,6 @@
 
+"use client";
+
 import type { Recipe } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Image from 'next/image';
