@@ -24,14 +24,13 @@ type AIResult = {
   rationale?: string;
 };
 
-export default function RecipeDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default function RecipeDetailPage({ params }: { params: { slug: string } }) {
   const [isPending, startTransition] = useTransition();
   const [aiResult, setAiResult] = useState<AIResult | null>(null);
   const { settings } = useSettings();
   const { toast } = useToast();
 
-  const resolvedParams = use(params);
-  const recipe = recipes.find(r => r.slug === resolvedParams.slug);
+  const recipe = recipes.find(r => r.slug === params.slug);
 
   if (!recipe) {
     notFound();

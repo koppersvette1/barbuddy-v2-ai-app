@@ -10,9 +10,11 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { recipes as allRecipes } from '@/lib/recipes';
+import type { Recipe } from '@/lib/types';
 
 const GenerateRecipesFromInventoryInputSchema = z.object({
-  inventory: z.array(z.string()).describe('A list of ingredients in the user\'s inventory.'),
+  inventory: z.array(z.string()).describe("A list of ingredients in the user's inventory."),
 });
 export type GenerateRecipesFromInventoryInput = z.infer<typeof GenerateRecipesFromInventoryInputSchema>;
 
@@ -33,18 +35,23 @@ const findRecipesTool = ai.defineTool({
   }),
   outputSchema: z.array(z.string()).describe('A list of cocktail recipes that can be made with the given ingredients.'),
 }, async (input) => {
-  // TODO: Replace this with actual recipe retrieval logic
-  // For now, return a hardcoded list of recipes if certain ingredients are present
-  if (input.ingredients.includes('Whiskey') && input.ingredients.includes('Demerara Syrup') && input.ingredients.includes('Angostura Bitters')) {
-    return ['Old Fashioned'];
-  }
-  if (input.ingredients.includes('Gin') && input.ingredients.includes('Campari') && input.ingredients.includes('Sweet Vermouth')) {
-    return ['Negroni'];
-  }
-  if (input.ingredients.includes('Tequila') && input.ingredients.includes('Lime') && input.ingredients.includes('Triple Sec')) {
-    return ['Margarita'];
-  }
-  return [];
+  const inventorySet = new Set(input.ingredients.map(i => i.toLowerCase()));
+  const matchedRecipes: string[] = [];
+
+  allRecipes.forEach((recipe: Recipe) => {
+    const requiredIngredients = recipe.spec.ingredients.map(ing => ing.item.toLowerCase());
+    const canMake = requiredIngredients.every(req => {
+      // Check if any inventory item contains the required ingredient as a substring
+      // This allows "Bulleit Bourbon" to satisfy a requirement for "Bourbon"
+      return Array.from(inventorySet).some(invItem => invItem.includes(req));
+    });
+
+    if (canMake) {
+      matchedRecipes.push(recipe.name);
+    }
+  });
+
+  return matchedRecipes;
 });
 
 const prompt = ai.definePrompt({
@@ -60,6 +67,7 @@ const prompt = ai.definePrompt({
   {{/each}}
 
   Use the findRecipes tool to identify which recipes the user can make with their current inventory.
+  If the tool returns recipes, present them to the user in the output. If the tool returns an empty list, inform the user that no recipes could be made with their current inventory and suggest they add more items.
 `,
 });
 
