@@ -11,10 +11,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useSettings } from '@/contexts/settings-context';
 import { useToast } from '@/hooks/use-toast';
-import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap } from 'lucide-react';
+import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight } from 'lucide-react';
 import { suggestFoodPairing } from '@/ai/flows/suggest-food-pairing';
 import { suggestWoodPairing } from '@/ai/flows/suggest-wood-pairing';
-import { suggestCocktailSubstitutions } from '@/ai/flows/suggest-cocktail-substitutions';
+import { suggestCocktailSubstitutions, SuggestCocktailSubstitutionsOutput } from '@/ai/flows/suggest-cocktail-substitutions';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
@@ -23,6 +23,7 @@ type AIResult = {
   title: string;
   content: string;
   rationale?: string;
+  substitutions?: SuggestCocktailSubstitutionsOutput['substitutions'];
 };
 
 export default function RecipeDetailPage({ params: paramsPromise }: { params: { slug: string } }) {
@@ -74,8 +75,8 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
     startTransition(async () => {
       setAiResult(null);
       const result = await suggestCocktailSubstitutions({ cocktailName: recipe.name, userInventory: settings.inventory });
-      if (result && result.suggestedSubstitutions.length > 0) {
-        setAiResult({ title: 'Substitution Suggestions', content: result.suggestedSubstitutions.join(', '), rationale: result.reasoning });
+      if (result && result.substitutions.length > 0) {
+        setAiResult({ title: 'Substitution Suggestions', content: result.notes || "", substitutions: result.substitutions });
       } else {
         toast({ title: 'No simple substitutions found.', description: 'Your inventory has what it needs or substitutions are not recommended.' });
         setAiResult(null);
@@ -131,8 +132,25 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
               <Card className="mt-6">
                 <CardHeader><CardTitle>{aiResult.title}</CardTitle></CardHeader>
                 <CardContent>
-                  <p className="text-lg font-semibold text-primary">{aiResult.content}</p>
-                  {aiResult.rationale && <p className="mt-2 text-muted-foreground italic">"{aiResult.rationale}"</p>}
+                  {aiResult.substitutions ? (
+                    <div className="space-y-4">
+                      {aiResult.substitutions.map((sub, i) => (
+                        <div key={i}>
+                          <div className="flex items-center justify-between text-sm">
+                            <Badge variant="outline" className="line-through">{sub.missingIngredient}</Badge>
+                            <ChevronsRight className="h-4 w-4 text-muted-foreground mx-2" />
+                            <Badge variant="secondary">{sub.suggestedIngredient}</Badge>
+                          </div>
+                          <p className="mt-2 text-xs text-muted-foreground italic">"{sub.reasoning}"</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <>
+                      <p className="text-lg font-semibold text-primary">{aiResult.content}</p>
+                      {aiResult.rationale && <p className="mt-2 text-muted-foreground italic">"{aiResult.rationale}"</p>}
+                    </>
+                  )}
                 </CardContent>
               </Card>
             )}
