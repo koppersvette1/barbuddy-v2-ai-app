@@ -821,22 +821,21 @@ export const recipes: Recipe[] = [
     image: 'pomegranate-hugo-spritz',
     spec: {
       ingredients: [
-        { item: 'Prosecco', amount: '3 oz' },
-        { item: 'Pomegranate Liqueur', amount: '1 oz' },
-        { item: 'Elderflower Liqueur', amount: '0.5 oz' },
-        { item: 'Soda Water', amount: '1 oz' },
-        { item: 'Mint Leaves', amount: 'for garnish' },
-        { item: 'Pomegranate Seeds', amount: 'for garnish' },
+        { item: 'Prosecco, chilled', amount: '1 bottle (750ml)' },
+        { item: 'Pomegranate Liqueur', amount: '1 1/2 cups' },
+        { item: 'Elderflower Liqueur', amount: '3/4 cup' },
+        { item: 'Club Soda', amount: '3/4 cup' },
+        { item: 'Fresh Mint Leaves', amount: '1/2 cup' },
+        { item: 'Pomegranate Seeds', amount: '1/2 cup' },
       ],
       instructions: [
-        'In a large wine glass, add mint leaves and gently press them with a muddler to release their aroma.',
-        'Fill the glass with ice cubes.',
-        'Pour in the Prosecco, Pomegranate Liqueur, and Elderflower Liqueur.',
-        'Top with a splash of soda water and stir gently to combine.',
-        'Garnish with a fresh sprig of mint and a sprinkle of pomegranate seeds.'
+        'Add the mint and pomegranate seeds to a large pitcher and gently muddle to release their aroma.',
+        'Fill the pitcher with ice cubes. Pour in the prosecco, pomegranate liqueur and elderflower liqueur.',
+        'Top with a splash of club soda and stir gently to combine.',
+        'Pour into wine glasses and garnish with more mint and pomegranate seeds.'
       ],
     },
-    swap: 'Use Pomegranate juice if you don\'t have the liqueur.',
+    swap: "Use Pomegranate juice if you don't have the liqueur.",
     mocktail: {
       name: 'Pomegranate Elderflower Spritzer',
       recipe: 'Mix 2 oz Pomegranate Juice, 0.5 oz Elderflower syrup, and top with sparkling water.'
@@ -877,3 +876,5 @@ export const recipes: Recipe[] = [
     }
   }
 ];
+
+    
