@@ -8,7 +8,7 @@ const defaultSettings: Settings = {
   showMocktails: true,
   showKids: true,
   hasSmoker: true,
-  showBeta: false,
+  showBeta: true,
   inventory: [],
 };
 
