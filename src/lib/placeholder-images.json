@@ -31,6 +31,18 @@
       "imageHint": "Martini cocktail"
     },
     {
+      "id": "sazerac",
+      "description": "A Sazerac cocktail in a rocks glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1547383698-faaaf2368d3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxTYXplcmFjJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "Sazerac cocktail"
+    },
+    {
+      "id": "vieux-carre",
+      "description": "A Vieux Carre cocktail in a rocks glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1560110612-9b39e5c33b61?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8VmlldXglMjBDYXJyZXxlbnwwfHx8fDE3Njc0MzMxMzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Vieux Carre"
+    },
+    {
       "id": "whiskey-sour",
       "description": "A Whiskey Sour with foam and a cherry.",
       "imageUrl": "https://images.unsplash.com/photo-1712181938400-a76d207d4fcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxXaGlza2V5JTIwU291cnxlbnwwfHx8fDE3Njc0MDg4ODB8MA&ixlib=rb-4.1.0&q=80&w=1080",
@@ -49,22 +61,10 @@
       "imageHint": "Daiquiri cocktail"
     },
     {
-      "id": "moscow-mule",
-      "description": "A Moscow Mule in a copper mug.",
-      "imageUrl": "https://images.unsplash.com/photo-1607673882902-8f42c1ef183f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxNb3Njb3clMjBNdWxlfGVufDB8fHx8MTc2NzQwODg4MXww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "Moscow Mule"
-    },
-    {
-      "id": "default-cocktail",
-      "description": "A generic colorful cocktail.",
-      "imageUrl": "https://images.unsplash.com/photo-1625573170107-4a83c049d993?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb2NrdGFpbCUyMGdsYXNzfGVufDB8fHx8MTc2NzM3MzE0MHww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "cocktail glass"
-    },
-    {
-      "id": "inventory-scan-placeholder",
-      "description": "A placeholder for the inventory scan.",
-      "imageUrl": "https://images.unsplash.com/photo-1763688459566-32c3d53f724b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsaXF1b3IlMjBjYWJpbmV0fGVufDB8fHx8MTc2NzQwODg4MHww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "liquor cabinet"
+      "id": "cosmopolitan",
+      "description": "A Cosmopolitan cocktail in a martini glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1665224284727-88636f7a5f16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxDb3Ntb3BvbGl0YW4lMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODh8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "Cosmopolitan cocktail"
     },
     {
       "id": "gimlet",
@@ -73,64 +73,10 @@
       "imageHint": "Gimlet cocktail"
     },
     {
-      "id": "tom-collins",
-      "description": "A Tom Collins cocktail in a highball glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1673375206719-209b219a89a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxUb20lMjBDb2xsaW5zfGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "Tom Collins"
-    },
-    {
-      "id": "mai-tai",
-      "description": "A Mai Tai cocktail in a tiki glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1663263827383-d5af4d6735e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxNYWklMjBUYWl8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "Mai Tai"
-    },
-    {
-      "id": "boulevardier",
-      "description": "A Boulevardier cocktail in a rocks glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1676471905760-10fccb031a31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxCb3VsZXZhcmRpZXIlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
-      "imageHint": "Boulevardier cocktail"
-    },
-    {
-      "id": "sazerac",
-      "description": "A Sazerac cocktail in a rocks glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1547383698-faaaf2368d3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxTYXplcmFjJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "Sazerac cocktail"
-    },
-    {
-      "id": "french-75",
-      "description": "A French 75 cocktail in a champagne flute.",
-      "imageUrl": "https://images.unsplash.com/photo-1683020370065-a9e015111037?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxGcmVuY2glMjA3NXxlbnwwfHx8fDE3Njc0MDkzODh8MA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "French 75"
-    },
-    {
-      "id": "aperol-spritz",
-      "description": "An Aperol Spritz in a wine glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1585975776023-29a0dbc51407?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxBcGVyb2wlMjBTcHJpdHp8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "Aperol Spritz"
-    },
-    {
-      "id": "pina-colada",
-      "description": "A Piña Colada in a hurricane glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1607446045710-d5a8fd9bc1db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxQaW5hJTIwQ29sYWRhfGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlibrb-4.1.0&q=80&w=1080",
-      "imageHint": "Pina Colada"
-    },
-    {
-      "id": "cosmopolitan",
-      "description": "A Cosmopolitan cocktail in a martini glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1665224284727-88636f7a5f16?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxDb3Ntb3BvbGl0YW4lMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODh8MA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "Cosmopolitan cocktail"
-    },
-    {
-      "id": "dark-n-stormy",
-      "description": "A Dark 'n' Stormy cocktail in a highball glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1600803895467-b8969fc2c278?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxEYXJrJTIwU3Rvcm15fGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "Dark Stormy"
-    },
-    {
-      "id": "paloma",
-      "description": "A Paloma cocktail in a highball glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1687852311836-daa5f6c0406b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxQYWxvbWElMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "Paloma cocktail"
+      "id": "bees-knees",
+      "description": "A Bee's Knees cocktail in a coupe glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1587223962281-365b9c129fcb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxCZWVzJTIwS25lZXMlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MzMxMzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Bees Knees cocktail"
     },
     {
       "id": "sidecar",
@@ -139,10 +85,118 @@
       "imageHint": "Sidecar cocktail"
     },
     {
+      "id": "paper-plane",
+      "description": "A Paper Plane cocktail in a coupe glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1510831921425-3268dbcaf078?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxQYXBlciUyMFBsYW5lJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDMzMTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Paper Plane cocktail"
+    },
+    {
+      "id": "lemon-drop",
+      "description": "A Lemon Drop cocktail in a sugar-rimmed martini glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1561730973-ca7d366889a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxMZW1vbiUyMERyb3AlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MzMxMzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Lemon Drop cocktail"
+    },
+    {
+      "id": "moscow-mule",
+      "description": "A Moscow Mule in a copper mug.",
+      "imageUrl": "https://images.unsplash.com/photo-1607673882902-8f42c1ef183f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxNb3Njb3clMjBNdWxlfGVufDB8fHx8MTc2NzQwODg4MXww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "Moscow Mule"
+    },
+    {
+      "id": "mojito",
+      "description": "A Mojito in a highball glass with mint and lime.",
+      "imageUrl": "https://images.unsplash.com/photo-1674716538651-3c45ebb05d82?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxNb2ppdG8lMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MzMxMzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Mojito cocktail"
+    },
+    {
+      "id": "paloma",
+      "description": "A Paloma cocktail in a highball glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1687852311836-daa5f6c0406b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxQYWxvbWElMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "Paloma cocktail"
+    },
+    {
+      "id": "tom-collins",
+      "description": "A Tom Collins cocktail in a highball glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1673375206719-209b219a89a1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxUb20lMjBDb2xsaW5zfGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "Tom Collins"
+    },
+    {
+      "id": "aperol-spritz",
+      "description": "An Aperol Spritz in a wine glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1585975776023-29a0dbc51407?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxBcGVyb2wlMjBTcHJpdHp8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "Aperol Spritz"
+    },
+    {
+      "id": "pomegranate-hugo-spritz",
+      "description": "A Pomegranate Hugo Spritz in a wine glass with pomegranate seeds and mint.",
+      "imageUrl": "https://images.unsplash.com/photo-1552501014-105b43a8b2c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb21lZ3JhbmF0ZSUyMHNwcml0enxlbnwwfHx8fDE3Njc0MjQxMjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "pomegranate spritz"
+    },
+    {
+      "id": "ranch-water",
+      "description": "A Ranch Water cocktail in a highball glass with Topo Chico.",
+      "imageUrl": "https://images.unsplash.com/photo-1616099766080-0d084296d440?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxSYW5jaCUyMFdhdGVyJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDMzMTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Ranch Water cocktail"
+    },
+    {
+      "id": "dark-n-stormy",
+      "description": "A Dark 'n' Stormy cocktail in a highball glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1600803895467-b8969fc2c278?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxEYXJrJTIwU3Rvcm15fGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "Dark Stormy"
+    },
+    {
       "id": "mint-julep",
       "description": "A Mint Julep in a julep cup.",
       "imageUrl": "https://images.unsplash.com/photo-1588905206064-41e49c50d505?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxNaW50JTIwSnVsZXB8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
       "imageHint": "Mint Julep"
+    },
+    {
+      "id": "mai-tai",
+      "description": "A Mai Tai cocktail in a tiki glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1663263827383-d5af4d6735e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxNYWklMjBUYWl8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "Mai Tai"
+    },
+    {
+      "id": "pina-colada",
+      "description": "A Piña Colada in a hurricane glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1607446045710-d5a8fd9bc1db?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxQaW5hJTIwQ29sYWRhfGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlibrb-4.1.0&q=80&w=1080",
+      "imageHint": "Pina Colada"
+    },
+    {
+      "id": "tequila-sunrise",
+      "description": "A Tequila Sunrise cocktail in a highball glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1767065625045-283c2282c3f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxUZXF1aWxhJTIwU3VucmlzZXxlbnwwfHx8fDE3Njc0MzMxMzd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Tequila Sunrise"
+    },
+    {
+      "id": "caipirinha",
+      "description": "A Caipirinha in a rocks glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1559842623-b82d2e1228a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxDYWlwaXJpbmhhJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "Caipirinha cocktail"
+    },
+    {
+      "id": "espresso-martini",
+      "description": "An Espresso Martini in a martini glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1663908672815-fd62829ad3f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxFc3ByZXNzbyUyME1hcnRpbml8ZW58MHx8fHwxNzY3NDMzMTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "Espresso Martini"
+    },
+    {
+      "id": "white-russian",
+      "description": "A White Russian cocktail in a rocks glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1608330863012-4afeafeedbf5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxXaGl0ZSUyMFJ1c3NpYW58ZW58MHx8fHwxNzY3NDMzMTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "White Russian"
+    },
+    {
+      "id": "boulevardier",
+      "description": "A Boulevardier cocktail in a rocks glass.",
+      "imageUrl": "https://images.unsplash.com/photo-1676471905760-10fccb031a31?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxCb3VsZXZhcmRpZXIlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "Boulevardier cocktail"
+    },
+    {
+      "id": "french-75",
+      "description": "A French 75 cocktail in a champagne flute.",
+      "imageUrl": "https://images.unsplash.com/photo-1683020370065-a9e015111037?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxGcmVuY2glMjA3NXxlbnwwfHx8fDE3Njc0MDkzODh8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "French 75"
     },
     {
       "id": "gin-fizz",
@@ -157,33 +211,27 @@
       "imageHint": "Vesper cocktail"
     },
     {
-      "id": "caipirinha",
-      "description": "A Caipirinha in a rocks glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1559842623-b82d2e1228a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxDYWlwaXJpbmhhJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
-      "imageHint": "Caipirinha cocktail"
-    },
-    {
       "id": "clover-club",
       "description": "A Clover Club cocktail in a coupe glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1682580471887-36f78975cb26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Q2xvdmVyJTIwQ2x1YnxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1682580471887-36f78975cb26?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Q2xvdmVyJTIwQ2x1YnxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Clover Club"
     },
     {
       "id": "aviation",
       "description": "An Aviation cocktail in a coupe glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1631262716357-2608529b4854?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxBdmlhdGlvbiUyMGNvY2t0YWlsfGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1631262716357-2608529b4854?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxBdmlhdGlvbiUyMGNvY2t0YWlsfGVufDB8fHx8MTc2NzQwOTM4N3ww&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Aviation cocktail"
     },
     {
       "id": "hemingway-daiquiri",
       "description": "A Hemingway Daiquiri in a coupe glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1712643695910-db00e957d602?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxIZW1pbmd3YXklMjBEYWlxdWlyaXxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1712643695910-db00e957d602?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxIZW1pbmd3YXklMjBEYWlxdWlyaXxlbnwwfHx8fDE3Njc0MDkzODd8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Hemingway Daiquiri"
     },
     {
       "id": "penicillin",
       "description": "A Penicillin cocktail in a rocks glass.",
-      "imageUrl": "https://images.unsplash.com/photo-1559842623-b82d2e1228a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxQZW5pY2lsbGluJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1559842623-b82d2e1228a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxQZW5pY2lsbGluJTIwY29ja3RhaWx8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Penicillin cocktail"
     },
     {
@@ -191,12 +239,6 @@
       "description": "A Blood and Sand cocktail in a coupe glass.",
       "imageUrl": "https://images.unsplash.com/photo-1684571981122-61f4826e7568?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxCbG9vZCUyMFNhbmR8ZW58MHx8fHwxNzY3NDA5Mzg3fDA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "Blood Sand"
-    },
-    {
-      "id": "pomegranate-hugo-spritz",
-      "description": "A Pomegranate Hugo Spritz in a wine glass with pomegranate seeds and mint.",
-      "imageUrl": "https://images.unsplash.com/photo-1552501014-105b43a8b2c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwb21lZ3JhbmF0ZSUyMHNwcml0enxlbnwwfHx8fDE3Njc0MjQxMjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "pomegranate spritz"
     },
     {
       "id": "heb-honey-smoked-margarita",
@@ -213,14 +255,26 @@
     {
       "id": "learn-infusion",
       "description": "Illustration of infusing spirits with fruits and herbs.",
-      "imageUrl": "https://images.unsplash.com/photo-1614902047920-5695627238ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcGlyaXQlMjBpbmZ1c2lvbnxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1614902047920-5695627238ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxzcGlyaXQlMjBpbmZ1c2lvbnxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "spirit infusion"
     },
     {
       "id": "learn-cocktail-smoking",
       "description": "Illustration of a cocktail being smoked with a smoking gun.",
-      "imageUrl": "https://images.unsplash.com/photo-1552566524-2c069006956b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbW9rZWQlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1552566524-2c069006956b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzbW9rZWQlMjBjb2NrdGFpbHxlbnwwfHx8fDE3Njc0MTEzODF8MA&ixlib-rb-4.1.0&q=80&w=1080",
       "imageHint": "smoked cocktail"
+    },
+    {
+      "id": "default-cocktail",
+      "description": "A generic colorful cocktail.",
+      "imageUrl": "https://images.unsplash.com/photo-1625573170107-4a83c049d993?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxjb2NrdGFpbCUyMGdsYXNzfGVufDB8fHx8MTc2NzM3MzE0MHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "cocktail glass"
+    },
+    {
+      "id": "inventory-scan-placeholder",
+      "description": "A placeholder for the inventory scan.",
+      "imageUrl": "https://images.unsplash.com/photo-1763688459566-32c3d53f724b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxsaXF1b3IlMjBjYWJpbmV0fGVufDB8fHx8MTc2NzQwODg4MHww&ixlib-rb-4.1.0&q=80&w=1080",
+      "imageHint": "liquor cabinet"
     }
   ]
 }

@@ -119,6 +119,68 @@ export const recipes: Recipe[] = [
     },
   },
   {
+    slug: 'sazerac',
+    name: 'Sazerac',
+    category: 'Spirit Forward',
+    image: 'sazerac',
+    spec: {
+      ingredients: [
+        { item: 'Rye Whiskey', amount: '2 oz' },
+        { item: 'Sugar Cube', amount: '1' },
+        { item: "Peychaud's Bitters", amount: '3 dashes' },
+        { item: 'Absinthe', amount: 'Rinse' },
+        { item: 'Lemon Twist', amount: '1 for garnish'},
+      ],
+      instructions: [
+        'Rinse a chilled rocks glass with absinthe, coating the inside, and discard the excess.',
+        'In a mixing glass, muddle the sugar cube with the Peychaud\'s Bitters.',
+        'Add the rye whiskey, fill with ice, and stir until well-chilled.',
+        'Strain into the prepared glass (no ice).',
+        'Express a lemon peel over the drink and discard or use as garnish.',
+      ],
+    },
+    swap: 'Cognac.',
+    mocktail: {
+      name: 'NOLA Zero',
+      recipe: 'Fennel Tea, Cherry Juice, Anise Star',
+    },
+    kid: {
+      name: 'Root Beer Barrel',
+      recipe: 'Root Beer, Lemon Twist',
+    },
+  },
+  {
+    slug: 'vieux-carre',
+    name: 'Vieux Carré',
+    category: 'Spirit Forward',
+    image: 'vieux-carre',
+    spec: {
+      ingredients: [
+        { item: 'Rye Whiskey', amount: '1 oz' },
+        { item: 'Cognac', amount: '1 oz' },
+        { item: 'Sweet Vermouth', amount: '1 oz' },
+        { item: 'Bénédictine', amount: '1 tsp' },
+        { item: 'Peychaud\'s Bitters', amount: '2 dashes' },
+        { item: 'Angostura Bitters', amount: '2 dashes' },
+      ],
+      instructions: [
+        'Combine all ingredients in a mixing glass with ice.',
+        'Stir until well-chilled.',
+        'Strain into a rocks glass with a large ice cube.',
+        'Garnish with a lemon twist or a cherry.'
+      ],
+    },
+    swap: 'Drambuie.',
+    mocktail: {
+      name: 'Big Easy',
+      recipe: 'Black Tea, Cherry Juice, Nutmeg Dust'
+    },
+    kid: {
+      name: 'Jazz Cola',
+      recipe: 'Vanilla Cola, Cherry'
+    }
+  },
+  {
     slug: 'whiskey-sour',
     name: 'Whiskey Sour',
     category: 'Sours',
@@ -207,6 +269,172 @@ export const recipes: Recipe[] = [
     },
   },
   {
+    slug: 'cosmopolitan',
+    name: 'Cosmopolitan',
+    category: 'Sours',
+    image: 'cosmopolitan',
+    spec: {
+      ingredients: [
+        { item: 'Vodka', amount: '1.5 oz' },
+        { item: 'Triple Sec', amount: '0.75 oz' },
+        { item: 'Lime Juice', amount: '0.75 oz' },
+        { item: 'Cranberry Juice', amount: '0.5 oz' },
+      ],
+      instructions: [
+        'Shake all ingredients vigorously with ice.',
+        'Strain into a chilled martini glass.',
+        'Garnish with a lime wheel or orange peel.',
+      ],
+    },
+    swap: 'Gin.',
+    mocktail: {
+      name: 'The Metro',
+      recipe: 'Cranberry, Lime, OJ Splash',
+    },
+    kid: {
+      name: 'Pink Princess',
+      recipe: 'Cranberry, Sprite, Lime Wheel',
+    },
+  },
+  {
+    slug: 'gimlet',
+    name: 'Gimlet',
+    category: 'Sours',
+    image: 'gimlet',
+    spec: {
+      ingredients: [
+        { item: 'Gin', amount: '2 oz' },
+        { item: 'Lime Cordial', amount: '0.75 oz' },
+      ],
+      instructions: [
+        'Add all ingredients to a shaker with ice.',
+        'Shake well for 10-12 seconds until chilled.',
+        'Strain into a chilled coupe glass.',
+        'Garnish with a lime wheel.',
+      ],
+    },
+    swap: 'Vodka.',
+    mocktail: {
+      name: 'Garden Gimlet',
+      recipe: 'Cucumber, Lime, Soda, Muddle',
+    },
+    kid: {
+      name: 'Lime Slush',
+      recipe: 'Blended Limeade',
+    },
+  },
+  {
+    slug: 'bees-knees',
+    name: 'Bee\'s Knees',
+    category: 'Sours',
+    image: 'bees-knees',
+    spec: {
+      ingredients: [
+        { item: 'Gin', amount: '2 oz' },
+        { item: 'Lemon Juice', amount: '0.75 oz' },
+        { item: 'Honey Syrup', amount: '0.75 oz' },
+      ],
+      instructions: [
+        'Shake all ingredients with ice.',
+        'Strain into a chilled coupe glass.',
+        'Garnish with a lemon twist.'
+      ],
+    },
+    swap: 'Bourbon (Gold Rush).',
+    mocktail: {
+      name: 'Bumblebee',
+      recipe: 'Chamomile Tea, Honey, Lemon'
+    },
+    kid: {
+      name: 'Honey Bear',
+      recipe: 'Honey Lemonade'
+    }
+  },
+  {
+    slug: 'sidecar',
+    name: 'Sidecar',
+    category: 'Sours',
+    image: 'sidecar',
+    spec: {
+      ingredients: [
+        { item: 'Brandy', amount: '2 oz' },
+        { item: 'Lemon Juice', amount: '0.75 oz' },
+        { item: 'Triple Sec', amount: '0.75 oz' },
+      ],
+      instructions: [
+        'Coat the rim of a coupe glass with sugar, if desired.',
+        'Shake all ingredients with ice.',
+        'Strain into the prepared glass.',
+        'Garnish with an orange peel.',
+      ],
+    },
+    swap: 'Bourbon.',
+    mocktail: {
+      name: 'Side-Kick',
+      recipe: 'Orange Tea, Lemon'
+    },
+    kid: {
+      name: 'Sugar Rim Lemonade',
+      recipe: 'Pink Lemonade, Sugar Rim'
+    }
+  },
+  {
+    slug: 'paper-plane',
+    name: 'Paper Plane',
+    category: 'Sours',
+    image: 'paper-plane',
+    spec: {
+      ingredients: [
+        { item: 'Bourbon', amount: '0.75 oz' },
+        { item: 'Aperol', amount: '0.75 oz' },
+        { item: 'Amaro Nonino', amount: '0.75 oz' },
+        { item: 'Lemon Juice', amount: '0.75 oz' },
+      ],
+      instructions: [
+        'Shake all ingredients with ice.',
+        'Strain into a chilled coupe glass.',
+        'Garnish with a small paper airplane if you\'re feeling crafty.'
+      ]
+    },
+    swap: 'Campari.',
+    mocktail: {
+      name: 'Paper Glider',
+      recipe: 'Grapefruit, Lemon, Bitter Soda'
+    },
+    kid: {
+      name: 'Airplane',
+      recipe: 'OJ, Sprite, Lemon Wedge wings'
+    }
+  },
+  {
+    slug: 'lemon-drop',
+    name: 'Lemon Drop',
+    category: 'Sours',
+    image: 'lemon-drop',
+    spec: {
+      ingredients: [
+        { item: 'Vodka', amount: '2 oz' },
+        { item: 'Lemon Juice', amount: '0.75 oz' },
+        { item: 'Simple Syrup', amount: '0.75 oz' },
+      ],
+      instructions: [
+        'Rim a martini glass with sugar.',
+        'Shake all ingredients with ice.',
+        'Strain into the prepared glass.',
+        'Garnish with a lemon twist.'
+      ],
+    },
+    swap: 'Gin.',
+    mocktail: {
+      name: 'Lemon Candy',
+      recipe: 'Lemonade, Vanilla, Shake'
+    },
+    kid: {
+      name: 'Sour Pop',
+      recipe: 'Lemonade, Grenadine sinker'
+    }
+  },
+  {
     slug: 'moscow-mule',
     name: 'Moscow Mule',
     category: 'Highballs & Spritzes',
@@ -235,31 +463,60 @@ export const recipes: Recipe[] = [
     },
   },
   {
-    slug: 'gimlet',
-    name: 'Gimlet',
-    category: 'Sours',
-    image: 'gimlet',
+    slug: 'mojito',
+    name: 'Mojito',
+    category: 'Highballs & Spritzes',
+    image: 'mojito',
     spec: {
       ingredients: [
-        { item: 'Gin', amount: '2 oz' },
+        { item: 'Rum', amount: '2 oz' },
+        { item: 'Mint', amount: '6-8 leaves' },
         { item: 'Lime Juice', amount: '0.75 oz' },
-        { item: 'Simple Syrup', amount: '0.75 oz' },
+        { item: 'Simple Syrup', amount: '0.5 oz' },
+        { item: 'Club Soda', amount: 'Top with' }
       ],
       instructions: [
-        'Add all ingredients to a shaker with ice.',
-        'Shake well for 10-12 seconds until chilled.',
-        'Strain into a chilled coupe glass.',
-        'Garnish with a lime wheel.',
-      ],
+        'In a shaker, gently muddle mint with simple syrup and lime juice.',
+        'Add rum and fill with ice.',
+        'Shake well and pour (unstrained) into a highball glass.',
+        'Top with club soda and garnish with a mint sprig.'
+      ]
     },
-    swap: 'Vodka.',
+    swap: 'Gin (Southside).',
     mocktail: {
-      name: 'Garden Gimlet',
-      recipe: 'Seedlip Garden 108, Lime Juice, Simple Syrup',
+      name: 'No-jito',
+      recipe: 'Mint, Lime, Soda, Muddle'
     },
     kid: {
-      name: 'Lime Sparkler',
-      recipe: 'Sprite, a splash of lime juice, and a lime wheel garnish',
+      name: 'Swamp Water',
+      recipe: 'Sprite, Strained Mint so no green bits'
+    }
+  },
+  {
+    slug: 'paloma',
+    name: 'Paloma',
+    category: 'Highballs & Spritzes',
+    image: 'paloma',
+    spec: {
+      ingredients: [
+        { item: 'Tequila', amount: '2 oz' },
+        { item: 'Lime Juice', amount: '0.5 oz' },
+        { item: 'Grapefruit Soda', amount: 'Top with' },
+      ],
+      instructions: [
+        'Build in a salt-rimmed highball glass filled with ice: add tequila and lime juice.',
+        'Top with grapefruit soda and stir gently.',
+        'Garnish with a lime wedge.',
+      ],
+    },
+    swap: 'Grapefruit Juice + Soda.',
+    mocktail: {
+      name: 'The Dove',
+      recipe: 'Grapefruit Soda, Lime, Salt',
+    },
+    kid: {
+      name: 'Pink Fizz',
+      recipe: 'Grapefruit Soda, Strawberry',
     },
   },
   {
@@ -269,8 +526,8 @@ export const recipes: Recipe[] = [
     image: 'tom-collins',
     spec: {
       ingredients: [
-        { item: 'Gin', amount: '2 oz' },
-        { item: 'Lemon Juice', amount: '1 oz' },
+        { item: 'Gin', amount: '1.5 oz' },
+        { item: 'Lemon Juice', amount: '0.75 oz' },
         { item: 'Simple Syrup', amount: '0.5 oz' },
         { item: 'Club Soda', amount: 'Top with' },
       ],
@@ -280,14 +537,156 @@ export const recipes: Recipe[] = [
         'Garnish with a lemon wheel and a cherry.',
       ],
     },
-    swap: 'Vodka (Vodka Collins).',
+    swap: 'Vodka.',
     mocktail: {
-      name: 'Lemon Fizz',
-      recipe: 'Lemonade, top with club soda',
+      name: 'Lavender Lemonade',
+      recipe: 'Lemonade, Soda, Lavender',
     },
     kid: {
-      name: 'Bubbly Lemonade',
-      recipe: 'Lemonade, Sprite, and a cherry',
+      name: 'Fancy Lemonade',
+      recipe: 'Lemonade, Sparkling Water',
+    },
+  },
+  {
+    slug: 'aperol-spritz',
+    name: 'Aperol Spritz',
+    category: 'Highballs & Spritzes',
+    image: 'aperol-spritz',
+    spec: {
+      ingredients: [
+        { item: 'Prosecco', amount: '3 oz' },
+        { item: 'Aperol', amount: '2 oz' },
+        { item: 'Club Soda', amount: '1 oz' },
+      ],
+      instructions: [
+        'Build the drink in a wine glass filled with ice.',
+        'Add Aperol, then Prosecco, and a splash of soda.',
+        'Garnish with an orange slice.',
+      ],
+    },
+    swap: 'Campari.',
+    mocktail: {
+      name: 'Sunset Spritz',
+      recipe: 'Tonic, Cranberry, Orange',
+    },
+    kid: {
+      name: 'Orange Sparkler',
+      recipe: 'Orange Soda, Ice Cream',
+    },
+  },
+  {
+    slug: 'pomegranate-hugo-spritz',
+    name: 'Pomegranate Hugo Spritz',
+    category: 'Highballs & Spritzes',
+    image: 'pomegranate-hugo-spritz',
+    spec: {
+      ingredients: [
+        { item: 'Elderflower Liqueur', amount: '1.5 oz' },
+        { item: 'Pomegranate Juice', amount: '1 oz' },
+        { item: 'Mint', amount: 'Handful' },
+        { item: 'Prosecco', amount: 'Top with' },
+        { item: 'Club Soda', amount: 'Splash' }
+      ],
+      instructions: [
+        'Gently muddle mint in a large wine glass.',
+        'Add Elderflower Liqueur and Pomegranate Juice.',
+        'Fill the glass with ice.',
+        'Top with Prosecco and a splash of soda.',
+        'Stir gently and garnish with more mint and pomegranate seeds.'
+      ],
+    },
+    swap: "Elderflower Syrup.",
+    mocktail: {
+      name: 'Winter Garden',
+      recipe: 'Elderflower Syrup, Pom Juice, Soda, Press Mint'
+    },
+    kid: {
+      name: 'Berry Bubbly',
+      recipe: 'Pom Juice, 7-Up'
+    }
+  },
+  {
+    slug: 'ranch-water',
+    name: 'Ranch Water',
+    category: 'Highballs & Spritzes',
+    image: 'ranch-water',
+    spec: {
+      ingredients: [
+        { item: 'Tequila', amount: '2 oz' },
+        { item: 'Lime Juice', amount: '0.5 oz' },
+        { item: 'Topo Chico', amount: 'Top with' },
+      ],
+      instructions: [
+        'Fill a highball glass with ice.',
+        'Add tequila and lime juice.',
+        'Top with Topo Chico mineral water.',
+        'Garnish with a lime wedge.'
+      ]
+    },
+    swap: 'Must be Mineral Water.',
+    mocktail: {
+      name: 'Mineral Lime',
+      recipe: 'Topo Chico, Lime'
+    },
+    kid: {
+      name: 'Fizzy Lime',
+      recipe: 'Sprite, Lime'
+    }
+  },
+  {
+    slug: 'dark-n-stormy',
+    name: "Dark 'n' Stormy",
+    category: 'Highballs & Spritzes',
+    image: 'dark-n-stormy',
+    spec: {
+      ingredients: [
+        { item: 'Dark Rum', amount: '2 oz' },
+        { item: 'Lime Juice', amount: '0.5 oz' },
+        { item: 'Ginger Beer', amount: 'Top with' },
+      ],
+      instructions: [
+        'Fill a highball glass with ice.',
+        'Pour ginger beer over ice, then lime juice.',
+        'Float the dark rum on top to create the "stormy" layer.',
+        'Garnish with a lime wedge.',
+      ],
+    },
+    swap: "White Rum (Rum Buck).",
+    mocktail: {
+      name: 'Storm Cloud',
+      recipe: 'Ginger Beer, Molasses drizzle',
+    },
+    kid: {
+      name: 'Pirate Punch',
+      recipe: 'Ginger Ale, Lime',
+    },
+  },
+  {
+    slug: 'mint-julep',
+    name: 'Mint Julep',
+    category: 'Spirit Forward',
+    image: 'mint-julep',
+    spec: {
+      ingredients: [
+        { item: 'Bourbon', amount: '2.5 oz' },
+        { item: 'Simple Syrup', amount: '0.25 oz' },
+        { item: 'Mint Leaves', amount: '8-10' },
+      ],
+      instructions: [
+        'In a Julep cup, gently muddle the mint leaves with the simple syrup to release their oils.',
+        'Add the bourbon and fill the cup with crushed ice.',
+        'Stir until the cup becomes frosty on the outside.',
+        'Garnish with a large mint sprig, after slapping it to release the aroma.',
+      ],
+    },
+    swap: 'Brandy.',
+    mocktail: {
+      name: 'Southern Tea',
+      recipe: 'Sweet Tea, Mint, Crushed Ice',
+    },
+    kid: {
+      name: 'Minty Fresh',
+      recipe: 'Sprite, Mint Syrup',
     },
   },
   {
@@ -298,8 +697,8 @@ export const recipes: Recipe[] = [
     spec: {
       ingredients: [
         { item: 'Aged Rum', amount: '2 oz' },
-        { item: 'Lime Juice', amount: '1 oz' },
-        { item: 'Orange Liqueur', amount: '0.5 oz' },
+        { item: 'Lime Juice', amount: '0.75 oz' },
+        { item: 'Dry Curacao', amount: '0.5 oz' },
         { item: 'Orgeat', amount: '0.5 oz' },
       ],
       instructions: [
@@ -308,15 +707,154 @@ export const recipes: Recipe[] = [
         'Garnish with a mint sprig (slap it first!) and a lime wheel.',
       ],
     },
-    swap: 'Mix of light and dark rum.',
+    swap: 'Amaretto.',
     mocktail: {
-      name: 'Aloha No-Tai',
-      recipe: 'Pineapple juice, lime juice, orgeat, and a splash of orange juice',
+      name: 'No Tai',
+      recipe: 'Pineapple, Lime, Orgeat, Shake',
     },
     kid: {
-      name: 'Island Punch',
-      recipe: 'Pineapple juice, orange juice, and a cherry',
+      name: 'Island Explorer',
+      recipe: 'Pineapple, OJ, Grenadine',
     },
+  },
+  {
+    slug: 'pina-colada',
+    name: 'Piña Colada',
+    category: 'Tiki, Tropical & Dessert',
+    image: 'pina-colada',
+    spec: {
+      ingredients: [
+        { item: 'Rum', amount: '2 oz' },
+        { item: 'Pineapple Juice', amount: '2 oz' },
+        { item: 'Coconut Cream', amount: '1.5 oz' },
+      ],
+      instructions: [
+        'Blend all ingredients with a cup of crushed ice until smooth.',
+        'Pour into a chilled Poco Grande glass.',
+        'Garnish with a pineapple wedge and cherry.',
+      ],
+    },
+    swap: 'Vodka.',
+    mocktail: {
+      name: 'Virgin Colada',
+      recipe: 'Pineapple, Coco Lopez, Shake',
+    },
+    kid: {
+      name: 'Coco-Pine Smoothie',
+      recipe: 'Same as mocktail',
+    },
+  },
+  {
+    slug: 'tequila-sunrise',
+    name: 'Tequila Sunrise',
+    category: 'Tiki, Tropical & Dessert',
+    image: 'tequila-sunrise',
+    spec: {
+      ingredients: [
+        { item: 'Tequila', amount: '2 oz' },
+        { item: 'Orange Juice', amount: '4 oz' },
+        { item: 'Grenadine', amount: '0.5 oz' },
+      ],
+      instructions: [
+        'Fill a highball glass with ice.',
+        'Add tequila and orange juice.',
+        'Slowly pour the grenadine down the side of the glass so it sinks to the bottom, creating a sunrise effect.',
+        'Do not stir. Garnish with an orange slice and cherry.'
+      ],
+    },
+    swap: 'Vodka.',
+    mocktail: {
+      name: 'The Sunrise',
+      recipe: 'OJ, Grenadine'
+    },
+    kid: {
+      name: 'Morning Sun',
+      recipe: 'OJ, Sprite, Grenadine'
+    }
+  },
+  {
+    slug: 'caipirinha',
+    name: 'Caipirinha',
+    category: 'Sours',
+    image: 'caipirinha',
+    spec: {
+      ingredients: [
+        { item: 'Cachaça', amount: '2 oz' },
+        { item: 'Lime', amount: 'Half, cut into wedges' },
+        { item: 'Sugar', amount: '2 tsp' },
+      ],
+      instructions: [
+        'In a rocks glass, muddle the lime wedges firmly with the sugar to extract the juice.',
+        'Fill the glass with ice.',
+        'Add the cachaça and stir to combine.',
+      ],
+    },
+    swap: 'Vodka.',
+    mocktail: {
+      name: 'Lime Crush',
+      recipe: 'Muddled Lime, Sugar, Soda',
+    },
+    kid: {
+      name: 'Brazilian Limeade',
+      recipe: 'Blended Limes, Condensed Milk',
+    },
+  },
+  {
+    slug: 'espresso-martini',
+    name: 'Espresso Martini',
+    category: 'Tiki, Tropical & Dessert',
+    image: 'espresso-martini',
+    spec: {
+      ingredients: [
+        { item: 'Vodka', amount: '2 oz' },
+        { item: 'Espresso', amount: '1 oz' },
+        { item: 'Coffee Liqueur', amount: '0.5 oz' },
+        { item: 'Simple Syrup', amount: '0.25 oz' },
+      ],
+      instructions: [
+        'Brew espresso and let it cool completely.',
+        'Add all ingredients to a shaker with ice.',
+        'Shake very hard for 15 seconds to create a thick foam.',
+        'Strain into a chilled martini glass.',
+        'Garnish with three coffee beans.'
+      ]
+    },
+    swap: 'Rum.',
+    mocktail: {
+      name: 'Espresso Marti-NO',
+      recipe: 'Cold Brew, Choc Syrup, Shake Hard'
+    },
+    kid: {
+      name: 'Choc Milkshake Martini',
+      recipe: 'Frothy Chocolate Milk in fancy glass'
+    }
+  },
+  {
+    slug: 'white-russian',
+    name: 'White Russian',
+    category: 'Tiki, Tropical & Dessert',
+    image: 'white-russian',
+    spec: {
+      ingredients: [
+        { item: 'Vodka', amount: '2 oz' },
+        { item: 'Coffee Liqueur', amount: '1 oz' },
+        { item: 'Cream', amount: '1 oz' },
+      ],
+      instructions: [
+        'Fill a rocks glass with ice.',
+        'Add vodka and coffee liqueur.',
+        'Top with cream and stir gently.'
+      ]
+    },
+    swap: 'Milk.',
+    mocktail: {
+      name: 'White Lie',
+      recipe: 'Chilled Coffee, Cream, Vanilla'
+    },
+    kid: {
+      name: 'Iced Coffee Milk',
+      recipe: 'Decaf, Milk, Choc Syrup'
+    }
   },
   {
     slug: 'boulevardier',
@@ -346,35 +884,6 @@ export const recipes: Recipe[] = [
     },
   },
   {
-    slug: 'sazerac',
-    name: 'Sazerac',
-    category: 'Spirit Forward',
-    image: 'sazerac',
-    spec: {
-      ingredients: [
-        { item: 'Rye Whiskey', amount: '2 oz' },
-        { item: 'Simple Syrup', amount: '0.25 oz' },
-        { item: "Peychaud's Bitters", amount: '3 dashes' },
-        { item: 'Absinthe', amount: 'Rinse' },
-      ],
-      instructions: [
-        'Rinse a chilled rocks glass with absinthe, coating the inside, and discard the excess.',
-        'Stir the rye, simple syrup, and bitters with ice in a mixing glass.',
-        'Strain into the prepared glass (no ice).',
-        'Express a lemon peel over the drink and discard (or use as garnish).',
-      ],
-    },
-    swap: 'Cognac.',
-    mocktail: {
-      name: 'NOLA Fizz',
-      recipe: 'Black tea, a few drops of anise extract, simple syrup, and a lemon peel',
-    },
-    kid: {
-      name: 'Lemon-Root Fizz',
-      recipe: 'Root beer with a lemon twist',
-    },
-  },
-  {
     slug: 'french-75',
     name: 'French 75',
     category: 'Highballs & Spritzes',
@@ -400,198 +909,6 @@ export const recipes: Recipe[] = [
     kid: {
       name: 'Sparkling Lemon Drop',
       recipe: 'Sparkling lemonade with a lemon twist',
-    },
-  },
-  {
-    slug: 'aperol-spritz',
-    name: 'Aperol Spritz',
-    category: 'Highballs & Spritzes',
-    image: 'aperol-spritz',
-    spec: {
-      ingredients: [
-        { item: 'Aperol', amount: '3 parts' },
-        { item: 'Prosecco', amount: '3 parts' },
-        { item: 'Club Soda', amount: '1 part' },
-      ],
-      instructions: [
-        'Build the drink in a wine glass filled with ice.',
-        'Add Aperol, then Prosecco, and a splash of soda.',
-        'Garnish with an orange slice.',
-      ],
-    },
-    swap: 'Campari for a more bitter Spritz.',
-    mocktail: {
-      name: 'Sunset Spritz',
-      recipe: 'Orange juice, a splash of cranberry, and top with sparkling water',
-    },
-    kid: {
-      name: 'Bubbly Orange',
-      recipe: 'Orange juice and Sprite',
-    },
-  },
-  {
-    slug: 'pina-colada',
-    name: 'Piña Colada',
-    category: 'Tiki, Tropical & Dessert',
-    image: 'pina-colada',
-    spec: {
-      ingredients: [
-        { item: 'Light Rum', amount: '2 oz' },
-        { item: 'Coconut Cream', amount: '1.5 oz' },
-        { item: 'Pineapple Juice', amount: '1.5 oz' },
-      ],
-      instructions: [
-        'Blend all ingredients with a cup of crushed ice until smooth.',
-        'Pour into a chilled Poco Grande glass.',
-        'Garnish with a pineapple wedge and cherry.',
-      ],
-    },
-    swap: 'Dark rum for more flavor.',
-    mocktail: {
-      name: 'Virgin Piña Colada',
-      recipe: 'Blend coconut cream, pineapple juice, and ice',
-    },
-    kid: {
-      name: 'Pineapple Smoothie',
-      recipe: 'Pineapple juice, vanilla ice cream, and a splash of milk blended',
-    },
-  },
-  {
-    slug: 'cosmopolitan',
-    name: 'Cosmopolitan',
-    category: 'Sours',
-    image: 'cosmopolitan',
-    spec: {
-      ingredients: [
-        { item: 'Citrus Vodka', amount: '1.5 oz' },
-        { item: 'Cointreau', amount: '1 oz' },
-        { item: 'Lime Juice', amount: '0.5 oz' },
-        { item: 'Cranberry Juice', amount: '0.25 oz' },
-      ],
-      instructions: [
-        'Shake all ingredients vigorously with ice.',
-        'Strain into a chilled martini glass.',
-        'Garnish with a lime wheel or orange peel.',
-      ],
-    },
-    swap: 'Regular vodka.',
-    mocktail: {
-      name: 'Cran-Lime Cooler',
-      recipe: 'Cranberry juice, lime juice, and a splash of orange juice',
-    },
-    kid: {
-      name: 'Ladybug',
-      recipe: 'Cranberry and Sprite with a lime wedge',
-    },
-  },
-  {
-    slug: 'dark-n-stormy',
-    name: "Dark 'n' Stormy",
-    category: 'Highballs & Spritzes',
-    image: 'dark-n-stormy',
-    spec: {
-      ingredients: [
-        { item: "Gosling's Black Seal Rum", amount: '2 oz' },
-        { item: 'Ginger Beer', amount: 'Top with' },
-      ],
-      instructions: [
-        'Fill a highball glass with ice.',
-        'Pour ginger beer over ice, leaving room at the top.',
-        'Float the dark rum on top to create the "stormy" layer.',
-        'Garnish with a lime wedge.',
-      ],
-    },
-    swap: "Any dark rum will do, but it's not technically a Dark 'n' Stormy!",
-    mocktail: {
-      name: 'Cloudy and Calm',
-      recipe: 'Cola floated on top of ginger beer',
-    },
-    kid: {
-      name: 'Ginger Cola',
-      recipe: 'Mix of cola and ginger ale',
-    },
-  },
-  {
-    slug: 'paloma',
-    name: 'Paloma',
-    category: 'Highballs & Spritzes',
-    image: 'paloma',
-    spec: {
-      ingredients: [
-        { item: 'Tequila', amount: '2 oz' },
-        { item: 'Lime Juice', amount: '0.5 oz' },
-        { item: 'Grapefruit Soda', amount: 'Top with' },
-      ],
-      instructions: [
-        'Build in a salt-rimmed highball glass filled with ice: add tequila and lime juice.',
-        'Top with grapefruit soda and stir gently.',
-        'Garnish with a lime wedge.',
-      ],
-    },
-    swap: 'Mezcal for a smoky flavor.',
-    mocktail: {
-      name: 'Virgin Paloma',
-      recipe: 'Grapefruit soda with a squeeze of lime',
-    },
-    kid: {
-      name: 'Pink Flamingo',
-      recipe: 'Grapefruit soda with a cherry',
-    },
-  },
-  {
-    slug: 'sidecar',
-    name: 'Sidecar',
-    category: 'Sours',
-    image: 'sidecar',
-    spec: {
-      ingredients: [
-        { item: 'Cognac', amount: '2 oz' },
-        { item: 'Orange Liqueur', amount: '0.75 oz' },
-        { item: 'Lemon Juice', amount: '0.75 oz' },
-      ],
-      instructions: [
-        'Coat the rim of a coupe glass with sugar, if desired.',
-        'Shake all ingredients with ice.',
-        'Strain into the prepared glass.',
-        'Garnish with an orange peel.',
-      ],
-    },
-    swap: 'Brandy or Bourbon.',
-    mocktail: {
-      name: 'Main Squeeze',
-      recipe: 'Orange juice, lemon juice, and a splash of non-alcoholic spirit',
-    },
-    kid: {
-      name: 'Orange Creamsicle',
-      recipe: 'Orange juice and a scoop of vanilla ice cream, blended',
-    },
-  },
-  {
-    slug: 'mint-julep',
-    name: 'Mint Julep',
-    category: 'Spirit Forward',
-    image: 'mint-julep',
-    spec: {
-      ingredients: [
-        { item: 'Bourbon', amount: '2.5 oz' },
-        { item: 'Simple Syrup', amount: '0.5 oz' },
-        { item: 'Mint Leaves', amount: '8' },
-      ],
-      instructions: [
-        'In a Julep cup, gently muddle the mint leaves with the simple syrup to release their oils.',
-        'Add the bourbon and fill the cup with crushed ice.',
-        'Stir until the cup becomes frosty on the outside.',
-        'Garnish with a large mint sprig, after slapping it to release the aroma.',
-      ],
-    },
-    swap: 'Rye whiskey for a spicier version.',
-    mocktail: {
-      name: 'Southern Belle',
-      recipe: 'Muddle mint with simple syrup, add strong black tea, and top with crushed ice',
-    },
-    kid: {
-      name: 'Minty Iced Tea',
-      recipe: 'Sweet tea with muddled mint and lots of crushed ice',
     },
   },
   {
@@ -648,33 +965,6 @@ export const recipes: Recipe[] = [
     kid: {
       name: '00-Lemon',
       recipe: 'Sprite with a big lemon peel twist',
-    },
-  },
-  {
-    slug: 'caipirinha',
-    name: 'Caipirinha',
-    category: 'Sours',
-    image: 'caipirinha',
-    spec: {
-      ingredients: [
-        { item: 'Cachaça', amount: '2 oz' },
-        { item: 'Lime', amount: 'Half, cut into wedges' },
-        { item: 'Sugar', amount: '2 tsp' },
-      ],
-      instructions: [
-        'In a rocks glass, muddle the lime wedges firmly with the sugar to extract the juice.',
-        'Fill the glass with ice.',
-        'Add the cachaça and stir to combine.',
-      ],
-    },
-    swap: 'Vodka (Caipiroska) or Rum.',
-    mocktail: {
-      name: 'Ipanema',
-      recipe: 'Muddle lime and sugar, top with ice and sparkling water',
-    },
-    kid: {
-      name: 'Sweet Lime Soda',
-      recipe: 'Sprite with muddled lime and sugar',
     },
   },
   {
@@ -820,38 +1110,6 @@ export const recipes: Recipe[] = [
     },
   },
   {
-    slug: 'pomegranate-hugo-spritz',
-    name: 'Pomegranate Hugo Spritz',
-    category: 'Highballs & Spritzes',
-    image: 'pomegranate-hugo-spritz',
-    spec: {
-      ingredients: [
-        { item: 'Prosecco, chilled', amount: '1 bottle (750ml)' },
-        { item: 'Pomegranate Liqueur', amount: '1 1/2 cups' },
-        { item: 'Elderflower Liqueur', amount: '3/4 cup' },
-        { item: 'Club Soda', amount: '3/4 cup' },
-        { item: 'Fresh Mint Leaves', amount: '1/2 cup' },
-        { item: 'Pomegranate Seeds', amount: '1/2 cup' },
-      ],
-      instructions: [
-        'Gently muddle mint and pomegranate seeds in a large pitcher to release their aromas.',
-        'Fill the pitcher with ice.',
-        'Build the drink: Pour in Prosecco, Pomegranate Liqueur, and Elderflower Liqueur.',
-        'Top with a splash of club soda and stir gently to combine.',
-        'Serve in wine glasses and garnish with more mint and pomegranate seeds.'
-      ],
-    },
-    swap: "Use Pomegranate juice if you don't have the liqueur.",
-    mocktail: {
-      name: 'Pomegranate Elderflower Spritzer',
-      recipe: 'Mix 2 oz Pomegranate Juice, 0.5 oz Elderflower syrup, and top with sparkling water.'
-    },
-    kid: {
-      name: 'Ruby Fizz',
-      recipe: 'Sprite mixed with a splash of pomegranate juice and a few pomegranate seeds.'
-    }
-  },
-  {
     slug: 'heb-honey-smoked-margarita',
     name: 'H-E-B Honey Smoked Margarita',
     category: 'Sours',
@@ -882,3 +1140,5 @@ export const recipes: Recipe[] = [
     }
   }
 ];
+
+    
