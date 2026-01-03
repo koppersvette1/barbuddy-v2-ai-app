@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useSettings } from '@/contexts/settings-context';
 import { useToast } from '@/hooks/use-toast';
-import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight, Star, ShoppingCart, ListChecks } from 'lucide-react';
+import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight, Star, ShoppingCart, ListChecks, Share2 } from 'lucide-react';
 import { suggestFoodPairing } from '@/ai/flows/suggest-food-pairing';
 import { suggestWoodPairing } from '@/ai/flows/suggest-wood-pairing';
 import { suggestCocktailSubstitutions, SuggestCocktailSubstitutionsOutput } from '@/ai/flows/suggest-cocktail-substitutions';
@@ -43,6 +43,13 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
   const { settings, toggleFavorite } = useSettings();
   const { toast } = useToast();
   const [servings, setServings] = useState(1);
+  const [isShareable, setIsShareable] = useState(false);
+
+  useEffect(() => {
+    if (typeof navigator !== 'undefined' && navigator.share) {
+      setIsShareable(true);
+    }
+  }, []);
 
   if (!params) {
     // You can render a loading state here
@@ -84,6 +91,21 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
       description: `${recipe.name} has been ${isFavorite ? 'removed from' : 'added to'} your favorites.`,
     });
   }
+
+  const handleShareShoppingList = async () => {
+    if (navigator.share) {
+      const shoppingListText = `Shopping List for ${recipe.name}:\n${missingIngredients.map(ing => `- ${ing.item}`).join('\n')}`;
+      try {
+        await navigator.share({
+          title: `Shopping List for ${recipe.name}`,
+          text: shoppingListText,
+        });
+        toast({ title: 'Shopping list shared!' });
+      } catch (error) {
+        toast({ variant: 'destructive', title: 'Could not share list', description: 'Sharing was cancelled or failed.' });
+      }
+    }
+  };
 
   const handleFoodPairing = () => {
     startTransition(async () => {
@@ -177,12 +199,21 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
             {missingIngredients.length > 0 && (
                 <Card>
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2">
-                            <ShoppingCart className="w-6 h-6" /> Shopping List
-                        </CardTitle>
-                        <CardDescription>
-                            You're missing a few items for this recipe.
-                        </CardDescription>
+                        <div className="flex justify-between items-start">
+                            <div>
+                                <CardTitle className="flex items-center gap-2">
+                                    <ShoppingCart className="w-6 h-6" /> Shopping List
+                                </CardTitle>
+                                <CardDescription>
+                                    You're missing a few items for this recipe.
+                                </CardDescription>
+                            </div>
+                             {isShareable && (
+                                <Button variant="ghost" size="icon" onClick={handleShareShoppingList}>
+                                    <Share2 className="w-5 h-5" />
+                                </Button>
+                            )}
+                        </div>
                     </CardHeader>
                     <CardContent>
                         <ul className="space-y-2 text-sm text-muted-foreground">
