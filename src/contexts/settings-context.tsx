@@ -1,7 +1,7 @@
 
 "use client";
 
-import type { Settings, SettingsContextType } from '@/lib/types';
+import type { Recipe, Settings, SettingsContextType } from '@/lib/types';
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 const defaultSettings: Settings = {
@@ -11,6 +11,7 @@ const defaultSettings: Settings = {
   hasSmoker: true,
   showBeta: true,
   inventory: [],
+  customRecipes: [],
   fontSize: 'medium',
 };
 
@@ -26,9 +27,16 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const setInventory = (inventory: string[]) => {
     setSettings(prev => ({ ...prev, inventory }));
   };
+  
+  const addCustomRecipe = (recipe: Recipe) => {
+    setSettings(prev => ({
+      ...prev,
+      customRecipes: [...prev.customRecipes, recipe]
+    }));
+  };
 
   return (
-    <SettingsContext.Provider value={{ settings, updateSettings, setInventory }}>
+    <SettingsContext.Provider value={{ settings, updateSettings, setInventory, addCustomRecipe }}>
       {children}
     </SettingsContext.Provider>
   );

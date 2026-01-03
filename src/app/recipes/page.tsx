@@ -5,7 +5,7 @@ import { useState, useTransition } from "react";
 import Link from 'next/link';
 import { Header } from "@/components/layout/header";
 import { RecipeCard } from "@/components/recipe-card";
-import { recipes } from "@/lib/recipes";
+import { recipes as defaultRecipes } from "@/lib/recipes";
 import type { Recipe } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -24,6 +24,8 @@ export default function RecipesPage() {
   const [isPending, startTransition] = useTransition();
   const [generatedRecipes, setGeneratedRecipes] = useState<Recipe[] | null>(null);
 
+  const allRecipes = [...defaultRecipes, ...settings.customRecipes];
+
   const handleGenerateRecipes = () => {
     if (settings.inventory.length === 0) {
       toast({
@@ -36,7 +38,7 @@ export default function RecipesPage() {
     startTransition(async () => {
       const result = await generateRecipesFromInventory({ inventory: settings.inventory });
       if (result.recipes && result.recipes.length > 0) {
-        const foundRecipes = recipes.filter(r => result.recipes.includes(r.name));
+        const foundRecipes = allRecipes.filter(r => result.recipes.includes(r.name));
         setGeneratedRecipes(foundRecipes);
         toast({
           title: "Cheers!",
@@ -53,7 +55,7 @@ export default function RecipesPage() {
     });
   };
 
-  const filteredAndSortedRecipes = recipes
+  const filteredAndSortedRecipes = allRecipes
     .filter((recipe) =>
       recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
     )
@@ -67,15 +69,19 @@ export default function RecipesPage() {
       if (sortOrder === 'category') {
         return a.category.localeCompare(b.category) || a.name.localeCompare(b.name);
       }
+      // sort custom recipes to the top
+      if (a.custom && !b.custom) return -1;
+      if (!a.custom && b.custom) return 1;
       return 0;
     });
 
   const recipesByCategory = filteredAndSortedRecipes.reduce((acc, recipe) => {
-    (acc[recipe.category] = acc[recipe.category] || []).push(recipe);
+    const category = recipe.custom ? 'My Custom Recipes' : recipe.category;
+    (acc[category] = acc[category] || []).push(recipe);
     return acc;
-  }, {} as Record<Recipe['category'], Recipe[]>);
+  }, {} as Record<string, Recipe[]>);
 
-  const categoryOrder: Recipe['category'][] = ['Spirit Forward', 'Sours', 'Highballs & Spritzes', 'Tiki, Tropical & Dessert'];
+  const categoryOrder: string[] = ['My Custom Recipes', 'Spirit Forward', 'Sours', 'Highballs & Spritzes', 'Tiki, Tropical & Dessert'];
 
   return (
     <div className="flex flex-col">

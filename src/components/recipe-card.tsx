@@ -8,7 +8,9 @@ import { Badge } from './ui/badge';
 import { Star } from 'lucide-react';
 
 export function RecipeCard({ recipe }: { recipe: Recipe }) {
-  const image = PlaceHolderImages.find(img => img.id === recipe.image) || PlaceHolderImages.find(img => img.id === 'default-cocktail');
+  const image = recipe.imageDataUri 
+    ? { imageUrl: recipe.imageDataUri, imageHint: recipe.imageHint || 'custom cocktail' }
+    : PlaceHolderImages.find(img => img.id === recipe.image) || PlaceHolderImages.find(img => img.id === 'default-cocktail');
 
   return (
     <Link href={`/recipes/${recipe.slug}`} className="group">
@@ -24,7 +26,7 @@ export function RecipeCard({ recipe }: { recipe: Recipe }) {
             />
             {recipe.custom && (
               <div className="absolute top-2 right-2 bg-primary/80 text-primary-foreground rounded-full p-1.5 backdrop-blur-sm">
-                <Star className="w-4 h-4" />
+                <Star className="w-4 h-4 fill-current" />
               </div>
             )}
           </div>

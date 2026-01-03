@@ -22,6 +22,7 @@ export interface Recipe {
     recipe: string;
   };
   custom?: boolean;
+  imageDataUri?: string;
 }
 
 export type Settings = {
@@ -31,6 +32,7 @@ export type Settings = {
   hasSmoker: boolean;
   showBeta: boolean;
   inventory: string[];
+  customRecipes: Recipe[];
   fontSize: 'small' | 'medium' | 'large';
 };
 
@@ -38,6 +40,5 @@ export type SettingsContextType = {
   settings: Settings;
   updateSettings: (newSettings: Partial<Settings>) => void;
   setInventory: (inventory: string[]) => void;
+  addCustomRecipe: (recipe: Recipe) => void;
 };
-
-    

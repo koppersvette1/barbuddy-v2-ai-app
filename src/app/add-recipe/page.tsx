@@ -27,6 +27,7 @@ import { X, Plus, Sparkles, Loader, Image as ImageIcon } from "lucide-react";
 import { Recipe } from "@/lib/types";
 import { generateCocktailImage } from "@/ai/flows/generate-cocktail-image";
 import Image from "next/image";
+import { useSettings } from "@/contexts/settings-context";
 
 const recipeSchema = z.object({
   name: z.string().min(3, "Recipe name must be at least 3 characters long."),
@@ -48,6 +49,7 @@ export default function AddRecipePage() {
   const router = useRouter();
   const { toast } = useToast();
   const [isGenerating, startTransition] = useTransition();
+  const { addCustomRecipe } = useSettings();
   
   const form = useForm<RecipeFormValues>({
     resolver: zodResolver(recipeSchema),
@@ -89,23 +91,33 @@ export default function AddRecipePage() {
   };
 
   function onSubmit(data: RecipeFormValues) {
-    const newRecipe: Omit<Recipe, 'slug' | 'swap' | 'mocktail' | 'kid' > & { custom: boolean } = {
+    const slug = data.name.toLowerCase().replace(/\s+/g, '-');
+    
+    const newRecipe: Recipe = {
       name: data.name,
+      slug: slug,
       category: data.category,
-      // In a real app, you'd upload this imageDataUri to cloud storage and save the URL.
-      // For now, we'll use a temporary ID and the prompt as a hint.
-      image: `custom-${data.name.toLowerCase().replace(/\s+/g, '-')}`,
+      image: `custom-${slug}`,
       imageHint: data.imagePrompt,
+      imageDataUri: data.imageDataUri,
       spec: data.spec,
+      swap: "N/A - Custom Recipe",
+      mocktail: {
+        name: `Virgin ${data.name}`,
+        recipe: "N/A - Custom Recipe",
+      },
+      kid: {
+        name: `${data.name} Cooler`,
+        recipe: "N/A - Custom Recipe",
+      },
       custom: true,
     }
     
-    console.log("New Recipe Submitted:", newRecipe);
-    console.log("Image Data (first 50 chars):", data.imageDataUri?.substring(0, 50));
+    addCustomRecipe(newRecipe);
     
     toast({
-      title: "Recipe Submitted!",
-      description: `The recipe for "${data.name}" has been logged. In a real app, I would save this to a database and upload the image.`,
+      title: "Recipe Added!",
+      description: `Your custom cocktail "${data.name}" has been saved to your library.`,
     });
     
     router.push("/recipes");
@@ -279,5 +291,3 @@ export default function AddRecipePage() {
     </div>
   );
 }
-
-    
