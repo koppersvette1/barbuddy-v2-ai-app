@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -59,15 +60,17 @@ const prompt = ai.definePrompt({
   input: {schema: GenerateRecipesFromInventoryInputSchema},
   output: {schema: GenerateRecipesFromInventoryOutputSchema},
   tools: [findRecipesTool],
-  prompt: `You are BarBuddy, a creative Mixology Partner and Flavor Architect.  Based on the user's inventory, suggest cocktail recipes that they can make.
+  prompt: `You are BarBuddy, a creative Mixology Partner and Flavor Architect. Your goal is to help the user figure out what they can make with the ingredients they already have.
 
-  The user's inventory is:
+  You will be given the user's current inventory.
+  1.  Use the 'findRecipes' tool to check which standard recipes can be made with the provided inventory.
+  2.  If the tool returns one or more recipe names, present these to the user in the 'recipes' output field.
+  3.  If the tool returns an empty list, it means no direct recipes can be made. In this case, return an empty 'recipes' array. This will signal to the user that they may need more ingredients.
+  
+  User's Inventory:
   {{#each inventory}}
   - {{{this}}}
   {{/each}}
-
-  Use the findRecipes tool to identify which recipes the user can make with their current inventory.
-  If the tool returns recipes, present them to the user in the output. If the tool returns an empty list, inform the user that no recipes could be made with their current inventory and suggest they add more items.
 `,
 });
 
@@ -82,3 +85,4 @@ const generateRecipesFromInventoryFlow = ai.defineFlow(
     return output!;
   }
 );
+
