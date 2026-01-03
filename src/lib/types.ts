@@ -28,6 +28,7 @@ export type Settings = {
   hasSmoker: boolean;
   showBeta: boolean;
   inventory: string[];
+  fontSize: 'small' | 'medium' | 'large';
 };
 
 export type SettingsContextType = {

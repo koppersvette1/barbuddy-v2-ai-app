@@ -10,6 +10,7 @@ const defaultSettings: Settings = {
   hasSmoker: true,
   showBeta: true,
   inventory: [],
+  fontSize: 'medium',
 };
 
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);

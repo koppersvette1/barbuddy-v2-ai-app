@@ -43,6 +43,11 @@
     --sidebar-accent-foreground: 29 56% 95%;
     --sidebar-border: 25 20% 15%;
     --sidebar-ring: 29 56% 55%;
+
+    /* Font sizes */
+    --font-size-base: 16px;
+    --font-size-sm: 14px;
+    --font-size-lg: 18px;
   }
 
   .dark {
@@ -91,7 +96,17 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: var(--font-size-base);
   }
+  
+  body[data-font-size="small"] {
+    font-size: var(--font-size-sm);
+  }
+
+  body[data-font-size="large"] {
+    font-size: var(--font-size-lg);
+  }
+  
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;
   }
