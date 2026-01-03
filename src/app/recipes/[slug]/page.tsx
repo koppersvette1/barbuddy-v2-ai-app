@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useState, useTransition } from 'react';
-import { notFound, useRouter } from 'next/navigation';
+import { useState, useTransition, useEffect } from 'react';
+import { notFound } from 'next/navigation';
 import { recipes } from '@/lib/recipes';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
@@ -21,7 +21,7 @@ import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
-import type { RecipeSpec } from '@/lib/types';
+import type { Recipe, RecipeSpec } from '@/lib/types';
 
 type AIResult = {
   title: string;
@@ -61,7 +61,6 @@ const RecipeContent = ({ spec }: { spec: RecipeSpec }) => (
   );
 
 export default function RecipeDetailPage({ params }: { params: { slug: string } }) {
-  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [aiResult, setAiResult] = useState<AIResult | null>(null);
   const { settings, toggleFavorite } = useSettings();
@@ -69,11 +68,11 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
   const [servings, setServings] = useState(1);
   const [isShareable, setIsShareable] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     if (typeof navigator !== 'undefined' && navigator.share) {
       setIsShareable(true);
     }
-  });
+  }, []);
 
   const allRecipes = [...recipes, ...settings.customRecipes];
   const recipe = allRecipes.find(r => r.slug === params.slug);
@@ -434,5 +433,3 @@ export default function RecipeDetailPage({ params }: { params: { slug: string } 
     </div>
   );
 }
-
-    
