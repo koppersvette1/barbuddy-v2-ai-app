@@ -107,6 +107,26 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
     }
   };
 
+  const handleShareRecipe = async () => {
+    const ingredientsText = recipe.spec.ingredients.map(ing => `- ${ing.amount} ${ing.item}`).join('\n');
+    const instructionsText = recipe.spec.instructions.map((step, i) => `${i + 1}. ${step}`).join('\n');
+    const recipeText = `Cocktail: ${recipe.name}\n\nIngredients:\n${ingredientsText}\n\nInstructions:\n${instructionsText}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `Recipe: ${recipe.name}`,
+          text: recipeText,
+          url: window.location.href,
+        });
+        toast({ title: 'Recipe shared!' });
+      } catch (error) {
+        toast({ variant: 'destructive', title: 'Could not share recipe', description: 'Sharing was cancelled or failed.' });
+      }
+    }
+  }
+
+
   const handleFoodPairing = () => {
     startTransition(async () => {
       setAiResult(null);
@@ -186,9 +206,16 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: Pr
                     data-ai-hint={recipeImage.imageHint}
                   />
                 )}
-                 <Button size="icon" className="absolute top-2 right-2 rounded-full" variant={isFavorite ? 'default' : 'secondary'} onClick={handleToggleFavorite} aria-label="Toggle Favorite">
-                  <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
-                </Button>
+                 <div className="absolute top-2 right-2 flex gap-2">
+                    {isShareable && (
+                        <Button size="icon" className="rounded-full" variant={'secondary'} onClick={handleShareRecipe} aria-label="Share Recipe">
+                            <Share2 className="w-5 h-5" />
+                        </Button>
+                    )}
+                    <Button size="icon" className="rounded-full" variant={isFavorite ? 'default' : 'secondary'} onClick={handleToggleFavorite} aria-label="Toggle Favorite">
+                        <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
+                    </Button>
+                 </div>
               </CardContent>
               <CardHeader>
                 <CardTitle>{recipe.name}</CardTitle>
