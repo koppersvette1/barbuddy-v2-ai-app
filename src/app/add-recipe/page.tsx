@@ -18,12 +18,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Header } from "@/components/layout/header";
 import { useToast } from "@/hooks/use-toast";
-import { X, Plus, Sparkles, Loader, Image as ImageIcon, Link } from "lucide-react";
+import { X, Plus, Sparkles, Loader, Image as ImageIcon, Link as LinkIcon } from "lucide-react";
 import { Recipe } from "@/lib/types";
 import { generateCocktailImage } from "@/ai/flows/generate-cocktail-image";
 import Image from "next/image";
@@ -59,6 +60,7 @@ export default function AddRecipePage() {
     resolver: zodResolver(recipeSchema),
     defaultValues: {
       name: "",
+      category: "Sours",
       imagePrompt: "",
       spec: {
         ingredients: [{ item: "", amount: "" }],
@@ -168,7 +170,7 @@ export default function AddRecipePage() {
           <CardContent>
             <div className="space-y-4 mb-8 p-4 border rounded-lg bg-background/50">
               <Label htmlFor="import-url" className="flex items-center gap-2 font-semibold">
-                <Link className="h-5 w-5"/> Import From Web
+                <LinkIcon className="h-5 w-5"/> Import From Web
               </Label>
               <div className="flex gap-2">
                 <Input 
@@ -318,7 +320,7 @@ export default function AddRecipePage() {
                           name={`spec.instructions.${index}`}
                           render={({ field }) => (
                              <FormItem className="flex-grow">
-                              <FormControl><Textarea placeholder="Describe this step..." {...field} value={field.value ?? ''}/></FormControl>
+                              <FormControl><Textarea placeholder="Describe this step..." value={field.value ?? ''} onChange={field.onChange} /></FormControl>
                             </FormItem>
                           )}
                         />
@@ -344,3 +346,5 @@ export default function AddRecipePage() {
     </div>
   );
 }
+
+    
