@@ -46,5 +46,3 @@ const generateCocktailImageFlow = ai.defineFlow(
     };
   }
 );
-
-    
