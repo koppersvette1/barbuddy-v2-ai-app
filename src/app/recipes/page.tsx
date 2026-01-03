@@ -70,11 +70,18 @@ export default function RecipesPage() {
       return 0;
     });
 
+  const recipesByCategory = filteredAndSortedRecipes.reduce((acc, recipe) => {
+    (acc[recipe.category] = acc[recipe.category] || []).push(recipe);
+    return acc;
+  }, {} as Record<Recipe['category'], Recipe[]>);
+
+  const categoryOrder: Recipe['category'][] = ['Spirit Forward', 'Sours', 'Highballs & Spritzes', 'Tiki, Tropical & Dessert'];
+
   return (
     <div className="flex flex-col">
       <Header title="Cocktail Recipes" />
       <main className="p-6">
-        <div className="bg-card border rounded-lg p-6 mb-6">
+        <div className="bg-card border rounded-lg p-6 mb-8">
           <h2 className="text-2xl font-bold text-primary mb-2 flex items-center gap-2">
             <Sparkles className="w-6 h-6" /> My Recipes
           </h2>
@@ -108,41 +115,57 @@ export default function RecipesPage() {
           )}
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
-          <div className="flex-grow">
-            <Input
-              placeholder="Search all recipes..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="max-w-sm"
-            />
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">Sort by:</span>
-              <Select value={sortOrder} onValueChange={setSortOrder}>
-                <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Sort by" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="name-asc">Name (A-Z)</SelectItem>
-                  <SelectItem value="name-desc">Name (Z-A)</SelectItem>
-                  <SelectItem value="category">Category</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-             <Button asChild variant="outline">
-                <Link href="/add-recipe" className="flex items-center gap-2">
-                  <PlusCircle className="w-4 h-4" /> Add Recipe
-                </Link>
-            </Button>
-          </div>
-        </div>
+        <div className="space-y-8">
+            <div className="bg-card border rounded-lg p-6">
+                <div className="flex flex-col md:flex-row gap-4 mb-6">
+                    <div className="flex-grow">
+                        <Input
+                        placeholder="Search all recipes..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        className="max-w-sm"
+                        />
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2">
+                        <span className="text-sm text-muted-foreground">Sort by:</span>
+                        <Select value={sortOrder} onValueChange={setSortOrder}>
+                            <SelectTrigger className="w-[180px]">
+                            <SelectValue placeholder="Sort by" />
+                            </SelectTrigger>
+                            <SelectContent>
+                            <SelectItem value="name-asc">Name (A-Z)</SelectItem>
+                            <SelectItem value="name-desc">Name (Z-A)</SelectItem>
+                            <SelectItem value="category">Category</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        </div>
+                        <Button asChild variant="outline">
+                            <Link href="/add-recipe" className="flex items-center gap-2">
+                            <PlusCircle className="w-4 h-4" /> Add Recipe
+                            </Link>
+                        </Button>
+                    </div>
+                </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredAndSortedRecipes.map((recipe) => (
-            <RecipeCard key={recipe.slug} recipe={recipe} />
-          ))}
+                <div className="space-y-10">
+                    {categoryOrder.map(category => {
+                        const categoryRecipes = recipesByCategory[category];
+                        if (!categoryRecipes || categoryRecipes.length === 0) return null;
+
+                        return (
+                        <section key={category}>
+                            <h2 className="text-2xl font-bold text-primary mb-4 pb-2 border-b border-border">{category}</h2>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            {categoryRecipes.map((recipe) => (
+                                <RecipeCard key={recipe.slug} recipe={recipe} />
+                            ))}
+                            </div>
+                        </section>
+                        );
+                    })}
+                </div>
+            </div>
         </div>
       </main>
     </div>
