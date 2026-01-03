@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { useSettings } from '@/contexts/settings-context';
 import { useToast } from '@/hooks/use-toast';
-import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight } from 'lucide-react';
+import { Flame, GlassWater, Loader, Utensils, Replace, Info, Baby, GraduationCap, ChevronsRight, Star } from 'lucide-react';
 import { suggestFoodPairing } from '@/ai/flows/suggest-food-pairing';
 import { suggestWoodPairing } from '@/ai/flows/suggest-wood-pairing';
 import { suggestCocktailSubstitutions, SuggestCocktailSubstitutionsOutput } from '@/ai/flows/suggest-cocktail-substitutions';
@@ -35,7 +35,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [aiResult, setAiResult] = useState<AIResult | null>(null);
-  const { settings } = useSettings();
+  const { settings, toggleFavorite } = useSettings();
   const { toast } = useToast();
   const [servings, setServings] = useState(1);
 
@@ -49,6 +49,16 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
   const recipeImage = recipe.imageDataUri 
     ? { imageUrl: recipe.imageDataUri, imageHint: recipe.imageHint || 'custom cocktail' }
     : PlaceHolderImages.find(img => img.id === recipe.image) || PlaceHolderImages.find(img => img.id === 'default-cocktail');
+  
+  const isFavorite = settings.favoriteRecipes.includes(recipe.slug);
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(recipe.slug);
+    toast({
+      title: isFavorite ? 'Removed from Favorites' : 'Added to Favorites',
+      description: `${recipe.name} has been ${isFavorite ? 'removed from' : 'added to'} your favorites.`,
+    });
+  }
 
   const handleFoodPairing = () => {
     startTransition(async () => {
@@ -118,7 +128,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="md:col-span-1">
             <Card>
-              <CardContent className="p-0">
+              <CardContent className="p-0 relative">
                 {recipeImage && (
                   <Image
                     src={recipeImage.imageUrl}
@@ -129,6 +139,9 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
                     data-ai-hint={recipeImage.imageHint}
                   />
                 )}
+                 <Button size="icon" className="absolute top-2 right-2 rounded-full" variant={isFavorite ? 'default' : 'secondary'} onClick={handleToggleFavorite} aria-label="Toggle Favorite">
+                  <Star className={`w-5 h-5 ${isFavorite ? 'fill-current' : ''}`} />
+                </Button>
               </CardContent>
               <CardHeader>
                 <CardTitle>{recipe.name}</CardTitle>

@@ -11,6 +11,7 @@ const defaultSettings: Settings = {
   hasSmoker: true,
   inventory: [],
   customRecipes: [],
+  favoriteRecipes: [],
   fontSize: 'medium',
 };
 
@@ -54,8 +55,19 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
     }));
   };
 
+  const toggleFavorite = (slug: string) => {
+    setSettings(prev => {
+      const isFavorite = prev.favoriteRecipes.includes(slug);
+      if (isFavorite) {
+        return { ...prev, favoriteRecipes: prev.favoriteRecipes.filter(fav => fav !== slug) };
+      } else {
+        return { ...prev, favoriteRecipes: [...prev.favoriteRecipes, slug] };
+      }
+    });
+  }
+
   return (
-    <SettingsContext.Provider value={{ settings, updateSettings, setInventory, addCustomRecipe }}>
+    <SettingsContext.Provider value={{ settings, updateSettings, setInventory, addCustomRecipe, toggleFavorite }}>
       {children}
     </SettingsContext.Provider>
   );

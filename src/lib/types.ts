@@ -32,6 +32,7 @@ export type Settings = {
   hasSmoker: boolean;
   inventory: string[];
   customRecipes: Recipe[];
+  favoriteRecipes: string[];
   fontSize: 'small' | 'medium' | 'large';
 };
 
@@ -40,4 +41,5 @@ export type SettingsContextType = {
   updateSettings: (newSettings: Partial<Settings>) => void;
   setInventory: (inventory: string[]) => void;
   addCustomRecipe: (recipe: Recipe) => void;
+  toggleFavorite: (slug: string) => void;
 };

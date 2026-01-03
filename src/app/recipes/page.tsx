@@ -86,8 +86,12 @@ export default function RecipesPage() {
       if (!a.custom && b.custom) return 1;
       return 0;
     });
+  
+  const favoriteRecipes = filteredAndSortedRecipes.filter(r => settings.favoriteRecipes.includes(r.slug));
 
   const recipesByCategory = filteredAndSortedRecipes.reduce((acc, recipe) => {
+    if (settings.favoriteRecipes.includes(recipe.slug)) return acc;
+
     const category = recipe.custom ? 'My Custom Recipes' : recipe.category;
     (acc[category] = acc[category] || []).push(recipe);
     return acc;
@@ -184,6 +188,17 @@ export default function RecipesPage() {
                 </div>
 
                 <div className="space-y-10">
+                    {favoriteRecipes.length > 0 && (
+                      <section>
+                        <h2 className="text-2xl font-bold text-primary mb-4 pb-2 border-b border-border">My Favorites</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                          {favoriteRecipes.map((recipe) => (
+                            <RecipeCard key={recipe.slug} recipe={recipe} />
+                          ))}
+                        </div>
+                      </section>
+                    )}
+
                     {categoryOrder.map(category => {
                         const categoryRecipes = recipesByCategory[category];
                         if (!categoryRecipes || categoryRecipes.length === 0) return null;
