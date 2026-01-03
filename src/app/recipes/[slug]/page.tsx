@@ -25,7 +25,8 @@ type AIResult = {
   rationale?: string;
 };
 
-export default function RecipeDetailPage({ params }: { params: { slug: string } }) {
+export default function RecipeDetailPage({ params: paramsPromise }: { params: { slug: string } }) {
+  const params = use(paramsPromise);
   const [isPending, startTransition] = useTransition();
   const [aiResult, setAiResult] = useState<AIResult | null>(null);
   const { settings } = useSettings();
