@@ -343,7 +343,7 @@ export const recipes: Recipe[] = [
     slug: 'sazerac',
     name: 'Sazerac',
     category: 'Spirit Forward',
-image: 'sazerac',
+    image: 'sazerac',
     spec: {
       ingredients: [
         { item: 'Rye Whiskey', amount: '2 oz' },
@@ -812,5 +812,37 @@ image: 'sazerac',
       name: 'Vampire Punch',
       recipe: 'Orange juice and cherry juice mixed together',
     },
+  },
+  {
+    slug: 'pomegranate-hugo-spritz',
+    name: 'Pomegranate Hugo Spritz',
+    category: 'Highballs & Spritzes',
+    image: 'pomegranate-hugo-spritz',
+    spec: {
+      ingredients: [
+        { item: 'Prosecco', amount: '3 oz' },
+        { item: 'Pomegranate Liqueur', amount: '1 oz' },
+        { item: 'Elderflower Liqueur', amount: '0.5 oz' },
+        { item: 'Soda Water', amount: '1 oz' },
+        { item: 'Mint Leaves', amount: 'for garnish' },
+        { item: 'Pomegranate Seeds', amount: 'for garnish' },
+      ],
+      instructions: [
+        'Gently muddle mint leaves in a large wine glass.',
+        'Fill the glass with ice.',
+        'Add Prosecco, Pomegranate Liqueur, and Elderflower Liqueur.',
+        'Top with a splash of soda water and stir gently.',
+        'Garnish with more mint and a sprinkle of pomegranate seeds.'
+      ],
+    },
+    swap: 'Use Pomegranate juice if you don\'t have the liqueur.',
+    mocktail: {
+      name: 'Pomegranate Elderflower Spritzer',
+      recipe: 'Mix 2 oz Pomegranate Juice, 0.5 oz Elderflower syrup, and top with sparkling water.'
+    },
+    kid: {
+      name: 'Ruby Fizz',
+      recipe: 'Sprite mixed with a splash of pomegranate juice and a few pomegranate seeds.'
+    }
   }
 ];
