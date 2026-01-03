@@ -30,7 +30,6 @@ export type Settings = {
   showMocktails: boolean;
   showKids: boolean;
   hasSmoker: boolean;
-  showBeta: boolean;
   inventory: string[];
   customRecipes: Recipe[];
   fontSize: 'small' | 'medium' | 'large';

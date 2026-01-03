@@ -9,7 +9,6 @@ const defaultSettings: Settings = {
   showMocktails: true,
   showKids: true,
   hasSmoker: true,
-  showBeta: true,
   inventory: [],
   customRecipes: [],
   fontSize: 'medium',

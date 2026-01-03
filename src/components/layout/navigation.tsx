@@ -7,17 +7,15 @@ import {
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { LayoutGrid, Archive, BookOpen, Settings, GraduationCap } from 'lucide-react';
-import { useSettings } from '@/contexts/settings-context';
 
 export function Navigation() {
   const pathname = usePathname();
-  const { settings } = useSettings();
 
   const navItems = [
     { href: '/', label: 'Dashboard', icon: LayoutGrid },
     { href: '/inventory', label: 'Inventory', icon: Archive },
     { href: '/recipes', label: 'Recipes', icon: BookOpen },
-    ...(settings.showBeta ? [{ href: '/learn', label: 'Learn', icon: GraduationCap }] : []),
+    { href: '/learn', label: 'Learn', icon: GraduationCap },
     { href: '/settings', label: 'Settings', icon: Settings },
   ];
 

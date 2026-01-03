@@ -7,8 +7,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Loader, FlaskConical, Beaker, Flame, BookOpen, TestTube } from 'lucide-react';
-import { useSettings } from '@/contexts/settings-context';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { explainFatWashing, type ExplainFatWashingOutput } from '@/ai/flows/explain-fat-washing';
 import { explainInfusion, type ExplainInfusionOutput } from '@/ai/flows/explain-infusion';
 import { explainCocktailSmoking, type ExplainCocktailSmokingOutput } from '@/ai/flows/explain-cocktail-smoking';
@@ -23,7 +21,7 @@ function isCocktailSmokingOutput(explanation: any): explanation is ExplainCockta
   return explanation && 'chimneySmokerGuide' in explanation;
 }
 
-const techniqueConfig: Record<Technique, { icon: React.ElementType, label: string, imageId: string }> = {
+const techniqueConfig: Record<Technique, { icon: React.ElementType, label: string, imageId: string, disabled?: (settings: any) => boolean }> = {
   fatWashing: { icon: Beaker, label: 'Fat Washing', imageId: 'learn-fat-washing' },
   infusion: { icon: FlaskConical, label: 'Spirit Infusions', imageId: 'learn-infusion' },
   cocktailSmoking: { icon: Flame, label: 'Cocktail Smoking', imageId: 'learn-cocktail-smoking' },
@@ -31,7 +29,6 @@ const techniqueConfig: Record<Technique, { icon: React.ElementType, label: strin
 };
 
 export default function LearnPage() {
-  const { settings } = useSettings();
   const [isPending, startTransition] = useTransition();
   const [explanation, setExplanation] = useState<TechniqueExplanation | null>(null);
   const [activeTechnique, setActiveTechnique] = useState<Technique | null>(null);
@@ -56,23 +53,6 @@ export default function LearnPage() {
 
   const techniqueImage = activeTechnique ? PlaceHolderImages.find(img => img.id === techniqueConfig[activeTechnique].imageId) : null;
 
-  if (!settings.showBeta) {
-    return (
-      <div className="flex flex-col h-full">
-        <Header title="Learn Advanced Techniques" />
-        <main className="p-6 flex-1 flex items-center justify-center">
-          <Alert className="max-w-md text-center bg-card">
-            <Beaker className="h-4 w-4" />
-            <AlertTitle>Beta Features Disabled</AlertTitle>
-            <AlertDescription>
-              This section contains advanced topics. To view this content, please enable "Show Beta Features" on the{' '}
-              <a href="/settings" className="underline font-semibold hover:text-primary">Settings</a> page.
-            </AlertDescription>
-          </Alert>
-        </main>
-      </div>
-    );
-  }
 
   return (
     <div className="flex flex-col">
@@ -93,7 +73,7 @@ export default function LearnPage() {
                     key={key}
                     variant={activeTechnique === key ? 'default' : 'secondary'}
                     onClick={() => handleExplainTechnique(key)}
-                    disabled={isPending || (key === 'cocktailSmoking' && !settings.hasSmoker)}
+                    disabled={isPending}
                     className="justify-start"
                   >
                     <Icon className="mr-2 h-4 w-4" /> {config.label}
@@ -190,7 +170,7 @@ export default function LearnPage() {
                         <AccordionTrigger className="text-2xl font-headline hover:no-underline">Pro Tips</AccordionTrigger>
                         <AccordionContent className="pt-2">
                           <ul className="list-disc list-outside space-y-4 pl-5 text-base text-foreground/80">
-                            {explanation.proTips.map((tip, i) => <li key={i} className="pl-2">{tip}</li>)}
+                            {'proTips' in explanation && explanation.proTips.map((tip, i) => <li key={i} className="pl-2">{tip}</li>)}
                           </ul>
                         </AccordionContent>
                       </AccordionItem>

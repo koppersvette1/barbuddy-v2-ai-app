@@ -75,19 +75,6 @@ export default function SettingsPage() {
                   onCheckedChange={(checked) => updateSettings({ hasSmoker: checked })}
                 />
               </div>
-              <div className="flex items-center justify-between space-x-2 p-4 rounded-lg border">
-                <Label htmlFor="show-beta" className="flex flex-col space-y-1">
-                  <span>Show Beta Features</span>
-                  <span className="font-normal leading-snug text-muted-foreground">
-                    Access advanced techniques like fat washing and infusions.
-                  </span>
-                </Label>
-                <Switch
-                  id="show-beta"
-                  checked={settings.showBeta}
-                  onCheckedChange={(checked) => updateSettings({ showBeta: checked })}
-                />
-              </div>
             </CardContent>
           </Card>
           

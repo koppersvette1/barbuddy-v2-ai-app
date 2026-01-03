@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition, use } from 'react';
-import { notFound } from 'next/navigation';
+import { notFound, useRouter } from 'next/navigation';
 import { recipes } from '@/lib/recipes';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
@@ -28,18 +28,23 @@ type AIResult = {
 
 export default function RecipeDetailPage({ params: paramsPromise }: { params: { slug: string } }) {
   const params = use(paramsPromise);
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [aiResult, setAiResult] = useState<AIResult | null>(null);
   const { settings } = useSettings();
   const { toast } = useToast();
 
-  const recipe = recipes.find(r => r.slug === params.slug);
+  const allRecipes = [...recipes, ...settings.customRecipes];
+  const recipe = allRecipes.find(r => r.slug === params.slug);
 
   if (!recipe) {
     notFound();
   }
+  
+  const recipeImage = recipe.imageDataUri 
+    ? { imageUrl: recipe.imageDataUri, imageHint: recipe.imageHint || 'custom cocktail' }
+    : PlaceHolderImages.find(img => img.id === recipe.image) || PlaceHolderImages.find(img => img.id === 'default-cocktail');
 
-  const recipeImage = PlaceHolderImages.find(img => img.id === recipe.image) || PlaceHolderImages.find(img => img.id === 'default-cocktail');
 
   const handleFoodPairing = () => {
     startTransition(async () => {
@@ -84,6 +89,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
     });
   };
 
+  const hasAdvancedTechnique = ['Whiskey Sour', 'Gin Fizz', 'Clover Club'].includes(recipe.name);
 
   return (
     <div className="flex flex-col">
@@ -116,13 +122,6 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
                 <Button onClick={handleFoodPairing} disabled={isPending} variant="outline"><Utensils className="mr-2" /> Food Pairing</Button>
                 {settings.hasSmoker && <Button onClick={handleWoodPairing} disabled={isPending} variant="outline"><Flame className="mr-2" /> Smoke Pairing</Button>}
                 <Button onClick={handleSubstitutions} disabled={isPending} variant="outline"><Replace className="mr-2"/> Substitutions</Button>
-                {settings.showBeta && (
-                  <Button asChild variant="outline">
-                    <Link href="/learn">
-                      <GraduationCap className="mr-2" /> Learn Techniques
-                    </Link>
-                  </Button>
-                )}
               </CardContent>
             </Card>
 
@@ -156,7 +155,7 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
             )}
           </div>
           
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 space-y-6">
             <Tabs defaultValue="recipe" className="w-full">
               <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
                 <TabsTrigger value="recipe">Recipe</TabsTrigger>
@@ -217,6 +216,26 @@ export default function RecipeDetailPage({ params: paramsPromise }: { params: { 
               </TabsContent>
 
             </Tabs>
+            
+            {hasAdvancedTechnique && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2"><GraduationCap /> Masterclass: The Dry Shake</CardTitle>
+                  <CardDescription>This cocktail uses an egg white (or aquafaba) to create a rich, silky foam. Mastering the "Dry Shake" is key to getting that perfect texture.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <h3 className="font-semibold text-primary">The "Why"</h3>
+                    <p className="text-muted-foreground">Shaking without ice first (dry shake) allows the proteins in the egg white to unwind and trap air, creating a stable foam. Shaking with ice *after* chills the drink without over-diluting it.</p>
+                  </div>
+                   <Button asChild variant="outline">
+                    <Link href="/learn">
+                      Explore More Techniques <ChevronsRight className="ml-2" />
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            )}
           </div>
         </div>
       </main>
