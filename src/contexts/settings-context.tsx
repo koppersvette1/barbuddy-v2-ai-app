@@ -2,7 +2,7 @@
 "use client";
 
 import type { Recipe, Settings, SettingsContextType } from '@/lib/types';
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 const defaultSettings: Settings = {
   showAlcohol: true,
@@ -17,7 +17,27 @@ const defaultSettings: Settings = {
 const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
-  const [settings, setSettings] = useState<Settings>(defaultSettings);
+  const [settings, setSettings] = useState<Settings>(() => {
+    if (typeof window === 'undefined') {
+      return defaultSettings;
+    }
+    try {
+      const item = window.localStorage.getItem('barbuddy-settings');
+      return item ? JSON.parse(item) : defaultSettings;
+    } catch (error) {
+      console.error(error);
+      return defaultSettings;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem('barbuddy-settings', JSON.stringify(settings));
+    } catch (error) {
+      console.error(error);
+    }
+  }, [settings]);
+
 
   const updateSettings = (newSettings: Partial<Settings>) => {
     setSettings(prev => ({ ...prev, ...newSettings }));
