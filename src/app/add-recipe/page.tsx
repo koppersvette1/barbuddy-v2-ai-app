@@ -23,15 +23,17 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Header } from "@/components/layout/header";
 import { useToast } from "@/hooks/use-toast";
-import { X, Plus, Sparkles, Loader, Image as ImageIcon } from "lucide-react";
+import { X, Plus, Sparkles, Loader, Image as ImageIcon, Link } from "lucide-react";
 import { Recipe } from "@/lib/types";
 import { generateCocktailImage } from "@/ai/flows/generate-cocktail-image";
 import Image from "next/image";
 import { useSettings } from "@/contexts/settings-context";
+import { scrapeRecipeFromUrl } from "@/ai/flows/scrape-recipe-from-url";
+import { Separator } from "@/components/ui/separator";
 
 const recipeSchema = z.object({
   name: z.string().min(3, "Recipe name must be at least 3 characters long."),
-  category: z.enum(['Spirit Forward', 'Sours', 'Highballs & Spritzes', 'Tiki, Tropical & Dessert']),
+  category: z.enum(['Spirit Forward', 'Sours', 'Highballs & Spritzes', 'Tiki, Tropical & Dessert', 'Other']),
   imagePrompt: z.string().min(10, "Image prompt must be at least 10 characters long."),
   imageDataUri: z.string().optional(),
   spec: z.object({
@@ -49,7 +51,9 @@ export default function AddRecipePage() {
   const router = useRouter();
   const { toast } = useToast();
   const [isGenerating, startTransition] = useTransition();
+  const [isImporting, startImportTransition] = useTransition();
   const { addCustomRecipe } = useSettings();
+  const [urlToImport, setUrlToImport] = useState("");
   
   const form = useForm<RecipeFormValues>({
     resolver: zodResolver(recipeSchema),
@@ -89,6 +93,34 @@ export default function AddRecipePage() {
       }
     });
   };
+
+  const handleImportFromUrl = () => {
+    if (!urlToImport) {
+        toast({ variant: 'destructive', title: 'Please enter a URL.' });
+        return;
+    }
+    startImportTransition(async () => {
+        try {
+            const result = await scrapeRecipeFromUrl({ url: urlToImport });
+            if (result) {
+                form.reset({
+                    name: result.name,
+                    category: result.category,
+                    spec: {
+                        ingredients: result.spec.ingredients,
+                        instructions: result.spec.instructions,
+                    },
+                    imagePrompt: `A beautiful photo of a ${result.name} cocktail.`
+                });
+                toast({ title: "Recipe Imported!", description: `"${result.name}" has been populated in the form.` });
+            } else {
+                toast({ variant: "destructive", title: "Import failed", description: "Could not extract a recipe from the URL." });
+            }
+        } catch (error: any) {
+            toast({ variant: "destructive", title: "Import Error", description: error.message || 'An unknown error occurred.' });
+        }
+    });
+  }
 
   function onSubmit(data: RecipeFormValues) {
     const slug = data.name.toLowerCase().replace(/\s+/g, '-');
@@ -134,6 +166,26 @@ export default function AddRecipePage() {
             <CardTitle>Create Your Cocktail</CardTitle>
           </CardHeader>
           <CardContent>
+            <div className="space-y-4 mb-8 p-4 border rounded-lg bg-background/50">
+              <Label htmlFor="import-url" className="flex items-center gap-2 font-semibold">
+                <Link className="h-5 w-5"/> Import From Web
+              </Label>
+              <div className="flex gap-2">
+                <Input 
+                  id="import-url"
+                  placeholder="Paste a recipe URL here..."
+                  value={urlToImport}
+                  onChange={(e) => setUrlToImport(e.target.value)}
+                  disabled={isImporting}
+                />
+                <Button type="button" onClick={handleImportFromUrl} disabled={isImporting}>
+                  {isImporting ? <Loader className="animate-spin" /> : 'Import'}
+                </Button>
+              </div>
+            </div>
+            
+            <Separator className="my-8" />
+          
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <div className="grid md:grid-cols-2 gap-8">
@@ -156,7 +208,7 @@ export default function AddRecipePage() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Category</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <Select onValueChange={field.onChange} value={field.value}>
                           <FormControl>
                             <SelectTrigger>
                               <SelectValue placeholder="Select a category" />
@@ -167,6 +219,7 @@ export default function AddRecipePage() {
                             <SelectItem value="Sours">Sours</SelectItem>
                             <SelectItem value="Highballs & Spritzes">Highballs & Spritzes</SelectItem>
                             <SelectItem value="Tiki, Tropical & Dessert">Tiki, Tropical & Dessert</SelectItem>
+                            <SelectItem value="Other">Other</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
